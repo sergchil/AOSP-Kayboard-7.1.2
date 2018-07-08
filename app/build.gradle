@@ -9,11 +9,12 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        externalNativeBuild {
-            ndkBuild {
-                cppFlags "-std=c++11 -frtti -fexceptions"
-                abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            }
+// uncomment to build native libs        
+//        externalNativeBuild {
+//            ndkBuild {
+//                cppFlags "-std=c++11 -frtti -fexceptions"
+//                abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+//            }
         }
     }
 
@@ -31,11 +32,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    externalNativeBuild {
-        ndkBuild {
-            path "src/main/cpp/Android.mk"
-        }
-    }
+    
+// uncomment to build native libs        
+//    externalNativeBuild {
+//        ndkBuild {
+//            path "src/main/cpp/Android.mk"
+//        }
+//    }
 }
 
 dependencies {
