@@ -53,34 +53,6 @@
         </service>
 
         <!-- Activities -->
-        <activity android:name=".latin.setup.SetupActivity"
-                  android:theme="@style/platformActivityTheme"
-                  android:label="@string/english_ime_name"
-                  android:icon="@drawable/ic_launcher_keyboard"
-                  android:launchMode="singleTask"
-                  android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".latin.permissions.PermissionsActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:exported="false"
-            android:taskAffinity="" >
-        </activity>
-
-        <activity android:name=".latin.setup.SetupWizardActivity"
-                  android:theme="@style/platformActivityTheme"
-                  android:label="@string/english_ime_name"
-                  android:clearTaskOnLaunch="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".latin.settings.SettingsActivity"
                   android:theme="@style/platformSettingsTheme"
                   android:label="@string/english_ime_settings">
@@ -105,50 +77,6 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="com.android.inputmethod.dictionarypack.DownloadOverMeteredDialog"
-                  android:theme="@style/platformActivityTheme"
-                  android:label="@string/dictionary_install_over_metered_network_prompt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-
-        <!-- Unexported activity used for tests. -->
-        <activity android:name=".latin.settings.TestFragmentActivity"
-                  android:exported="false" />
-
-        <!-- Broadcast receivers -->
-        <receiver android:name=".latin.SystemBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_INITIALIZE" />
-                <action android:name="android.intent.action.LOCALE_CHANGED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".latin.DictionaryPackInstallBroadcastReceiver" android:exported="false">
-            <intent-filter>
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.UNKNOWN_CLIENT" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name="com.android.inputmethod.dictionarypack.EventHandler">
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <action android:name="android.intent.action.DATE_CHANGED" />
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.UPDATE_NOW" />
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.INIT_AND_UPDATE_NOW" />
-            </intent-filter>
-        </receiver>
-
-        <!-- Broadcast receiver for AccountManager#LOGIN_ACCOUNTS_CHANGED_ACTION. -->
-        <receiver android:name=".latin.accounts.AccountsChangedReceiver">
-            <intent-filter>
-                <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED" />
-            </intent-filter>
-        </receiver>
 
         <!-- Content providers -->
         <provider android:name="com.android.inputmethod.dictionarypack.DictionaryProvider"

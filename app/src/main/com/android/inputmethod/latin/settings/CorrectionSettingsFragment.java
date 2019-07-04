@@ -146,7 +146,6 @@ public final class CorrectionSettingsFragment extends SubScreenFragment
     private void turnOffUseContactsIfNoPermission() {
         if (!PermissionsUtil.checkAllPermissionsGranted(
                 getActivity(), Manifest.permission.READ_CONTACTS)) {
-            mUseContactsPreference.setChecked(false);
         }
     }
 }
