@@ -27,8 +27,6 @@ import android.util.Log;
 
 import java.io.FileNotFoundException;
 
-import javax.annotation.Nullable;
-
 /**
  * A class to help with calling DownloadManager methods.
  *
@@ -80,7 +78,6 @@ public class DownloadManagerWrapper {
         throw new FileNotFoundException();
     }
 
-    @Nullable
     public Cursor query(final Query query) {
         try {
             if (null != mDownloadManager) {

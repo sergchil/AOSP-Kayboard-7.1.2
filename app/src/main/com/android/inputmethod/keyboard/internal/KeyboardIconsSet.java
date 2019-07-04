@@ -26,8 +26,8 @@ import com.android.inputmethod.R;
 
 import java.util.HashMap;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 public final class KeyboardIconsSet {
     private static final String TAG = KeyboardIconsSet.class.getSimpleName();
@@ -130,7 +130,7 @@ public final class KeyboardIconsSet {
         return iconId >= 0 && iconId < ICON_NAMES.length;
     }
 
-    @Nonnull
+
     public static String getIconName(final int iconId) {
         return isValidIconId(iconId) ? ICON_NAMES[iconId] : "unknown<" + iconId + ">";
     }
@@ -151,7 +151,7 @@ public final class KeyboardIconsSet {
         throw new RuntimeException("unknown icon name: " + name);
     }
 
-    @Nullable
+
     public Drawable getIconDrawable(final int iconId) {
         if (isValidIconId(iconId)) {
             return mIcons[iconId];

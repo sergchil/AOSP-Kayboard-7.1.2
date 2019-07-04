@@ -23,7 +23,7 @@ import com.android.inputmethod.latin.common.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.annotation.Nullable;
+
 
 /**
  * The extended {@link SuggestedWords} class to represent punctuation suggestions.
@@ -51,7 +51,7 @@ public final class PunctuationSuggestions extends SuggestedWords {
      * @return The {@link PunctuationSuggestions} object.
      */
     public static PunctuationSuggestions newPunctuationSuggestions(
-            @Nullable final String[] punctuationSpecs) {
+              final String[] punctuationSpecs) {
         if (punctuationSpecs == null || punctuationSpecs.length == 0) {
             return new PunctuationSuggestions(new ArrayList<SuggestedWordInfo>(0));
         }

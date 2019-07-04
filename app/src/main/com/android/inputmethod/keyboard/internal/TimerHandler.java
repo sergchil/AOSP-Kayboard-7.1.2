@@ -25,7 +25,7 @@ import com.android.inputmethod.keyboard.PointerTracker;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
 
-import javax.annotation.Nonnull;
+
 
 public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
         implements TimerProxy {
@@ -41,7 +41,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     private final int mIgnoreAltCodeKeyTimeout;
     private final int mGestureRecognitionUpdateTime;
 
-    public TimerHandler(@Nonnull final DrawingProxy ownerInstance,
+    public TimerHandler(  final DrawingProxy ownerInstance,
             final int ignoreAltCodeKeyTimeout, final int gestureRecognitionUpdateTime) {
         super(ownerInstance);
         mIgnoreAltCodeKeyTimeout = ignoreAltCodeKeyTimeout;
@@ -83,7 +83,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void startKeyRepeatTimerOf(@Nonnull final PointerTracker tracker, final int repeatCount,
+    public void startKeyRepeatTimerOf(  final PointerTracker tracker, final int repeatCount,
             final int delay) {
         final Key key = tracker.getKey();
         if (key == null || delay == 0) {
@@ -107,7 +107,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void startLongPressTimerOf(@Nonnull final PointerTracker tracker, final int delay) {
+    public void startLongPressTimerOf(  final PointerTracker tracker, final int delay) {
         final Key key = tracker.getKey();
         if (key == null) {
             return;
@@ -120,7 +120,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void cancelLongPressTimersOf(@Nonnull final PointerTracker tracker) {
+    public void cancelLongPressTimersOf(  final PointerTracker tracker) {
         removeMessages(MSG_LONGPRESS_KEY, tracker);
         removeMessages(MSG_LONGPRESS_SHIFT_KEY, tracker);
     }
@@ -136,7 +136,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void startTypingStateTimer(@Nonnull final Key typedKey) {
+    public void startTypingStateTimer(  final Key typedKey) {
         if (typedKey.isModifier() || typedKey.altCodeWhileTyping()) {
             return;
         }
@@ -187,7 +187,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void cancelKeyTimersOf(@Nonnull final PointerTracker tracker) {
+    public void cancelKeyTimersOf(  final PointerTracker tracker) {
         cancelKeyRepeatTimerOf(tracker);
         cancelLongPressTimersOf(tracker);
     }
@@ -198,7 +198,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void startUpdateBatchInputTimer(@Nonnull final PointerTracker tracker) {
+    public void startUpdateBatchInputTimer(  final PointerTracker tracker) {
         if (mGestureRecognitionUpdateTime <= 0) {
             return;
         }
@@ -208,7 +208,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
     }
 
     @Override
-    public void cancelUpdateBatchInputTimer(@Nonnull final PointerTracker tracker) {
+    public void cancelUpdateBatchInputTimer(  final PointerTracker tracker) {
         removeMessages(MSG_UPDATE_BATCH_INPUT, tracker);
     }
 
@@ -217,7 +217,7 @@ public final class TimerHandler extends LeakGuardHandlerWrapper<DrawingProxy>
         removeMessages(MSG_UPDATE_BATCH_INPUT);
     }
 
-    public void postDismissKeyPreview(@Nonnull final Key key, final long delay) {
+    public void postDismissKeyPreview(  final Key key, final long delay) {
         sendMessageDelayed(obtainMessage(MSG_DISMISS_KEY_PREVIEW, key), delay);
     }
 

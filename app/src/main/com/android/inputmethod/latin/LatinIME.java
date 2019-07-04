@@ -101,7 +101,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnull;
+
 
 import static com.android.inputmethod.latin.common.Constants.ImeOption.FORCE_ASCII;
 import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_MICROPHONE;
@@ -193,7 +193,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         private int mDelayInMillisecondsToUpdateSuggestions;
         private int mDelayInMillisecondsToUpdateShiftState;
 
-        public UIHandler(@Nonnull final LatinIME ownerInstance) {
+        public UIHandler(  final LatinIME ownerInstance) {
             super(ownerInstance);
         }
 
@@ -1374,7 +1374,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
 
     // This method is public for testability of LatinIME, but also in the future it should
     // completely replace #onCodeInput.
-    public void onEvent(@Nonnull final Event event) {
+    public void onEvent(  final Event event) {
         if (Constants.CODE_SHORTCUT == event.mKeyCode) {
             mRichImm.switchToShortcutIme(this);
         }
@@ -1389,7 +1389,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     // A helper method to split the code point and the key code. Ultimately, they should not be
     // squashed into the same variable, and this method should be removed.
     // public for testing, as we don't want to copy the same logic into test code
-    @Nonnull
+
     public static Event createSoftwareKeypressEvent(final int keyCodeOrCodePoint, final int keyX,
              final int keyY, final boolean isKeyRepeat) {
         final int keyCode;
@@ -1455,7 +1455,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     }
 
     // This method must run on the UI Thread.
-    void showGesturePreviewAndSuggestionStrip(@Nonnull final SuggestedWords suggestedWords,
+    void showGesturePreviewAndSuggestionStrip(  final SuggestedWords suggestedWords,
             final boolean dismissGestureFloatingPreviewText) {
         showSuggestionStrip(suggestedWords);
         final MainKeyboardView mainKeyboardView = mKeyboardSwitcher.getMainKeyboardView();

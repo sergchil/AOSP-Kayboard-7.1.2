@@ -29,7 +29,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
-import javax.annotation.Nonnull;
 
 public final class InputMethodSubtypeCompatUtils {
     private static final String TAG = InputMethodSubtypeCompatUtils.class.getSimpleName();
@@ -58,7 +57,6 @@ public final class InputMethodSubtypeCompatUtils {
     }
 
     @SuppressWarnings("deprecation")
-    @Nonnull
     public static InputMethodSubtype newInputMethodSubtype(int nameId, int iconId, String locale,
             String mode, String extraValue, boolean isAuxiliary,
             boolean overridesImplicitlyEnabledSubtype, int id) {

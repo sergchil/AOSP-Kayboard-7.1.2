@@ -40,8 +40,8 @@ import com.android.inputmethod.latin.utils.TypefaceUtils;
 
 import java.util.HashSet;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 /**
  * A view that renders a virtual {@link Keyboard}.
@@ -100,10 +100,10 @@ public class KeyboardView extends View {
     private static final float MAX_LABEL_RATIO = 0.90f;
 
     // Main keyboard
-    // TODO: Consider having a dummy keyboard object to make this @Nonnull
-    @Nullable
+    // TODO: Consider having a dummy keyboard object to make this
+
     private Keyboard mKeyboard;
-    @Nonnull
+
     private final KeyDrawParams mKeyDrawParams = new KeyDrawParams();
 
     // Drawing
@@ -116,9 +116,9 @@ public class KeyboardView extends View {
     /** The keyboard bitmap buffer for faster updates */
     private Bitmap mOffscreenBuffer;
     /** The canvas for the above mutable keyboard bitmap */
-    @Nonnull
+
     private final Canvas mOffscreenCanvas = new Canvas();
-    @Nonnull
+
     private final Paint mPaint = new Paint();
     private final Paint.FontMetrics mFontMetrics = new Paint.FontMetrics();
 
@@ -165,12 +165,12 @@ public class KeyboardView extends View {
         mPaint.setAntiAlias(true);
     }
 
-    @Nullable
+
     public KeyVisualAttributes getKeyVisualAttribute() {
         return mKeyVisualAttributes;
     }
 
-    private static void blendAlpha(@Nonnull final Paint paint, final int alpha) {
+    private static void blendAlpha(  final Paint paint, final int alpha) {
         final int color = paint.getColor();
         paint.setARGB((paint.getAlpha() * alpha) / Constants.Color.ALPHA_OPAQUE,
                 Color.red(color), Color.green(color), Color.blue(color));
@@ -189,7 +189,7 @@ public class KeyboardView extends View {
      * @see #getKeyboard()
      * @param keyboard the keyboard to display in this view
      */
-    public void setKeyboard(@Nonnull final Keyboard keyboard) {
+    public void setKeyboard(  final Keyboard keyboard) {
         mKeyboard = keyboard;
         final int keyHeight = keyboard.mMostCommonKeyHeight - keyboard.mVerticalGap;
         mKeyDrawParams.updateParams(keyHeight, mKeyVisualAttributes);
@@ -203,7 +203,7 @@ public class KeyboardView extends View {
      * @return the currently attached keyboard
      * @see #setKeyboard(Keyboard)
      */
-    @Nullable
+
     public Keyboard getKeyboard() {
         return mKeyboard;
     }
@@ -212,7 +212,7 @@ public class KeyboardView extends View {
         return mVerticalCorrection;
     }
 
-    @Nonnull
+
     protected KeyDrawParams getKeyDrawParams() {
         return mKeyDrawParams;
     }
@@ -278,7 +278,7 @@ public class KeyboardView extends View {
         }
     }
 
-    private void onDrawKeyboard(@Nonnull final Canvas canvas) {
+    private void onDrawKeyboard(  final Canvas canvas) {
         final Keyboard keyboard = getKeyboard();
         if (keyboard == null) {
             return;
@@ -324,8 +324,8 @@ public class KeyboardView extends View {
         mInvalidateAllKeys = false;
     }
 
-    private void onDrawKey(@Nonnull final Key key, @Nonnull final Canvas canvas,
-            @Nonnull final Paint paint) {
+    private void onDrawKey(  final Key key,   final Canvas canvas,
+              final Paint paint) {
         final int keyDrawX = key.getDrawX() + getPaddingLeft();
         final int keyDrawY = key.getY() + getPaddingTop();
         canvas.translate(keyDrawX, keyDrawY);
@@ -347,8 +347,8 @@ public class KeyboardView extends View {
     }
 
     // Draw key background.
-    protected void onDrawKeyBackground(@Nonnull final Key key, @Nonnull final Canvas canvas,
-            @Nonnull final Drawable background) {
+    protected void onDrawKeyBackground(  final Key key,   final Canvas canvas,
+              final Drawable background) {
         final int keyWidth = key.getDrawWidth();
         final int keyHeight = key.getHeight();
         final int bgWidth, bgHeight, bgX, bgY;
@@ -380,8 +380,8 @@ public class KeyboardView extends View {
     }
 
     // Draw key top visuals.
-    protected void onDrawKeyTopVisuals(@Nonnull final Key key, @Nonnull final Canvas canvas,
-            @Nonnull final Paint paint, @Nonnull final KeyDrawParams params) {
+    protected void onDrawKeyTopVisuals(  final Key key,   final Canvas canvas,
+              final Paint paint,   final KeyDrawParams params) {
         final int keyWidth = key.getDrawWidth();
         final int keyHeight = key.getHeight();
         final float centerX = keyWidth * 0.5f;
@@ -509,8 +509,8 @@ public class KeyboardView extends View {
     }
 
     // Draw popup hint "..." at the bottom right corner of the key.
-    protected void drawKeyPopupHint(@Nonnull final Key key, @Nonnull final Canvas canvas,
-            @Nonnull final Paint paint, @Nonnull final KeyDrawParams params) {
+    protected void drawKeyPopupHint(  final Key key,   final Canvas canvas,
+              final Paint paint,   final KeyDrawParams params) {
         if (TextUtils.isEmpty(mKeyPopupHintLetter)) {
             return;
         }
@@ -527,7 +527,7 @@ public class KeyboardView extends View {
         canvas.drawText(mKeyPopupHintLetter, hintX, hintY, paint);
     }
 
-    protected static void drawIcon(@Nonnull final Canvas canvas,@Nonnull final Drawable icon,
+    protected static void drawIcon(  final Canvas canvas,  final Drawable icon,
             final int x, final int y, final int width, final int height) {
         canvas.translate(x, y);
         icon.setBounds(0, 0, width, height);
@@ -535,7 +535,7 @@ public class KeyboardView extends View {
         canvas.translate(-x, -y);
     }
 
-    public Paint newLabelPaint(@Nullable final Key key) {
+    public Paint newLabelPaint(  final Key key) {
         final Paint paint = new Paint();
         paint.setAntiAlias(true);
         if (key == null) {
@@ -568,7 +568,7 @@ public class KeyboardView extends View {
      * @param key key in the attached {@link Keyboard}.
      * @see #invalidateAllKeys
      */
-    public void invalidateKey(@Nullable final Key key) {
+    public void invalidateKey(  final Key key) {
         if (mInvalidateAllKeys || key == null) {
             return;
         }
