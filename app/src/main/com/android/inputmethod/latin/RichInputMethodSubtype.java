@@ -30,9 +30,6 @@ import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 import java.util.HashMap;
 import java.util.Locale;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import static com.android.inputmethod.latin.common.Constants.Subtype.KEYBOARD_MODE;
 
 /**
@@ -55,14 +52,11 @@ public class RichInputMethodSubtype {
         return map;
     }
 
-    @Nonnull
     private final InputMethodSubtype mSubtype;
-    @Nonnull
     private final Locale mLocale;
-    @Nonnull
     private final Locale mOriginalLocale;
 
-    public RichInputMethodSubtype(@Nonnull final InputMethodSubtype subtype) {
+    public RichInputMethodSubtype(final InputMethodSubtype subtype) {
         mSubtype = subtype;
         mOriginalLocale = InputMethodSubtypeCompatUtils.getLocaleObject(mSubtype);
         final Locale mappedLocale = sLocaleMap.get(mOriginalLocale);
@@ -71,7 +65,7 @@ public class RichInputMethodSubtype {
 
     // Extra values are determined by the primary subtype. This is probably right, but
     // we may have to revisit this later.
-    public String getExtraValueOf(@Nonnull final String key) {
+    public String getExtraValueOf( final String key) {
         return mSubtype.getExtraValueOf(key);
     }
 
@@ -106,7 +100,6 @@ public class RichInputMethodSubtype {
     //  en_US azerty  T  English   English (US)
     //  zz    azerty  T  AZERTY    AZERTY
     // Get the RichInputMethodSubtype's full display name in its locale.
-    @Nonnull
     public String getFullDisplayName() {
         if (isNoLanguage()) {
             return SubtypeLocaleUtils.getKeyboardLayoutSetDisplayName(mSubtype);
@@ -115,7 +108,6 @@ public class RichInputMethodSubtype {
     }
 
     // Get the RichInputMethodSubtype's middle display name in its locale.
-    @Nonnull
     public String getMiddleDisplayName() {
         if (isNoLanguage()) {
             return SubtypeLocaleUtils.getKeyboardLayoutSetDisplayName(mSubtype);
@@ -142,12 +134,10 @@ public class RichInputMethodSubtype {
         return "Multi-lingual subtype: " + mSubtype + ", " + mLocale;
     }
 
-    @Nonnull
     public Locale getLocale() {
         return mLocale;
     }
 
-    @Nonnull
     public Locale getOriginalLocale() {
         return mOriginalLocale;
     }
@@ -158,16 +148,14 @@ public class RichInputMethodSubtype {
     }
 
     // TODO: remove this method
-    @Nonnull
     public InputMethodSubtype getRawSubtype() { return mSubtype; }
 
-    @Nonnull
     public String getKeyboardLayoutSetName() {
         return SubtypeLocaleUtils.getKeyboardLayoutSetName(mSubtype);
     }
 
     public static RichInputMethodSubtype getRichInputMethodSubtype(
-            @Nullable final InputMethodSubtype subtype) {
+            final InputMethodSubtype subtype) {
         if (subtype == null) {
             return getNoLanguageSubtype();
         } else {
@@ -182,7 +170,6 @@ public class RichInputMethodSubtype {
             + "," + Constants.Subtype.ExtraValue.ASCII_CAPABLE
             + "," + Constants.Subtype.ExtraValue.ENABLED_WHEN_DEFAULT_IS_NOT_ASCII_CAPABLE
             + "," + Constants.Subtype.ExtraValue.EMOJI_CAPABLE;
-    @Nonnull
     private static final RichInputMethodSubtype DUMMY_NO_LANGUAGE_SUBTYPE =
             new RichInputMethodSubtype(InputMethodSubtypeCompatUtils.newInputMethodSubtype(
                     R.string.subtype_no_language_qwerty, R.drawable.ic_ime_switcher_dark,
@@ -196,7 +183,6 @@ public class RichInputMethodSubtype {
     private static final String EXTRA_VALUE_OF_DUMMY_EMOJI_SUBTYPE =
             "KeyboardLayoutSet=" + SubtypeLocaleUtils.EMOJI
             + "," + Constants.Subtype.ExtraValue.EMOJI_CAPABLE;
-    @Nonnull
     private static final RichInputMethodSubtype DUMMY_EMOJI_SUBTYPE = new RichInputMethodSubtype(
             InputMethodSubtypeCompatUtils.newInputMethodSubtype(
                     R.string.subtype_emoji, R.drawable.ic_ime_switcher_dark,
@@ -207,7 +193,6 @@ public class RichInputMethodSubtype {
     private static RichInputMethodSubtype sNoLanguageSubtype;
     private static RichInputMethodSubtype sEmojiSubtype;
 
-    @Nonnull
     public static RichInputMethodSubtype getNoLanguageSubtype() {
         RichInputMethodSubtype noLanguageSubtype = sNoLanguageSubtype;
         if (noLanguageSubtype == null) {
@@ -228,7 +213,6 @@ public class RichInputMethodSubtype {
         return DUMMY_NO_LANGUAGE_SUBTYPE;
     }
 
-    @Nonnull
     public static RichInputMethodSubtype getEmojiSubtype() {
         RichInputMethodSubtype emojiSubtype = sEmojiSubtype;
         if (emojiSubtype == null) {

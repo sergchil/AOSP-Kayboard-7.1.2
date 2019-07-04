@@ -27,9 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 public class SuggestedWords {
     public static final int INDEX_OF_TYPED_WORD = 0;
     public static final int INDEX_OF_AUTO_CORRECTION = 1;
@@ -48,13 +45,11 @@ public class SuggestedWords {
     public static final int MAX_SUGGESTIONS = 18;
 
     private static final ArrayList<SuggestedWordInfo> EMPTY_WORD_INFO_LIST = new ArrayList<>(0);
-    @Nonnull
     private static final SuggestedWords EMPTY = new SuggestedWords(
             EMPTY_WORD_INFO_LIST, null /* rawSuggestions */, null /* typedWord */,
             false /* typedWordValid */, false /* willAutoCorrect */,
             false /* isObsoleteSuggestions */, INPUT_STYLE_NONE, NOT_A_SEQUENCE_NUMBER);
 
-    @Nullable
     public final SuggestedWordInfo mTypedWordInfo;
     public final boolean mTypedWordValid;
     // Note: this INCLUDES cases where the word will auto-correct to itself. A good definition
@@ -66,14 +61,10 @@ public class SuggestedWords {
     // INPUT_STYLE_* constants above.
     public final int mInputStyle;
     public final int mSequenceNumber; // Sequence number for auto-commit.
-    @Nonnull
     protected final ArrayList<SuggestedWordInfo> mSuggestedWordInfoList;
-    @Nullable
     public final ArrayList<SuggestedWordInfo> mRawSuggestions;
 
-    public SuggestedWords(@Nonnull final ArrayList<SuggestedWordInfo> suggestedWordInfoList,
-            @Nullable final ArrayList<SuggestedWordInfo> rawSuggestions,
-            @Nullable final SuggestedWordInfo typedWordInfo,
+    public SuggestedWords( final ArrayList<SuggestedWordInfo> suggestedWordInfoList, final ArrayList<SuggestedWordInfo> rawSuggestions, final SuggestedWordInfo typedWordInfo,
             final boolean typedWordValid,
             final boolean willAutoCorrect,
             final boolean isObsoleteSuggestions,
@@ -202,7 +193,6 @@ public class SuggestedWords {
         return result;
     }
 
-    @Nonnull
     public static final SuggestedWords getEmptyInstance() {
         return SuggestedWords.EMPTY;
     }
@@ -210,8 +200,8 @@ public class SuggestedWords {
     // Should get rid of the first one (what the user typed previously) from suggestions
     // and replace it with what the user currently typed.
     public static ArrayList<SuggestedWordInfo> getTypedWordAndPreviousSuggestions(
-            @Nonnull final SuggestedWordInfo typedWordInfo,
-            @Nonnull final SuggestedWords previousSuggestions) {
+            final SuggestedWordInfo typedWordInfo,
+            final SuggestedWords previousSuggestions) {
         final ArrayList<SuggestedWordInfo> suggestionsList = new ArrayList<>();
         final HashSet<String> alreadySeen = new HashSet<>();
         suggestionsList.add(typedWordInfo);
@@ -387,8 +377,8 @@ public class SuggestedWords {
          * @return position of typed word in the candidate list
          */
         public static int removeDups(
-                @Nullable final String typedWord,
-                @Nonnull final ArrayList<SuggestedWordInfo> candidates) {
+                 final String typedWord,
+                 final ArrayList<SuggestedWordInfo> candidates) {
             if (candidates.isEmpty()) {
                 return -1;
             }
@@ -405,8 +395,8 @@ public class SuggestedWords {
         }
 
         private static int removeSuggestedWordInfoFromList(
-                @Nonnull final String word,
-                @Nonnull final ArrayList<SuggestedWordInfo> candidates,
+                 final String word,
+                 final ArrayList<SuggestedWordInfo> candidates,
                 final int startIndexExclusive) {
             int firstOccurrenceOfWord = -1;
             for (int i = startIndexExclusive + 1; i < candidates.size(); ++i) {

@@ -49,8 +49,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 /**
  * Facilitates interaction with different kinds of dictionaries. Provides APIs
@@ -109,7 +109,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
      *
      * @param account the account to test against.
      */
-    public boolean isForAccount(@Nullable final String account) {
+    public boolean isForAccount(  final String account) {
         return TextUtils.equals(mDictionaryGroup.mAccount, account);
     }
 
@@ -127,14 +127,14 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
         /**
          * The locale associated with the dictionary group.
          */
-        @Nullable public final Locale mLocale;
+          public final Locale mLocale;
 
         /**
          * The user account associated with the dictionary group.
          */
-        @Nullable public final String mAccount;
+          public final String mAccount;
 
-        @Nullable private Dictionary mMainDict;
+          private Dictionary mMainDict;
         // Confidence that the most probable language is actually the language the user is
         // typing in. For now, this is simply the number of times a word from this language
         // has been committed in a row.
@@ -150,9 +150,9 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
                     Collections.<String, ExpandableBinaryDictionary>emptyMap() /* subDicts */);
         }
 
-        public DictionaryGroup(@Nullable final Locale locale,
-                @Nullable final Dictionary mainDict,
-                @Nullable final String account,
+        public DictionaryGroup(  final Locale locale,
+                  final Dictionary mainDict,
+                  final String account,
                 final Map<String, ExpandableBinaryDictionary> subDicts) {
             mLocale = locale;
             mAccount = account;
@@ -189,7 +189,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
             return mSubDictMap.get(dictType);
         }
 
-        public boolean hasDict(final String dictType, @Nullable final String account) {
+        public boolean hasDict(final String dictType,   final String account) {
             if (Dictionary.TYPE_MAIN.equals(dictType)) {
                 return mMainDict != null;
             }
@@ -247,10 +247,10 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
         return null;
     }
 
-    @Nullable
+
     private static ExpandableBinaryDictionary getSubDict(final String dictType,
             final Context context, final Locale locale, final File dictFile,
-            final String dictNamePrefix, @Nullable final String account) {
+            final String dictNamePrefix,   final String account) {
         final Class<? extends ExpandableBinaryDictionary> dictClass =
                 DICT_TYPE_TO_CLASS.get(dictType);
         if (dictClass == null) {
@@ -269,7 +269,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
         }
     }
 
-    @Nullable
+
     static DictionaryGroup findDictionaryGroupWithLocale(final DictionaryGroup dictionaryGroup,
             final Locale locale) {
         return locale.equals(dictionaryGroup.mLocale) ? dictionaryGroup : null;
@@ -282,9 +282,9 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
             final boolean useContactsDict,
             final boolean usePersonalizedDicts,
             final boolean forceReloadMainDictionary,
-            @Nullable final String account,
+              final String account,
             final String dictNamePrefix,
-            @Nullable final DictionaryInitializationListener listener) {
+              final DictionaryInitializationListener listener) {
         final HashMap<Locale, ArrayList<String>> existingDictionariesToCleanup = new HashMap<>();
         // TODO: Make subDictTypesToUse configurable by resource or a static final list.
         final HashSet<String> subDictTypesToUse = new HashSet<>();
@@ -421,7 +421,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
     public void resetDictionariesForTesting(final Context context, final Locale locale,
             final ArrayList<String> dictionaryTypes, final HashMap<String, File> dictionaryFiles,
             final Map<String, Map<String, String>> additionalDictAttributes,
-            @Nullable final String account) {
+              final String account) {
         Dictionary mainDictionary = null;
         final Map<String, ExpandableBinaryDictionary> subDicts = new HashMap<>();
 
@@ -497,7 +497,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
     }
 
     public void addToUserHistory(final String suggestion, final boolean wasAutoCapitalized,
-            @Nonnull final NgramContext ngramContext, final long timeStampInSeconds,
+              final NgramContext ngramContext, final long timeStampInSeconds,
             final boolean blockPotentiallyOffensive) {
         // Update the spelling cache before learning. Words that are not yet added to user history
         // and appear in no other language model are not considered valid.
@@ -517,8 +517,8 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
     }
 
     private void putWordIntoValidSpellingWordCache(
-            @Nonnull final String caller,
-            @Nonnull final String originalWord) {
+              final String caller,
+              final String originalWord) {
         if (mValidSpellingWordWriteCache == null) {
             return;
         }
@@ -599,7 +599,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
 
     @Override
     public void unlearnFromUserHistory(final String word,
-            @Nonnull final NgramContext ngramContext, final long timeStampInSeconds,
+              final NgramContext ngramContext, final long timeStampInSeconds,
             final int eventType) {
         // TODO: Decide whether or not to remove the word on EVENT_BACKSPACE.
         if (eventType != Constants.EVENT_BACKSPACE) {
@@ -613,8 +613,8 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
 
     // TODO: Revise the way to fusion suggestion results.
     @Override
-    @Nonnull public SuggestionResults getSuggestionResults(ComposedData composedData,
-            NgramContext ngramContext, @Nonnull final Keyboard keyboard,
+      public SuggestionResults getSuggestionResults(ComposedData composedData,
+            NgramContext ngramContext,   final Keyboard keyboard,
             SettingsValuesForSuggestion settingsValuesForSuggestion, int sessionId,
             int inputStyle) {
         long proximityInfoHandle = keyboard.getProximityInfo().getNativeProximityInfo();
@@ -719,7 +719,7 @@ public class DictionaryFacilitatorImpl implements DictionaryFacilitator {
     }
 
     @Override
-    @Nonnull public List<DictionaryStats> getDictionaryStats(final Context context) {
+      public List<DictionaryStats> getDictionaryStats(final Context context) {
         final ArrayList<DictionaryStats> statsOfEnabledSubDicts = new ArrayList<>();
         for (final String dictType : DYNAMIC_DICTIONARY_TYPES) {
             final ExpandableBinaryDictionary dictionary = mDictionaryGroup.getSubDict(dictType);

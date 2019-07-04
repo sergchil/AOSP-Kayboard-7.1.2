@@ -19,8 +19,8 @@ package com.android.inputmethod.keyboard.internal;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.common.StringUtils;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 import static com.android.inputmethod.latin.common.Constants.CODE_OUTPUT_TEXT;
 import static com.android.inputmethod.latin.common.Constants.CODE_UNSPECIFIED;
@@ -56,11 +56,11 @@ public final class KeySpecParser {
         // Intentional empty constructor for utility class.
     }
 
-    private static boolean hasIcon(@Nonnull final String keySpec) {
+    private static boolean hasIcon(  final String keySpec) {
         return keySpec.startsWith(KeyboardIconsSet.PREFIX_ICON);
     }
 
-    private static boolean hasCode(@Nonnull final String keySpec, final int labelEnd) {
+    private static boolean hasCode(  final String keySpec, final int labelEnd) {
         if (labelEnd <= 0 || labelEnd + 1 >= keySpec.length()) {
             return false;
         }
@@ -75,8 +75,8 @@ public final class KeySpecParser {
         return false;
     }
 
-    @Nonnull
-    private static String parseEscape(@Nonnull final String text) {
+
+    private static String parseEscape(  final String text) {
         if (text.indexOf(BACKSLASH) < 0) {
             return text;
         }
@@ -95,7 +95,7 @@ public final class KeySpecParser {
         return sb.toString();
     }
 
-    private static int indexOfLabelEnd(@Nonnull final String keySpec) {
+    private static int indexOfLabelEnd(  final String keySpec) {
         final int length = keySpec.length();
         if (keySpec.indexOf(BACKSLASH) < 0) {
             final int labelEnd = keySpec.indexOf(VERTICAL_BAR);
@@ -120,25 +120,25 @@ public final class KeySpecParser {
         return -1;
     }
 
-    @Nonnull
-    private static String getBeforeLabelEnd(@Nonnull final String keySpec, final int labelEnd) {
+
+    private static String getBeforeLabelEnd(  final String keySpec, final int labelEnd) {
         return (labelEnd < 0) ? keySpec : keySpec.substring(0, labelEnd);
     }
 
-    @Nonnull
-    private static String getAfterLabelEnd(@Nonnull final String keySpec, final int labelEnd) {
+
+    private static String getAfterLabelEnd(  final String keySpec, final int labelEnd) {
         return keySpec.substring(labelEnd + /* VERTICAL_BAR */1);
     }
 
-    private static void checkDoubleLabelEnd(@Nonnull final String keySpec, final int labelEnd) {
+    private static void checkDoubleLabelEnd(  final String keySpec, final int labelEnd) {
         if (indexOfLabelEnd(getAfterLabelEnd(keySpec, labelEnd)) < 0) {
             return;
         }
         throw new KeySpecParserError("Multiple " + VERTICAL_BAR + ": " + keySpec);
     }
 
-    @Nullable
-    public static String getLabel(@Nullable final String keySpec) {
+
+    public static String getLabel(  final String keySpec) {
         if (keySpec == null) {
             // TODO: Throw {@link KeySpecParserError} once Key.keyLabel attribute becomes mandatory.
             return null;
@@ -154,8 +154,8 @@ public final class KeySpecParser {
         return label;
     }
 
-    @Nullable
-    private static String getOutputTextInternal(@Nonnull final String keySpec, final int labelEnd) {
+
+    private static String getOutputTextInternal(  final String keySpec, final int labelEnd) {
         if (labelEnd <= 0) {
             return null;
         }
@@ -163,8 +163,8 @@ public final class KeySpecParser {
         return parseEscape(getAfterLabelEnd(keySpec, labelEnd));
     }
 
-    @Nullable
-    public static String getOutputText(@Nullable final String keySpec) {
+
+    public static String getOutputText(  final String keySpec) {
         if (keySpec == null) {
             // TODO: Throw {@link KeySpecParserError} once Key.keyLabel attribute becomes mandatory.
             return null;
@@ -193,7 +193,7 @@ public final class KeySpecParser {
         return (StringUtils.codePointCount(label) == 1) ? null : label;
     }
 
-    public static int getCode(@Nullable final String keySpec) {
+    public static int getCode(  final String keySpec) {
         if (keySpec == null) {
             // TODO: Throw {@link KeySpecParserError} once Key.keyLabel attribute becomes mandatory.
             return CODE_UNSPECIFIED;
@@ -220,7 +220,7 @@ public final class KeySpecParser {
         return (StringUtils.codePointCount(label) == 1) ? label.codePointAt(0) : CODE_OUTPUT_TEXT;
     }
 
-    public static int parseCode(@Nullable final String text, final int defaultCode) {
+    public static int parseCode(  final String text, final int defaultCode) {
         if (text == null) {
             return defaultCode;
         }
@@ -235,7 +235,7 @@ public final class KeySpecParser {
         return defaultCode;
     }
 
-    public static int getIconId(@Nullable final String keySpec) {
+    public static int getIconId(  final String keySpec) {
         if (keySpec == null) {
             // TODO: Throw {@link KeySpecParserError} once Key.keyLabel attribute becomes mandatory.
             return KeyboardIconsSet.ICON_UNDEFINED;

@@ -49,7 +49,7 @@ public final class PermissionsActivity
      * Starts a PermissionsActivity and checks/requests supplied permissions.
      */
     public static void run(
-            @NonNull Context context, int requestCode, @NonNull String... permissionStrings) {
+              Context context, int requestCode,   String... permissionStrings) {
         Intent intent = new Intent(context.getApplicationContext(), PermissionsActivity.class);
         intent.putExtra(EXTRA_PERMISSION_REQUESTED_PERMISSIONS, permissionStrings);
         intent.putExtra(EXTRA_PERMISSION_REQUEST_CODE, requestCode);
@@ -88,7 +88,7 @@ public final class PermissionsActivity
 
     @Override
     public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            int requestCode,   String[] permissions,   int[] grantResults) {
         mPendingRequestCode = INVALID_REQUEST_CODE;
         PermissionsManager.get(this).onRequestPermissionsResult(
                 requestCode, permissions, grantResults);

@@ -33,8 +33,8 @@ import android.widget.TextView;
 import com.android.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.compat.CursorAnchorInfoCompatWrapper;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 /**
  * This class allows input methods to extract {@link CursorAnchorInfo} directly from the given
@@ -93,9 +93,9 @@ public final class CursorAnchorInfoUtils {
      * {@code null} if {@code Build.VERSION.SDK_INT} is 20 or prior or {@link TextView} is not
      * ready to provide layout information.
      */
-    @Nullable
+
     public static CursorAnchorInfoCompatWrapper extractFromTextView(
-            @Nonnull final TextView textView) {
+              final TextView textView) {
         if (BuildCompatUtils.EFFECTIVE_SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return null;
         }
@@ -109,8 +109,8 @@ public final class CursorAnchorInfoUtils {
      * is not feasible.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @Nullable
-    private static CursorAnchorInfo extractFromTextViewInternal(@Nonnull final TextView textView) {
+
+    private static CursorAnchorInfo extractFromTextViewInternal(  final TextView textView) {
         final Layout layout = textView.getLayout();
         if (layout == null) {
             return null;

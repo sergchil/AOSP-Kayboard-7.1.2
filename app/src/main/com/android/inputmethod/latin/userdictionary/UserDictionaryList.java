@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
-import javax.annotation.Nullable;
+
 
 // Caveat: This class is basically taken from
 // packages/apps/Settings/src/com/android/settings/inputmethod/UserDictionaryList.java
@@ -136,7 +136,7 @@ public class UserDictionaryList extends PreferenceFragment {
      * @param localeString The locale for which this user dictionary is for.
      * @return The corresponding preference.
      */
-    protected Preference createUserDictionaryPreference(@Nullable final String localeString) {
+    protected Preference createUserDictionaryPreference(  final String localeString) {
         final Preference newPref = new Preference(getActivity());
         final Intent intent = new Intent(USER_DICTIONARY_SETTINGS_INTENT_ACTION);
         if (null == localeString) {
