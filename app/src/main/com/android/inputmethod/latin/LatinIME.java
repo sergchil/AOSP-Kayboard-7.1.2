@@ -1449,9 +1449,9 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
      * @param suggestedWords suggested words by the IME for the full gesture.
      */
     public void onTailBatchInputResultShown(final SuggestedWords suggestedWords) {
-        mGestureConsumer.onImeSuggestionsProcessed(suggestedWords,
-                mInputLogic.getComposingStart(), mInputLogic.getComposingLength(),
-                mDictionaryFacilitator);
+//        mGestureConsumer.onImeSuggestionsProcessed(suggestedWords,
+//                mInputLogic.getComposingStart(), mInputLogic.getComposingLength(),
+//                mDictionaryFacilitator);
     }
 
     // This method must run on the UI Thread.
