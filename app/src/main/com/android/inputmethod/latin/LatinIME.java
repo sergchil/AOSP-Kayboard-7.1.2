@@ -759,8 +759,9 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         mInsetsUpdater = ViewOutlineProviderCompatUtils.setInsetsOutlineProvider(view);
         updateSoftInputWindowLayoutParameters();
         mSuggestionStripView = (SuggestionStripView)view.findViewById(R.id.suggestion_strip_view);
+        mSuggestionStripView.setVisibility(View.GONE);
         if (hasSuggestionStripView()) {
-            mSuggestionStripView.setListener(this, view);
+//            mSuggestionStripView.setListener(this, view);
         }
     }
 
