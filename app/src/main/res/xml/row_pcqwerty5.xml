@@ -19,15 +19,12 @@
 -->
 
 <merge
-    xmlns:latin="http://schemas.android.com/apk/res-auto"
->
+    xmlns:latin="http://schemas.android.com/apk/res-auto">
     <Row
-        latin:keyWidth="7.692%p"
-    >
+        latin:keyWidth="7.692%p">
         <switch>
             <case
-                latin:clobberSettingsKey="false"
-            >
+                latin:clobberSettingsKey="false">
                 <Key
                     latin:keyStyle="settingsKeyStyle"
                     latin:keyWidth="11.538%p" />
@@ -35,8 +32,7 @@
         </switch>
         <switch>
             <case
-                latin:languageSwitchKeyEnabled="true"
-            >
+                latin:languageSwitchKeyEnabled="true">
                 <Key
                     latin:keyStyle="languageSwitchKeyStyle"
                     latin:keyXPos="19.231%p"

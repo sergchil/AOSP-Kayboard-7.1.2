@@ -347,8 +347,7 @@ public class KeyboardView extends View {
     }
 
     // Draw key background.
-    protected void onDrawKeyBackground(  final Key key,   final Canvas canvas,
-              final Drawable background) {
+    protected void onDrawKeyBackground(  final Key key,   final Canvas canvas, final Drawable background) {
         final int keyWidth = key.getDrawWidth();
         final int keyHeight = key.getHeight();
         final int bgWidth, bgHeight, bgX, bgY;
@@ -380,8 +379,7 @@ public class KeyboardView extends View {
     }
 
     // Draw key top visuals.
-    protected void onDrawKeyTopVisuals(  final Key key,   final Canvas canvas,
-              final Paint paint,   final KeyDrawParams params) {
+    protected void onDrawKeyTopVisuals(  final Key key,   final Canvas canvas, final Paint paint,   final KeyDrawParams params) {
         final int keyWidth = key.getDrawWidth();
         final int keyHeight = key.getHeight();
         final float centerX = keyWidth * 0.5f;
