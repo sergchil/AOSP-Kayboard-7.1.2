@@ -42,7 +42,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
     @Override
     public void onCreate(final Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.prefs_screen_advanced);
+        addPreferencesFromResource(R.xml.prefs_screen_advanced); //TODO VYNE TEXT CORRECTION STUFF
 
         final Resources res = getResources();
         final Context context = getActivity();
