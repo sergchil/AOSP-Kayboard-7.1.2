@@ -29,10 +29,10 @@
         android:fragment="com.android.inputmethod.latin.settings.AppearanceSettingsFragment"
         android:title="@string/settings_screen_appearance"
         android:key="screen_appearance" />
-    <PreferenceScreen
-        android:fragment="com.android.inputmethod.latin.settings.CorrectionSettingsFragment"
-        android:title="@string/settings_screen_correction"
-        android:key="screen_correction" />
+    <!--<PreferenceScreen-->
+        <!--android:fragment="com.android.inputmethod.latin.settings.CorrectionSettingsFragment"-->
+        <!--android:title="@string/settings_screen_correction"-->
+        <!--android:key="screen_correction" />-->
     <PreferenceScreen
         android:fragment="com.android.inputmethod.latin.settings.AdvancedSettingsFragment"
         android:title="@string/settings_screen_advanced"

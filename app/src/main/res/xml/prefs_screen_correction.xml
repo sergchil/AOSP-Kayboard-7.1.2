@@ -23,27 +23,27 @@
         android:title="@string/edit_personal_dictionary">
         <intent android:action="android.settings.USER_DICTIONARY_SETTINGS" />
     </PreferenceScreen>
-    <PreferenceScreen
-        android:key="configure_dictionaries_key"
-        android:title="@string/configure_dictionaries_title">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetClass="@string/dictionary_pack_settings_activity">
-            <extra
-                android:name="clientId"
-                android:value="@string/dictionary_pack_client_id" />
-        </intent>
-    </PreferenceScreen>
-    <CheckBoxPreference
-        android:key="pref_key_auto_correction"
-        android:title="@string/auto_correction"
-        android:summary="@string/auto_correction_summary"
-        android:defaultValue="true"
-        android:persistent="true" />
-    <CheckBoxPreference
-        android:key="next_word_prediction"
-        android:title="@string/bigram_prediction"
-        android:summary="@string/bigram_prediction_summary"
-        android:defaultValue="true"
-        android:persistent="true" />
+    <!--<PreferenceScreen-->
+        <!--android:key="configure_dictionaries_key"-->
+        <!--android:title="@string/configure_dictionaries_title">-->
+        <!--<intent-->
+            <!--android:action="android.intent.action.MAIN"-->
+            <!--android:targetClass="@string/dictionary_pack_settings_activity">-->
+            <!--<extra-->
+                <!--android:name="clientId"-->
+                <!--android:value="@string/dictionary_pack_client_id" />-->
+        <!--</intent>-->
+    <!--</PreferenceScreen>-->
+    <!--<CheckBoxPreference-->
+        <!--android:key="pref_key_auto_correction"-->
+        <!--android:title="@string/auto_correction"-->
+        <!--android:summary="@string/auto_correction_summary"-->
+        <!--android:defaultValue="true"-->
+        <!--android:persistent="true" />-->
+    <!--<CheckBoxPreference-->
+        <!--android:key="next_word_prediction"-->
+        <!--android:title="@string/bigram_prediction"-->
+        <!--android:summary="@string/bigram_prediction_summary"-->
+        <!--android:defaultValue="true"-->
+        <!--android:persistent="true" />-->
 </PreferenceScreen>
