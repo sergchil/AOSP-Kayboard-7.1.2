@@ -8,13 +8,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-// UNCOMMENT TO BUILD NATIVE
-//        externalNativeBuild {
-//            ndkBuild {
-//                cppFlags "-std=c++11 -frtti -fexceptions"
-//                abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
-//            }
-//        }
     }
 
     sourceSets {
@@ -24,20 +17,34 @@ android {
         aaptOptions.noCompress ".dict"
     }
 
-
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file('k3yBoarDKey_vyne123')
+            storePassword "vyne123"
+            keyAlias "keyboard"
+            keyPassword "vyne123"
         }
     }
 
-// UNCOMMENT TO BUILD NATIVE
-//    externalNativeBuild {
-//        ndkBuild {
-//            path "src/main/cpp/Android.mk"
-//        }
-//    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 dependencies {
