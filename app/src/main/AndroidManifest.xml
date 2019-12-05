@@ -16,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           coreApp="true"
-          package="com.android.inputmethod">
+          package="AOSP.KEYBOARD">
 
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -40,7 +40,7 @@
                  android:allowBackup="true">
 
         <!-- Services -->
-        <service android:name=".latin.LatinIME"
+        <service android:name="com.android.inputmethod.latin.LatinIME"
                  android:label="@string/english_ime_name"
                  android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
@@ -49,7 +49,7 @@
             <meta-data android:name="android.view.im" android:resource="@xml/method" />
         </service>
 
-        <service android:name=".latin.spellcheck.AndroidSpellCheckerService"
+        <service android:name="com.android.inputmethod.latin.spellcheck.AndroidSpellCheckerService"
                  android:label="@string/spell_checker_service_name"
                  android:permission="android.permission.BIND_TEXT_SERVICE">
             <intent-filter>
@@ -59,12 +59,12 @@
                        android:resource="@xml/spellchecker" />
         </service>
 
-        <service android:name=".dictionarypack.DictionaryService"
+        <service android:name="com.android.inputmethod.dictionarypack.DictionaryService"
                  android:label="@string/dictionary_service_name">
         </service>
 
         <!-- Activities -->
-        <activity android:name=".latin.setup.SetupActivity"
+        <activity android:name="com.android.inputmethod.latin.setup.SetupActivity"
                   android:theme="@style/platformActivityTheme"
                   android:label="@string/english_ime_name"
                   android:icon="@drawable/ic_launcher_keyboard"
@@ -77,13 +77,13 @@
         </activity>
 
         <activity
-            android:name=".latin.permissions.PermissionsActivity"
+            android:name="com.android.inputmethod.latin.permissions.PermissionsActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="false"
             android:taskAffinity="" >
         </activity>
 
-        <activity android:name=".latin.setup.SetupWizardActivity"
+        <activity android:name="com.android.inputmethod.latin.setup.SetupWizardActivity"
                   android:theme="@style/platformActivityTheme"
                   android:label="@string/english_ime_name"
                   android:clearTaskOnLaunch="true">
@@ -92,7 +92,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".latin.settings.SettingsActivity"
+        <activity android:name="com.android.inputmethod.latin.settings.SettingsActivity"
                   android:theme="@style/platformSettingsTheme"
                   android:label="@string/english_ime_settings">
             <intent-filter>
@@ -100,7 +100,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".latin.spellcheck.SpellCheckerSettingsActivity"
+        <activity android:name="com.android.inputmethod.latin.spellcheck.SpellCheckerSettingsActivity"
                   android:theme="@style/platformSettingsTheme"
                   android:label="@string/android_spell_checker_settings">
             <intent-filter>
@@ -126,11 +126,11 @@
         </activity>
 
         <!-- Unexported activity used for tests. -->
-        <activity android:name=".latin.settings.TestFragmentActivity"
+        <activity android:name="com.android.inputmethod.latin.settings.TestFragmentActivity"
                   android:exported="false" />
 
         <!-- Broadcast receivers -->
-        <receiver android:name=".latin.SystemBroadcastReceiver">
+        <receiver android:name="com.android.inputmethod.latin.SystemBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -139,7 +139,7 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".latin.DictionaryPackInstallBroadcastReceiver" android:exported="false">
+        <receiver android:name="com.android.inputmethod.latin.DictionaryPackInstallBroadcastReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="com.android.inputmethod.dictionarypack.aosp.UNKNOWN_CLIENT" />
             </intent-filter>
@@ -155,7 +155,7 @@
         </receiver>
 
         <!-- Broadcast receiver for AccountManager#LOGIN_ACCOUNTS_CHANGED_ACTION. -->
-        <receiver android:name=".latin.accounts.AccountsChangedReceiver">
+        <receiver android:name="com.android.inputmethod.latin.accounts.AccountsChangedReceiver">
             <intent-filter>
                 <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED" />
             </intent-filter>

@@ -27,7 +27,7 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
 import com.android.inputmethod.dictionarypack.MD5Calculator;
 import com.android.inputmethod.dictionarypack.UpdateHandler;

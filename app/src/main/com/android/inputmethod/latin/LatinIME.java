@@ -49,7 +49,7 @@ import android.view.inputmethod.CompletionInfo;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.compat.BuildCompatUtils;

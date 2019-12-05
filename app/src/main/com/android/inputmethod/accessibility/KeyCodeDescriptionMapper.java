@@ -23,7 +23,7 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;

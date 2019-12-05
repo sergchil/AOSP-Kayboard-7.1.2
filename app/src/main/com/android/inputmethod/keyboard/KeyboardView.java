@@ -32,7 +32,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
 import com.android.inputmethod.latin.common.Constants;

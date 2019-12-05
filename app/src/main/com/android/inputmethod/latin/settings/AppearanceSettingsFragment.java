@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.settings;
 
 import android.os.Bundle;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.define.ProductionFlags;
 

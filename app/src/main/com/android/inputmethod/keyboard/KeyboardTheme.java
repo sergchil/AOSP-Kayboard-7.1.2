@@ -22,7 +22,7 @@ import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.BuildCompatUtils;
 
 import java.util.ArrayList;

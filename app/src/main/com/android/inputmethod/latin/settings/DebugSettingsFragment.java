@@ -27,7 +27,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceGroup;
 import android.preference.TwoStatePreference;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.DictionaryDumpBroadcastReceiver;
 import com.android.inputmethod.latin.DictionaryFacilitatorImpl;
 import com.android.inputmethod.latin.utils.ApplicationUtils;

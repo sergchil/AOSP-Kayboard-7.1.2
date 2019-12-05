@@ -20,7 +20,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import com.android.inputmethod.latin.common.Constants;

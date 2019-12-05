@@ -23,7 +23,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.SystemBroadcastReceiver;
 

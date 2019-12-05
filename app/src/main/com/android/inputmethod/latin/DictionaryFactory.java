@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
 
 import java.io.File;

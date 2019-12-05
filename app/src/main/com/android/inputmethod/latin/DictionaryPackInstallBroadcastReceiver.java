@@ -25,7 +25,7 @@ import android.content.pm.ProviderInfo;
 import android.net.Uri;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
 import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
 

@@ -25,7 +25,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.InputAttributes;

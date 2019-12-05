@@ -25,7 +25,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 import android.view.textservice.SuggestionsInfo;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;

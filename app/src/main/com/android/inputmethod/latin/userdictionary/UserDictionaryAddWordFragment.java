@@ -29,7 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.userdictionary.UserDictionaryAddWordContents.LocaleRenderer;
 import com.android.inputmethod.latin.userdictionary.UserDictionaryLocalePicker.LocationChangedListener;
 

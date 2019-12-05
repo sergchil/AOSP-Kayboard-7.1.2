@@ -25,7 +25,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.BinaryDictionaryFileDumper;
 import com.android.inputmethod.latin.common.LocaleUtils;
 

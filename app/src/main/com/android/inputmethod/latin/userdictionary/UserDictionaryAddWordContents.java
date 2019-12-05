@@ -26,7 +26,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.UserDictionaryCompatUtils;
 import com.android.inputmethod.latin.common.LocaleUtils;
 

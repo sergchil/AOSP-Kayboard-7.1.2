@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.utils;
 
 import android.content.Context;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 
 /**
  * Helper class to get the metadata URI and the additional ID.

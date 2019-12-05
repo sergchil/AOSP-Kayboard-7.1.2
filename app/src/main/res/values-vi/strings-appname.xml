@@ -20,8 +20,8 @@
 
 <resources
     >
-    <string name="english_ime_name" msgid="5940510615957428904">"Bàn phím Android (AOSP)"</string>
-    <string name="spell_checker_service_name" msgid="1254221805440242662">"Trình kiểm tra chính tả Android (AOSP)"</string>
-    <string name="english_ime_settings" msgid="5760361067176802794">"Cài đặt bàn phím Android (AOSP)"</string>
-    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Cài đặt trình kiểm tra chính tả Android (AOSP)"</string>
+    <string name="english_ime_name" msgid="5940510615957428904">"Bàn phím Android"</string>
+    <string name="spell_checker_service_name" msgid="1254221805440242662">"Trình kiểm tra chính tả Android"</string>
+    <string name="english_ime_settings" msgid="5760361067176802794">"Cài đặt bàn phím Android"</string>
+    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Cài đặt trình kiểm tra chính tả Android"</string>
 </resources>

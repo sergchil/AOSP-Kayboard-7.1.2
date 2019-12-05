@@ -22,7 +22,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.KeyboardTheme;
 import com.android.inputmethod.latin.settings.RadioButtonPreference.OnRadioButtonClickedListener;
 

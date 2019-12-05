@@ -23,7 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.RichInputMethodManager;
 

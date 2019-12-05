@@ -35,7 +35,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.accessibility.MainKeyboardAccessibilityDelegate;
 import com.android.inputmethod.annotations.ExternallyReferenced;

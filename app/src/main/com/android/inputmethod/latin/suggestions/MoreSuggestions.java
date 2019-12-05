@@ -21,7 +21,7 @@ import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.internal.KeyboardBuilder;

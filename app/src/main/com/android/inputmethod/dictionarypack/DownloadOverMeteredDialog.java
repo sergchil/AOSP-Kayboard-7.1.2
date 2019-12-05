@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.annotations.ExternallyReferenced;
 import com.android.inputmethod.latin.common.LocaleUtils;
 

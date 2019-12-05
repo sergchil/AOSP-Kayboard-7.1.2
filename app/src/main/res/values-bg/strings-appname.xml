@@ -20,8 +20,8 @@
 
 <resources
     >
-    <string name="english_ime_name" msgid="5940510615957428904">"Клавиатура на Android (AOSP)"</string>
-    <string name="spell_checker_service_name" msgid="1254221805440242662">"Програма за правописна проверка за Android (AOSP)"</string>
-    <string name="english_ime_settings" msgid="5760361067176802794">"Настройки на клавиатурата на Android (AOSP)"</string>
-    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Настройки на програмата за правописна проверка за Android (AOSP)"</string>
+    <string name="english_ime_name" msgid="5940510615957428904">"Клавиатура на Android"</string>
+    <string name="spell_checker_service_name" msgid="1254221805440242662">"Програма за правописна проверка за Android"</string>
+    <string name="english_ime_settings" msgid="5760361067176802794">"Настройки на клавиатурата на Android"</string>
+    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Настройки на програмата за правописна проверка за Android"</string>
 </resources>

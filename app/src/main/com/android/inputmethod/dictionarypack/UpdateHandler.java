@@ -35,7 +35,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.NotificationCompatUtils;
 import com.android.inputmethod.latin.common.LocaleUtils;
 import com.android.inputmethod.latin.makedict.FormatSpec;

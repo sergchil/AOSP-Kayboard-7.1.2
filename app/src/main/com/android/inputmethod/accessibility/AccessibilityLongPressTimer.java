@@ -20,7 +20,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.Key;
 
 // Handling long press timer to show a more keys keyboard.

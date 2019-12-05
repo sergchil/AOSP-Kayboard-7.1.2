@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodSubtype;
 import android.widget.Toast;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.RichInputMethodManager;
 import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
 import com.android.inputmethod.latin.utils.DialogUtils;

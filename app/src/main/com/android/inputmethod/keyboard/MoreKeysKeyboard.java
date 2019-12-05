@@ -19,7 +19,7 @@ package com.android.inputmethod.keyboard;
 import android.content.Context;
 import android.graphics.Paint;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.internal.KeyboardBuilder;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;

@@ -25,7 +25,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.AppWorkaroundsUtils;
 import com.android.inputmethod.latin.InputAttributes;
 import com.android.inputmethod.latin.RichInputMethodManager;

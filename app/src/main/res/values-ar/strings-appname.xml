@@ -21,7 +21,7 @@
 <resources
     >
     <string name="english_ime_name" msgid="5940510615957428904">"‏لوحة مفاتيح Android ‏(AOSP)"</string>
-    <string name="spell_checker_service_name" msgid="1254221805440242662">"‏المدقق الإملائي في Android‏ (AOSP)"</string>
-    <string name="english_ime_settings" msgid="5760361067176802794">"‏إعدادات لوحة مفاتيح Android‏ (AOSP)"</string>
-    <string name="android_spell_checker_settings" msgid="6123949487832861885">"‏إعدادات المدقق الإملائي في Android‏ (AOSP)"</string>
+    <string name="spell_checker_service_name" msgid="1254221805440242662">"‏المدقق الإملائي في Android‏"</string>
+    <string name="english_ime_settings" msgid="5760361067176802794">"‏إعدادات لوحة مفاتيح Android‏"</string>
+    <string name="android_spell_checker_settings" msgid="6123949487832861885">"‏إعدادات المدقق الإملائي في Android‏"</string>
 </resources>
