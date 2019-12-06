@@ -21,10 +21,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import AOSP.KEYBOARD.R;
+
 public class DictionaryDumpBroadcastReceiver extends BroadcastReceiver {
   private static final String TAG = DictionaryDumpBroadcastReceiver.class.getSimpleName();
 
-    private static final String DOMAIN = "com.android.inputmethod.latin";
+    private static final String DOMAIN = R.class.getPackage().getName();
     public static final String DICTIONARY_DUMP_INTENT_ACTION = DOMAIN + ".DICT_DUMP";
     public static final String DICTIONARY_NAME_KEY = "dictName";
 

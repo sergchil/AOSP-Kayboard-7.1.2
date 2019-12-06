@@ -141,21 +141,8 @@ public final class DictionarySettingsFragment extends PreferenceFragment
         refreshNetworkState();
 
         new Thread("onResume") {
-            void TRY(String clientId) {
-                if (!MetadataDbHelper.isClientKnown(activity, clientId))
-                    Log.i(TAG, "Unknown dictionary pack client: " + clientId
-                            + ". Requesting info.");
-            }
             @Override
             public void run() {
-                TRY("AOSP");
-                TRY("AOSP.KEYBOARD");
-                TRY("AOSP.KEYBOARD.inputmethod");
-                TRY("AOSP.KEYBOARD.inputmethod.latin");
-                TRY("com");
-                TRY("com.android");
-                TRY("com.android.inputmethod");
-                TRY("com.android.inputmethod.latin");
                 if (!MetadataDbHelper.isClientKnown(activity, mClientId)) {
                     Log.i(TAG, "Unknown dictionary pack client: " + mClientId
                             + ". Requesting info.");
