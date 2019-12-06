@@ -88,7 +88,7 @@ public final class DictionaryFactory {
             final ContentProviderClient providerClient;
             try {
                 providerClient = context.getContentResolver().acquireContentProviderClient(
-                        BinaryDictionaryFileDumper.getProviderUriBuilder("").build());
+                        BinaryDictionaryFileDumper.getProviderUriBuilder(context, "").build());
             } catch (final SecurityException e) {
                 Log.e(TAG, "No permission to communicate with the dictionary provider", e);
                 return;
@@ -112,7 +112,7 @@ public final class DictionaryFactory {
             // Then again, this is expected to only ever happen in case of human mistake. If
             // the wrong file is on the server, the following is still doing the right thing.
             // If it's a file left over from the last version however, it's not great.
-            BinaryDictionaryFileDumper.reportBrokenFileToDictionaryProvider(
+            BinaryDictionaryFileDumper.reportBrokenFileToDictionaryProvider(context,
                     providerClient,
                     context.getString(R.string.dictionary_pack_client_id),
                     wordlistId);

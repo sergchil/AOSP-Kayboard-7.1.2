@@ -108,9 +108,9 @@ public final class BinaryDictionaryFileDumper {
      * This creates a URI builder able to build a URI pointing to the dictionary
      * pack content provider for a specific dictionary id.
      */
-    public static Uri.Builder getProviderUriBuilder(final String path) {
+    public static Uri.Builder getProviderUriBuilder(final Context context, final String path) {
         return new Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT)
-                .authority(DictionaryPackConstants.AUTHORITY).appendPath(path);
+                .authority(new DictionaryPackConstants(context).AUTHORITY).appendPath(path);
     }
 
     /**
@@ -127,19 +127,19 @@ public final class BinaryDictionaryFileDumper {
      * @return a builder that can build the URI for the best supported protocol version
      * @throws RemoteException if the client can't be contacted
      */
-    private static Uri.Builder getContentUriBuilderForType(final String clientId,
+    private static Uri.Builder getContentUriBuilderForType(final Context context, final String clientId,
             final ContentProviderClient contentProviderClient, final String queryPathType,
             final String extraPath) throws RemoteException {
         // Check whether protocol v2 is supported by building a v2 URI and calling getType()
         // on it. If this returns null, v2 is not supported.
-        final Uri.Builder uriV2Builder = getProviderUriBuilder(clientId);
+        final Uri.Builder uriV2Builder = getProviderUriBuilder(context, clientId);
         uriV2Builder.appendPath(queryPathType);
         uriV2Builder.appendPath(extraPath);
         uriV2Builder.appendQueryParameter(QUERY_PARAMETER_PROTOCOL,
                 QUERY_PARAMETER_PROTOCOL_VALUE);
         if (null != contentProviderClient.getType(uriV2Builder.build())) return uriV2Builder;
         // Protocol v2 is not supported, so create and return the protocol v1 uri.
-        return getProviderUriBuilder(extraPath);
+        return getProviderUriBuilder(context, extraPath);
     }
 
     /**
@@ -149,12 +149,13 @@ public final class BinaryDictionaryFileDumper {
     private static List<WordListInfo> getWordListWordListInfos(final Locale locale,
             final Context context, final boolean hasDefaultWordList) {
         final String clientId = context.getString(R.string.dictionary_pack_client_id);
-        final ContentProviderClient client = context.getContentResolver().
-                acquireContentProviderClient(getProviderUriBuilder("").build());
+        final Uri URI = getProviderUriBuilder(context, "").build();
+        final ContentResolver cr = context.getContentResolver();
+        final ContentProviderClient client = cr.acquireContentProviderClient(URI);
         if (null == client) return Collections.<WordListInfo>emptyList();
         Cursor cursor = null;
         try {
-            final Uri.Builder builder = getContentUriBuilderForType(clientId, client,
+            final Uri.Builder builder = getContentUriBuilderForType(context, clientId, client,
                     QUERY_PATH_DICT_INFO, locale.toString());
             if (!hasDefaultWordList) {
                 builder.appendQueryParameter(QUERY_PARAMETER_MAY_PROMPT_USER,
@@ -242,7 +243,7 @@ public final class BinaryDictionaryFileDumper {
         final String clientId = context.getString(R.string.dictionary_pack_client_id);
         final Uri.Builder wordListUriBuilder;
         try {
-            wordListUriBuilder = getContentUriBuilderForType(clientId,
+            wordListUriBuilder = getContentUriBuilderForType(context, clientId,
                     providerClient, QUERY_PATH_DATAFILE, wordlistId /* extraPath */);
         } catch (RemoteException e) {
             Log.e(TAG, "Can't communicate with the dictionary pack", e);
@@ -365,14 +366,14 @@ public final class BinaryDictionaryFileDumper {
         Log.e(TAG, "Could not copy a word list. Will not be able to use it.");
         // If we can't copy it we should warn the dictionary provider so that it can mark it
         // as invalid.
-        reportBrokenFileToDictionaryProvider(providerClient, clientId, wordlistId);
+        reportBrokenFileToDictionaryProvider(context, providerClient, clientId, wordlistId);
     }
 
-    public static boolean reportBrokenFileToDictionaryProvider(
+    public static boolean reportBrokenFileToDictionaryProvider(final Context context,
             final ContentProviderClient providerClient, final String clientId,
             final String wordlistId) {
         try {
-            final Uri.Builder wordListUriBuilder = getContentUriBuilderForType(clientId,
+            final Uri.Builder wordListUriBuilder = getContentUriBuilderForType(context, clientId,
                     providerClient, QUERY_PATH_DATAFILE, wordlistId /* extraPath */);
             wordListUriBuilder.appendQueryParameter(QUERY_PARAMETER_DELETE_RESULT,
                     QUERY_PARAMETER_FAILURE);
@@ -420,7 +421,7 @@ public final class BinaryDictionaryFileDumper {
         final ContentProviderClient providerClient;
         try {
             providerClient = context.getContentResolver().
-                acquireContentProviderClient(getProviderUriBuilder("").build());
+                acquireContentProviderClient(getProviderUriBuilder(context, "").build());
         } catch (final SecurityException e) {
             Log.e(TAG, "No permission to communicate with the dictionary provider", e);
             return;
@@ -496,7 +497,7 @@ public final class BinaryDictionaryFileDumper {
                 + metadataFileUri);
         final String metadataAdditionalId = MetadataFileUriGetter.getMetadataAdditionalId(context);
         // Tell the content provider to reset all information about this client id
-        final Uri metadataContentUri = getProviderUriBuilder(clientId)
+        final Uri metadataContentUri = getProviderUriBuilder(context, clientId)
                 .appendPath(QUERY_PATH_METADATA)
                 .appendQueryParameter(QUERY_PARAMETER_PROTOCOL, QUERY_PARAMETER_PROTOCOL_VALUE)
                 .build();
@@ -509,7 +510,7 @@ public final class BinaryDictionaryFileDumper {
         client.insert(metadataContentUri, metadataValues);
 
         // Update the dictionary list.
-        final Uri dictionaryContentUriBase = getProviderUriBuilder(clientId)
+        final Uri dictionaryContentUriBase = getProviderUriBuilder(context, clientId)
                 .appendPath(QUERY_PATH_DICT_INFO)
                 .appendQueryParameter(QUERY_PARAMETER_PROTOCOL, QUERY_PARAMETER_PROTOCOL_VALUE)
                 .build();
@@ -560,7 +561,7 @@ public final class BinaryDictionaryFileDumper {
     public static void initializeClientRecordHelper(final Context context, final String clientId) {
         try {
             final ContentProviderClient client = context.getContentResolver().
-                    acquireContentProviderClient(getProviderUriBuilder("").build());
+                    acquireContentProviderClient(getProviderUriBuilder(context, "").build());
             if (null == client) return;
             reinitializeClientRecordInDictionaryContentProvider(context, client, clientId);
         } catch (RemoteException e) {

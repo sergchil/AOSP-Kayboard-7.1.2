@@ -50,8 +50,7 @@ public final class DictionaryProvider extends ContentProvider {
     private static final String TAG = DictionaryProvider.class.getSimpleName();
     public static final boolean DEBUG = false;
 
-    public static final Uri CONTENT_URI =
-            Uri.parse(ContentResolver.SCHEME_CONTENT + "://" + DictionaryPackConstants.AUTHORITY);
+    public Uri CONTENT_URI;
     private static final String QUERY_PARAMETER_MAY_PROMPT_USER = "mayPrompt";
     private static final String QUERY_PARAMETER_TRUE = "true";
     private static final String QUERY_PARAMETER_DELETE_RESULT = "result";
@@ -64,20 +63,8 @@ public final class DictionaryProvider extends ContentProvider {
     private static final int DICTIONARY_V2_WHOLE_LIST = 4;
     private static final int DICTIONARY_V2_DICT_INFO = 5;
     private static final int DICTIONARY_V2_DATAFILE = 6;
-    private static final UriMatcher sUriMatcherV1 = new UriMatcher(NO_MATCH);
-    private static final UriMatcher sUriMatcherV2 = new UriMatcher(NO_MATCH);
-    static
-    {
-        sUriMatcherV1.addURI(DictionaryPackConstants.AUTHORITY, "list", DICTIONARY_V1_WHOLE_LIST);
-        sUriMatcherV1.addURI(DictionaryPackConstants.AUTHORITY, "*", DICTIONARY_V1_DICT_INFO);
-        sUriMatcherV2.addURI(DictionaryPackConstants.AUTHORITY, "*/metadata",
-                DICTIONARY_V2_METADATA);
-        sUriMatcherV2.addURI(DictionaryPackConstants.AUTHORITY, "*/list", DICTIONARY_V2_WHOLE_LIST);
-        sUriMatcherV2.addURI(DictionaryPackConstants.AUTHORITY, "*/dict/*",
-                DICTIONARY_V2_DICT_INFO);
-        sUriMatcherV2.addURI(DictionaryPackConstants.AUTHORITY, "*/datafile/*",
-                DICTIONARY_V2_DATAFILE);
-    }
+    private final UriMatcher sUriMatcherV1 = new UriMatcher(NO_MATCH);
+    private final UriMatcher sUriMatcherV2 = new UriMatcher(NO_MATCH);
 
     // MIME types for dictionary and dictionary list, as required by ContentProvider contract.
     public static final String DICT_LIST_MIME_TYPE =
@@ -158,12 +145,28 @@ public final class DictionaryProvider extends ContentProvider {
         }
     }
 
+    /**
+     * the implementing method must call super.onCreate() to correctly initialize this class
+     * @return true
+     */
     @Override
     public boolean onCreate() {
+        Context context = getContext();
+        CONTENT_URI = Uri.parse(ContentResolver.SCHEME_CONTENT + "://" +
+                new DictionaryPackConstants(context).AUTHORITY);
+        sUriMatcherV1.addURI(new DictionaryPackConstants(context).AUTHORITY, "list", DICTIONARY_V1_WHOLE_LIST);
+        sUriMatcherV1.addURI(new DictionaryPackConstants(context).AUTHORITY, "*", DICTIONARY_V1_DICT_INFO);
+        sUriMatcherV2.addURI(new DictionaryPackConstants(context).AUTHORITY, "*/metadata",
+                DICTIONARY_V2_METADATA);
+        sUriMatcherV2.addURI(new DictionaryPackConstants(context).AUTHORITY, "*/list", DICTIONARY_V2_WHOLE_LIST);
+        sUriMatcherV2.addURI(new DictionaryPackConstants(context).AUTHORITY, "*/dict/*",
+                DICTIONARY_V2_DICT_INFO);
+        sUriMatcherV2.addURI(new DictionaryPackConstants(context).AUTHORITY, "*/datafile/*",
+                DICTIONARY_V2_DATAFILE);
         return true;
     }
 
-    private static int matchUri(final Uri uri) {
+    private int matchUri(final Uri uri) {
         int protocolVersion = 1;
         final String protocolVersionArg = uri.getQueryParameter(QUERY_PARAMETER_PROTOCOL_VERSION);
         if ("2".equals(protocolVersionArg)) protocolVersion = 2;

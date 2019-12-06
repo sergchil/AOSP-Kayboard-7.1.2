@@ -588,7 +588,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         registerReceiver(mDictionaryPackInstallReceiver, packageFilter);
 
         final IntentFilter newDictFilter = new IntentFilter();
-        newDictFilter.addAction(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION);
+        newDictFilter.addAction(new DictionaryPackConstants(getApplicationContext()).NEW_DICTIONARY_INTENT_ACTION);
         registerReceiver(mDictionaryPackInstallReceiver, newDictFilter);
 
         final IntentFilter dictDumpFilter = new IntentFilter();

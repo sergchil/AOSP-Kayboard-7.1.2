@@ -198,10 +198,10 @@ public final class DictionaryService extends Service {
             // at midnight local time, but it may happen if the user changes the date
             // by hand or something similar happens.
             checkTimeAndMaybeSetupUpdateAlarm(context);
-        } else if (DictionaryPackConstants.UPDATE_NOW_INTENT_ACTION.equals(action)) {
+        } else if (new DictionaryPackConstants(context).UPDATE_NOW_INTENT_ACTION.equals(action)) {
             // Intent to trigger an update now.
             UpdateHandler.tryUpdate(context);
-        } else if (DictionaryPackConstants.INIT_AND_UPDATE_NOW_INTENT_ACTION.equals(action)) {
+        } else if (new DictionaryPackConstants(context).INIT_AND_UPDATE_NOW_INTENT_ACTION.equals(action)) {
             // Initialize the client Db.
             final String mClientId = context.getString(R.string.dictionary_pack_client_id);
             BinaryDictionaryFileDumper.initializeClientRecordHelper(context, mClientId);
@@ -228,7 +228,7 @@ public final class DictionaryService extends Service {
         // It doesn't matter too much if this is very inexact.
         final long now = System.currentTimeMillis();
         final long alarmTime = now + new Random().nextInt(MAX_ALARM_DELAY_MILLIS);
-        final Intent updateIntent = new Intent(DictionaryPackConstants.UPDATE_NOW_INTENT_ACTION);
+        final Intent updateIntent = new Intent(new DictionaryPackConstants(context).UPDATE_NOW_INTENT_ACTION);
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 updateIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 

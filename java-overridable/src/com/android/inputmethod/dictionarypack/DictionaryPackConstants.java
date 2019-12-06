@@ -16,6 +16,8 @@
 
 package com.android.inputmethod.dictionarypack;
 
+import android.content.Context;
+
 import AOSP.KEYBOARD.R;
 
 /**
@@ -30,13 +32,13 @@ public class DictionaryPackConstants {
      * The root domain for the dictionary pack, upon which authorities and actions will append
      * their own distinctive strings.
      */
-    private static final String DICTIONARY_DOMAIN = R.class.getPackage().getName();
+    public final String DICTIONARY_DOMAIN;
 
     /**
      * Authority for the ContentProvider protocol.
      */
     // TODO: find some way to factorize this string with the one in the resources
-    public static final String AUTHORITY = DICTIONARY_DOMAIN;
+    public final String AUTHORITY;
 
     /**
      * The action of the intent for publishing that new dictionary data is available.
@@ -45,30 +47,37 @@ public class DictionaryPackConstants {
     // to use the package name inside this string.
     // NOTE: The appended string should be uppercase like all other actions, but it's not for
     // historical reasons.
-    public static final String NEW_DICTIONARY_INTENT_ACTION = DICTIONARY_DOMAIN + ".newdict";
+    public final String NEW_DICTIONARY_INTENT_ACTION;
 
     /**
      * The action of the intent sent by the dictionary pack to ask for a client to make
      * itself known. This is used when the settings activity is brought up for a client the
      * dictionary pack does not know about.
      */
-    public static final String UNKNOWN_DICTIONARY_PROVIDER_CLIENT = DICTIONARY_DOMAIN
-            + ".UNKNOWN_CLIENT";
+    public final String UNKNOWN_DICTIONARY_PROVIDER_CLIENT;
 
     // In the above intents, the name of the string extra that contains the name of the client
     // we want information about.
-    public static final String DICTIONARY_PROVIDER_CLIENT_EXTRA = "client";
+    public final String DICTIONARY_PROVIDER_CLIENT_EXTRA;
 
     /**
      * The action of the intent to tell the dictionary provider to update now.
      */
-    public static final String UPDATE_NOW_INTENT_ACTION = DICTIONARY_DOMAIN
-            + ".UPDATE_NOW";
+    public final String UPDATE_NOW_INTENT_ACTION;
 
     /**
      * The intent action to inform the dictionary provider to initialize the db
      * and update now.
      */
-    public static final String INIT_AND_UPDATE_NOW_INTENT_ACTION = DICTIONARY_DOMAIN
-            + ".INIT_AND_UPDATE_NOW";
+    public final String INIT_AND_UPDATE_NOW_INTENT_ACTION;
+
+    public DictionaryPackConstants(Context context) {
+        DICTIONARY_DOMAIN = context.getString(R.string.authority);
+        AUTHORITY = DICTIONARY_DOMAIN;
+        NEW_DICTIONARY_INTENT_ACTION = DICTIONARY_DOMAIN + ".newdict";
+        UNKNOWN_DICTIONARY_PROVIDER_CLIENT = DICTIONARY_DOMAIN + ".UNKNOWN_CLIENT";
+        DICTIONARY_PROVIDER_CLIENT_EXTRA = "client";
+        UPDATE_NOW_INTENT_ACTION = DICTIONARY_DOMAIN + ".UPDATE_NOW";
+        INIT_AND_UPDATE_NOW_INTENT_ACTION = DICTIONARY_DOMAIN + ".INIT_AND_UPDATE_NOW";
+    }
 }

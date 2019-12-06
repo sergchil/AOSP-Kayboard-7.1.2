@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     defaultConfig {
         applicationId "AOSP.KEYBOARD"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 // UNCOMMENT TO BUILD NATIVE
@@ -31,7 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '28.0.3'
 
 // UNCOMMENT TO BUILD NATIVE
 //    externalNativeBuild {

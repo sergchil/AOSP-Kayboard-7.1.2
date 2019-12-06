@@ -146,10 +146,11 @@ public final class DictionarySettingsFragment extends PreferenceFragment
                 if (!MetadataDbHelper.isClientKnown(activity, mClientId)) {
                     Log.i(TAG, "Unknown dictionary pack client: " + mClientId
                             + ". Requesting info.");
+                    Context context = activity.getApplicationContext();
                     final Intent unknownClientBroadcast =
-                            new Intent(DictionaryPackConstants.UNKNOWN_DICTIONARY_PROVIDER_CLIENT);
+                            new Intent(new DictionaryPackConstants(context).UNKNOWN_DICTIONARY_PROVIDER_CLIENT);
                     unknownClientBroadcast.putExtra(
-                            DictionaryPackConstants.DICTIONARY_PROVIDER_CLIENT_EXTRA, mClientId);
+                            new DictionaryPackConstants(context).DICTIONARY_PROVIDER_CLIENT_EXTRA, mClientId);
                     activity.sendBroadcast(unknownClientBroadcast);
                 }
             }
@@ -163,8 +164,9 @@ public final class DictionarySettingsFragment extends PreferenceFragment
         UpdateHandler.unregisterUpdateEventListener(this);
         activity.unregisterReceiver(mConnectivityChangedReceiver);
         if (mChangedSettings) {
+            Context context = activity.getApplicationContext();
             final Intent newDictBroadcast =
-                    new Intent(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION);
+                    new Intent(new DictionaryPackConstants(context).NEW_DICTIONARY_INTENT_ACTION);
             activity.sendBroadcast(newDictBroadcast);
             mChangedSettings = false;
         }

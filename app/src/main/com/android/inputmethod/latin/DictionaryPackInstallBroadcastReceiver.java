@@ -89,7 +89,7 @@ public final class DictionaryPackInstallBroadcastReceiver extends BroadcastRecei
 
             // Search for some dictionary pack in the just-installed package. If found, reread.
             for (ProviderInfo info : providers) {
-                if (DictionaryPackConstants.AUTHORITY.equals(info.authority)) {
+                if (new DictionaryPackConstants(context).AUTHORITY.equals(info.authority)) {
                     mService.resetSuggestMainDict();
                     return;
                 }
@@ -114,14 +114,14 @@ public final class DictionaryPackInstallBroadcastReceiver extends BroadcastRecei
             // TODO: Only reload dictionary on REMOVED when the removed package is the one we
             // read dictionary from?
             mService.resetSuggestMainDict();
-        } else if (action.equals(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION)) {
+        } else if (action.equals(new DictionaryPackConstants(context).NEW_DICTIONARY_INTENT_ACTION)) {
             if (null == mService) {
                 Log.e(TAG, "Called with intent " + action + " but we don't know the service: this "
                         + "should never happen");
                 return;
             }
             mService.resetSuggestMainDict();
-        } else if (action.equals(DictionaryPackConstants.UNKNOWN_DICTIONARY_PROVIDER_CLIENT)) {
+        } else if (action.equals(new DictionaryPackConstants(context).UNKNOWN_DICTIONARY_PROVIDER_CLIENT)) {
             if (null != mService) {
                 // Careful! This is returning if the service is NOT null. This is because we
                 // should come here instantiated by the framework in reaction to a broadcast of
@@ -133,7 +133,7 @@ public final class DictionaryPackInstallBroadcastReceiver extends BroadcastRecei
             // The dictionary provider does not know about some client. We check that it's really
             // us that it needs to know about, and if it's the case, we register with the provider.
             final String wantedClientId =
-                    intent.getStringExtra(DictionaryPackConstants.DICTIONARY_PROVIDER_CLIENT_EXTRA);
+                    intent.getStringExtra(new DictionaryPackConstants(context).DICTIONARY_PROVIDER_CLIENT_EXTRA);
             final String myClientId = context.getString(R.string.dictionary_pack_client_id);
             if (!wantedClientId.equals(myClientId)) return; // Not for us
             BinaryDictionaryFileDumper.initializeClientRecordHelper(context, myClientId);
