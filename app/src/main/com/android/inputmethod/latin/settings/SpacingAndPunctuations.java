@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.settings;
 
 import android.content.res.Resources;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
 import com.android.inputmethod.latin.PunctuationSuggestions;

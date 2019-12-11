@@ -17,11 +17,11 @@
 package com.android.inputmethod.keyboard.emoji;
 
 import android.content.res.Resources;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.utils.ResourceUtils;
 
 final class EmojiLayoutParams {

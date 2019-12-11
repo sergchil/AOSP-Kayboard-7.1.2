@@ -20,8 +20,10 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.provider.Settings;
@@ -33,7 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.TextViewCompatUtils;
 import com.android.inputmethod.compat.ViewCompatUtils;
 import com.android.inputmethod.latin.settings.SettingsActivity;
@@ -385,6 +387,10 @@ public final class SetupWizardActivity extends Activity implements View.OnClickL
     private void showAndStartWelcomeVideo() {
         mWelcomeVideoView.setVisibility(View.VISIBLE);
         mWelcomeVideoView.setVideoURI(mWelcomeVideoUri);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            //set this BEFORE start playback
+            mWelcomeVideoView.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
+        }
         mWelcomeVideoView.start();
     }
 

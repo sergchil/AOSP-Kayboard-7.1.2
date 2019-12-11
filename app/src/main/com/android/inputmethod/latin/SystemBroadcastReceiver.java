@@ -138,7 +138,7 @@ public final class SystemBroadcastReceiver extends BroadcastReceiver {
 
     private void downloadLatestDictionaries(Context context) {
         final Intent updateIntent = new Intent(
-                DictionaryPackConstants.INIT_AND_UPDATE_NOW_INTENT_ACTION);
+                new DictionaryPackConstants(context).INIT_AND_UPDATE_NOW_INTENT_ACTION);
         context.sendBroadcast(updateIntent);
     }
 

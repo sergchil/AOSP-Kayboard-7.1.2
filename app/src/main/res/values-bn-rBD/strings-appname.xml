@@ -20,8 +20,8 @@
 
 <resources
     >
-    <string name="english_ime_name" msgid="5940510615957428904">"Android কীবোর্ড (AOSP)"</string>
-    <string name="spell_checker_service_name" msgid="1254221805440242662">"Android বানান পরীক্ষক (AOSP)"</string>
-    <string name="english_ime_settings" msgid="5760361067176802794">"Android কীবোর্ড সেটিংস (AOSP)"</string>
-    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Android বানান পরীক্ষক সেটিংস (AOSP)"</string>
+    <string name="english_ime_name" msgid="5940510615957428904">"Android কীবোর্ড"</string>
+    <string name="spell_checker_service_name" msgid="1254221805440242662">"Android বানান পরীক্ষক"</string>
+    <string name="english_ime_settings" msgid="5760361067176802794">"Android কীবোর্ড সেটিংস"</string>
+    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Android বানান পরীক্ষক সেটিংস"</string>
 </resources>

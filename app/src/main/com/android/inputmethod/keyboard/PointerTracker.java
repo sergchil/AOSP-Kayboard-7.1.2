@@ -22,7 +22,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.internal.BatchInputArbiter;
 import com.android.inputmethod.keyboard.internal.BatchInputArbiter.BatchInputArbiterListener;
 import com.android.inputmethod.keyboard.internal.BogusMoveEventDetector;

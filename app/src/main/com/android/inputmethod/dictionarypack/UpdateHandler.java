@@ -35,7 +35,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.NotificationCompatUtils;
 import com.android.inputmethod.latin.common.LocaleUtils;
 import com.android.inputmethod.latin.makedict.FormatSpec;
@@ -571,7 +571,7 @@ public final class UpdateHandler {
         // TODO: Also provide the locale of the updated dictionary so that the LatinIme
         // does not have to reset if it is a different locale.
         final Intent newDictBroadcast =
-                new Intent(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION);
+                new Intent(new DictionaryPackConstants(context).NEW_DICTIONARY_INTENT_ACTION);
         context.sendBroadcast(newDictBroadcast);
     }
 

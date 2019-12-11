@@ -23,7 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.latin.suggestions.MoreSuggestionsView;

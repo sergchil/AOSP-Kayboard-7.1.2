@@ -33,7 +33,7 @@ import android.text.method.LinkMovementMethod;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.accounts.AccountStateChangedListener;
 import com.android.inputmethod.latin.accounts.LoginAccountUtils;

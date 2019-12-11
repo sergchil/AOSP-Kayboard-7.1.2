@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.android.inputmethod.latin"
+        applicationId "AOSP.KEYBOARD"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 // UNCOMMENT TO BUILD NATIVE
 //        externalNativeBuild {
 //            ndkBuild {
-//                cppFlags "-std=c++11 -frtti -fexceptions"
+//                cppFlags "-std=c++11"
 //                abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
 //            }
 //        }
@@ -31,6 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion = '28.0.3'
 
 // UNCOMMENT TO BUILD NATIVE
 //    externalNativeBuild {
@@ -41,6 +42,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.findbugs:jsr305:3.0.0'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

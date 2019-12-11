@@ -49,7 +49,7 @@ import android.view.inputmethod.CompletionInfo;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.compat.BuildCompatUtils;
@@ -588,7 +588,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         registerReceiver(mDictionaryPackInstallReceiver, packageFilter);
 
         final IntentFilter newDictFilter = new IntentFilter();
-        newDictFilter.addAction(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION);
+        newDictFilter.addAction(new DictionaryPackConstants(getApplicationContext()).NEW_DICTIONARY_INTENT_ACTION);
         registerReceiver(mDictionaryPackInstallReceiver, newDictFilter);
 
         final IntentFilter dictDumpFilter = new IntentFilter();

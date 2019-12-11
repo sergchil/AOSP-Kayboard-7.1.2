@@ -21,7 +21,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.latin.settings.Settings;
 

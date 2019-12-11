@@ -48,13 +48,14 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import AOSP.KEYBOARD.R;
+
 /**
  * This class encapsulates the logic for the Latin-IME side of dictionary information management.
  */
 public class DictionaryInfoUtils {
     private static final String TAG = DictionaryInfoUtils.class.getSimpleName();
-    public static final String RESOURCE_PACKAGE_NAME = "com.android.inputmethod.latin";
-//    public static final String RESOURCE_PACKAGE_NAME = R.class.getPackage().getName();
+    public static final String RESOURCE_PACKAGE_NAME = R.class.getPackage().getName();
     private static final String DEFAULT_MAIN_DICT = "main";
     private static final String MAIN_DICT_PREFIX = "main_";
     private static final String DECODER_DICT_SUFFIX = DecoderSpecificConstants.DECODER_DICT_SUFFIX;

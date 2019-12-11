@@ -22,7 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.SparseIntArray;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 
 import java.util.HashMap;
 

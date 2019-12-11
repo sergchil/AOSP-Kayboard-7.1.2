@@ -19,7 +19,7 @@ package com.android.inputmethod.latin.userdictionary;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.common.LocaleUtils;
 
 import java.util.Locale;

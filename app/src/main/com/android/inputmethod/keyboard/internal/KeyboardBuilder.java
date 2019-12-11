@@ -27,7 +27,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;

@@ -26,7 +26,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.Key;
 
 import java.util.HashSet;

@@ -20,8 +20,8 @@
 
 <resources
     >
-    <string name="english_ime_name" msgid="5940510615957428904">"Android пернетақтасы (AOSP)"</string>
-    <string name="spell_checker_service_name" msgid="1254221805440242662">"Android емлені тексеру құралы (AOSP)"</string>
-    <string name="english_ime_settings" msgid="5760361067176802794">"Android пернетақтасының параметрлері (AOSP)"</string>
-    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Android емлені тексеру құралының параметрлері (AOSP)"</string>
+    <string name="english_ime_name" msgid="5940510615957428904">"Android пернетақтасы"</string>
+    <string name="spell_checker_service_name" msgid="1254221805440242662">"Android емлені тексеру құралы"</string>
+    <string name="english_ime_settings" msgid="5760361067176802794">"Android пернетақтасының параметрлері"</string>
+    <string name="android_spell_checker_settings" msgid="6123949487832861885">"Android емлені тексеру құралының параметрлері"</string>
 </resources>

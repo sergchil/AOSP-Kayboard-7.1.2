@@ -18,10 +18,10 @@
 */
 -->
 <resources>
-    <string name="dictionary_pack_client_id" translatable="false">com.android.inputmethod.latin</string>
+    <string name="dictionary_pack_client_id" translatable="false">AOSP.KEYBOARD.inputmethod.latin</string>
     <string name="dictionary_pack_metadata_uri" translatable="false"></string>
     <string name="dictionary_pack_settings_activity" translatable="false">com.android.inputmethod.dictionarypack.DictionarySettingsActivity</string>
-    <string name="authority" translatable="false">com.android.inputmethod.dictionarypack.aosp</string>
+    <string name="authority" translatable="false">AOSP.KEYBOARD.dictionarypack.aosp</string>
     <string name="default_metadata_uri" translatable="false"></string>
     <string name="local_metadata_filename" translatable="false">metadata.json</string>
 </resources>

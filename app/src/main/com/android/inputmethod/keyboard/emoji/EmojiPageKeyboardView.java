@@ -23,7 +23,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.accessibility.KeyboardAccessibilityDelegate;
 import com.android.inputmethod.keyboard.Key;

@@ -20,7 +20,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.view.MenuItem;
 
 import com.android.inputmethod.latin.permissions.PermissionsManager;
@@ -58,7 +58,7 @@ public final class SettingsActivity extends PreferenceActivity
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (mShowHomeAsUp && item.getItemId() == android.R.id.home) {
-            finish();
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

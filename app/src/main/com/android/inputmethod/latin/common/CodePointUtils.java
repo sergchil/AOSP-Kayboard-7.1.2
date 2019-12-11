@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.latin.common;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.android.inputmethod.annotations.UsedForTesting;
 

@@ -21,7 +21,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
-import android.support.v4.view.accessibility.AccessibilityEventCompat;
+import androidx.core.view.accessibility.AccessibilityEventCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,7 +32,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.inputmethod.R;
+import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.SettingsSecureCompatUtils;
 import com.android.inputmethod.latin.SuggestedWords;
 import com.android.inputmethod.latin.utils.InputTypeUtils;
