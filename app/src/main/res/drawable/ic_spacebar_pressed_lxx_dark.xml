@@ -11,11 +11,4 @@
                 android:color="@color/key_shifted_letter_hint_inactivated_color_holo"/>
         </shape>
     </item>
-
-    <item android:drawable="@drawable/ic_vyne_logo_spacebar"
-        android:gravity="center"
-        android:top="5dp"
-        android:bottom="5dp"
-        android:left="5dp"
-        android:right="5dp" />
 </layer-list>
