@@ -21,12 +21,13 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import AOSP.KEYBOARD.R;
 import com.android.inputmethod.compat.BuildCompatUtils;
+import com.android.inputmethod.keyboard.KeyboardTheme;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.InputAttributes;
 import com.android.inputmethod.latin.common.StringUtils;
@@ -41,6 +42,8 @@ import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.annotation.Nonnull;
+
+import AOSP.KEYBOARD.R;
 
 public final class Settings implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = Settings.class.getSimpleName();
@@ -81,6 +84,8 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             "pref_include_other_imes_in_language_switch_list";
     public static final String PREF_CUSTOM_INPUT_STYLES = "custom_input_styles";
     public static final String PREF_ENABLE_SPLIT_KEYBOARD = "pref_split_keyboard";
+    public static final String PREF_KEYBOARD_COLOR = "pref_keyboard_color";
+
     // TODO: consolidate key preview dismiss delay with the key preview animation parameters.
     public static final String PREF_KEY_PREVIEW_POPUP_DISMISS_DELAY =
             "pref_key_preview_popup_dismiss_delay";
@@ -363,6 +368,27 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             return !isApplicationInSystemImage;
         }
         return prefs.getBoolean(PREF_SHOW_SETUP_WIZARD_ICON, false);
+    }
+
+    public static int readKeyboardDefaultColor(final Context context) {
+        final int[] keyboardThemeColors = context.getResources().getIntArray(R.array.keyboard_theme_colors);
+        final int[] keyboardThemeIds = context.getResources().getIntArray(R.array.keyboard_theme_ids);
+        final int themeId = KeyboardTheme.getKeyboardTheme(context).mThemeId;
+        for (int index = 0; index < keyboardThemeIds.length; index++) {
+            if (themeId == keyboardThemeIds[index]) {
+                return keyboardThemeColors[index];
+            }
+        }
+
+        return Color.LTGRAY;
+    }
+
+    public static int readKeyboardColor(final SharedPreferences prefs, final Context context) {
+        return prefs.getInt(PREF_KEYBOARD_COLOR, readKeyboardDefaultColor(context));
+    }
+
+    public static void removeKeyboardColor(final SharedPreferences prefs) {
+        prefs.edit().remove(PREF_KEYBOARD_COLOR).apply();
     }
 
     public static boolean readHasHardwareKeyboard(final Configuration conf) {
