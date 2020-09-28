@@ -27,12 +27,12 @@
         >
             <Key
                 latin:keyStyle="comKeyStyle"
-                latin:keyWidth="fillRight" />
+                 />
         </case>
         <default>
             <Key
                 latin:keyStyle="emojiKeyStyle"
-                latin:keyWidth="fillRight" />
+                 />
         </default>
     </switch>
 </merge>
