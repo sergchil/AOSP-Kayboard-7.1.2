@@ -28,12 +28,15 @@
             latin:keyStyle="toSymbolKeyStyle"
             latin:keyWidth="15%p" />
         <include
-            latin:keyboardLayout="@xml/key_comma" />
+            latin:keyboardLayout="@xml/key_comma"
+            />
         <include
-            latin:keyXPos="25%p"
+            latin:keyboardLayout="@xml/key_emoji" />
+        <include
             latin:keyboardLayout="@xml/key_space_5kw" />
         <include
             latin:keyboardLayout="@xml/key_period" />
+
         <Key
             latin:keyStyle="enterKeyStyle"
             latin:keyWidth="fillRight" />
