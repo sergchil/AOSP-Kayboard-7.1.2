@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -531,9 +532,9 @@ public class KeyboardBuilder<KP extends KeyboardParams> {
         final TypedArray keyAttr = mResources.obtainAttributes(attr, R.styleable.Keyboard_Key);
         int keyboardLayout = 0;
         try {
-            XmlParseUtils.checkAttributeExists(
-                    keyboardAttr, R.styleable.Keyboard_Include_keyboardLayout, "keyboardLayout",
-                    TAG_INCLUDE, parser);
+//            XmlParseUtils.checkAttributeExists(
+//                    keyboardAttr, R.styleable.Keyboard_Include_keyboardLayout, "keyboardLayout",
+//                    TAG_INCLUDE, parser);
             keyboardLayout = keyboardAttr.getResourceId(
                     R.styleable.Keyboard_Include_keyboardLayout, 0);
             if (row != null) {
@@ -686,44 +687,44 @@ public class KeyboardBuilder<KP extends KeyboardParams> {
                     && localeCodeMatched && languageCodeMatched && countryCodeMatched
                     && splitLayoutMatched;
 
-            if (DEBUG) {
-                startTag("<%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s>%s", TAG_CASE,
-                        textAttr(caseAttr.getString(
-                                R.styleable.Keyboard_Case_keyboardLayoutSet), "keyboardLayoutSet"),
-                        textAttr(caseAttr.getString(
-                                R.styleable.Keyboard_Case_keyboardLayoutSetElement),
-                                "keyboardLayoutSetElement"),
-                        textAttr(caseAttr.getString(
-                                R.styleable.Keyboard_Case_keyboardTheme), "keyboardTheme"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_mode), "mode"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_imeAction),
-                                "imeAction"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_navigateNext,
-                                "navigateNext"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_navigatePrevious,
-                                "navigatePrevious"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_clobberSettingsKey,
-                                "clobberSettingsKey"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_passwordInput,
-                                "passwordInput"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_hasShortcutKey,
-                                "hasShortcutKey"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_languageSwitchKeyEnabled,
-                                "languageSwitchKeyEnabled"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_isMultiLine,
-                                "isMultiLine"),
-                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_isSplitLayout,
-                                "splitLayout"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_isIconDefined),
-                                "isIconDefined"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_localeCode),
-                                "localeCode"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_languageCode),
-                                "languageCode"),
-                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_countryCode),
-                                "countryCode"),
-                        selected ? "" : " skipped");
-            }
+//            if (DEBUG) {
+//                startTag("<%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s>%s", TAG_CASE,
+//                        textAttr(caseAttr.getString(
+//                                R.styleable.Keyboard_Case_keyboardLayoutSet), "keyboardLayoutSet"),
+//                        textAttr(caseAttr.getString(
+//                                R.styleable.Keyboard_Case_keyboardLayoutSetElement),
+//                                "keyboardLayoutSetElement"),
+//                        textAttr(caseAttr.getString(
+//                                R.styleable.Keyboard_Case_keyboardTheme), "keyboardTheme"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_mode), "mode"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_imeAction),
+//                                "imeAction"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_navigateNext,
+//                                "navigateNext"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_navigatePrevious,
+//                                "navigatePrevious"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_clobberSettingsKey,
+//                                "clobberSettingsKey"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_passwordInput,
+//                                "passwordInput"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_hasShortcutKey,
+//                                "hasShortcutKey"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_languageSwitchKeyEnabled,
+//                                "languageSwitchKeyEnabled"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_isMultiLine,
+//                                "isMultiLine"),
+//                        booleanAttr(caseAttr, R.styleable.Keyboard_Case_isSplitLayout,
+//                                "splitLayout"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_isIconDefined),
+//                                "isIconDefined"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_localeCode),
+//                                "localeCode"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_languageCode),
+//                                "languageCode"),
+//                        textAttr(caseAttr.getString(R.styleable.Keyboard_Case_countryCode),
+//                                "countryCode"),
+//                        selected ? "" : " skipped");
+//            }
 
             return selected;
         } finally {
