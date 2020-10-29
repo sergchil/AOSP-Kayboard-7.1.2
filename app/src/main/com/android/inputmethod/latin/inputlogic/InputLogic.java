@@ -682,7 +682,7 @@ public final class InputLogic {
                 performEditorAction(EditorInfo.IME_ACTION_PREVIOUS);
                 break;
             case Constants.CODE_LANGUAGE_SWITCH:
-                handleLanguageSwitchKey();
+                handleLanguageSwitchKey(); 
                 break;
             case Constants.CODE_EMOJI:
                 // Note: Switching emoji keyboard is being handled in
@@ -764,9 +764,8 @@ public final class InputLogic {
             final LatinIME.UIHandler handler) {
         final int codePoint = event.mCodePoint;
         mSpaceState = SpaceState.NONE;
-        if (inputTransaction.mSettingsValues.isWordSeparator(codePoint)
-                || Character.getType(codePoint) == Character.OTHER_SYMBOL) {
-            handleSeparatorEvent(event, inputTransaction, handler);
+        if (inputTransaction.mSettingsValues.isWordSeparator(codePoint) || Character.getType(codePoint) == Character.OTHER_SYMBOL) {
+            handleSeparatorEvent(event, inputTransaction, handler); // TODO VYNE
         } else {
             if (SpaceState.PHANTOM == inputTransaction.mSpaceState) {
                 if (mWordComposer.isCursorFrontOrMiddleOfComposingWord()) {

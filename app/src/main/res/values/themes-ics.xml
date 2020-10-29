@@ -47,6 +47,9 @@
         <item name="keyBackground">@drawable/btn_keyboard_key_ics</item>
         <item name="functionalKeyBackground">@drawable/btn_keyboard_key_functional_ics</item>
         <item name="spacebarBackground">@drawable/btn_keyboard_spacebar_ics</item>
+        <item name="spacebarBackgroundSwipe">@drawable/btn_keyboard_spacebar_ics</item>
+
+
         <item name="keyTextColor">@color/key_text_color_holo</item>
         <item name="keyTextInactivatedColor">@color/key_text_inactivated_color_holo</item>
         <item name="functionalTextColor">@color/key_text_color_holo</item>
