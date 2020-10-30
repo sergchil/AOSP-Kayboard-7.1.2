@@ -53,6 +53,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
     private static final boolean DEBUG_EVENT = false;
     private static final boolean DEBUG_MOVE_EVENT = false;
     private static final boolean DEBUG_LISTENER = false;
+    private float x1, x2;
     private static boolean DEBUG_MODE = DebugFlags.DEBUG_ENABLED || DEBUG_EVENT;
 
     static final class PointerTrackerParams {
@@ -578,9 +579,8 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
     public void processMotionEvent(final MotionEvent me, final KeyDetector keyDetector) {
         final int action = me.getActionMasked();
         final long eventTime = me.getEventTime();
-        float x1 = 0;
-        float x2;
-        final int MIN_DISTANCE = 300;
+
+        final int MIN_DISTANCE = 100;
         boolean isSwiping = false;
 
         if (action == MotionEvent.ACTION_MOVE) {
@@ -604,6 +604,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         final int index = me.getActionIndex();
         final int x = (int)me.getX(index);
         final int y = (int)me.getY(index);
+
         switch (action) {
         case MotionEvent.ACTION_DOWN:
         case MotionEvent.ACTION_POINTER_DOWN:

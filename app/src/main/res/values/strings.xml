@@ -350,7 +350,7 @@ mobile devices. [CHAR LIMIT=25] -->
     <!-- The keyboard theme name, Holo White. This is marked as translatable="false" because this is a proper name of system-wide UI Theme. -->
     <string name="keyboard_theme_holo_white" translatable="false">Holo White</string>
     <!-- The keyboard theme name, Holo Blue. This is marked as translatable="false" because this is a proper name of system-wide UI Theme.  -->
-    <string name="keyboard_theme_holo_blue" translatable="false">Holo Blue</string>
+    <string name="keyboard_theme_holo_blue" translatable="false">Vyne Classic</string>
     <!-- The keyboard theme name, Material Dark. This is marked as translatable="false" because this is a proper name of system-wide UI Theme.  -->
     <string name="keyboard_theme_material_dark" translatable="false">Material Dark</string>
     <!-- The keyboard theme name, Material Light. This is marked as translatable="false" because this is a proper name of system-wide UI Theme.  -->

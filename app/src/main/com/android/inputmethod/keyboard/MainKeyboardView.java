@@ -890,10 +890,12 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
         paint.setColor(mLanguageOnSpacebarTextColor);
         paint.setAlpha(mLanguageOnSpacebarAnimAlpha);
         String finalLanguage = language;
-        if (language.length() < 9) {
-            finalLanguage = "<        " + language + "        >";
-        } else {
-            finalLanguage = "<   " + language + "    >";
+        if(width > 204){
+            if (language.length() < 9) {
+                finalLanguage = "<        " + language + "        >";
+            } else {
+                finalLanguage = "<  " + language + "   >";
+            }
         }
 
         canvas.drawText(finalLanguage, width / 2, baseline - descent, paint);
