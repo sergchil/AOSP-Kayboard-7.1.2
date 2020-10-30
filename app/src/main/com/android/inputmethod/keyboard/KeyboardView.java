@@ -139,15 +139,6 @@ public class KeyboardView extends View {
         final Drawable functionalKeyBackground = keyboardViewAttr.getDrawable(
                 R.styleable.KeyboardView_functionalKeyBackground);
         mFunctionalKeyBackground = (functionalKeyBackground != null) ? functionalKeyBackground : mKeyBackground;
-        // TODO VYNE LAYOUT
-
-//        if(LatinIME.isSwiping()){ // IF language switch is on set swipe keyboard
-//            Drawable spacebarBackground = keyboardViewAttr.getDrawable(R.styleable.KeyboardView_spacebarBackgroundSwipe);
-//            mSpacebarBackground = (spacebarBackground != null) ? spacebarBackground : mKeyBackground;
-//        }else{
-//            Drawable spacebarBackground = keyboardViewAttr.getDrawable(R.styleable.KeyboardView_spacebarBackground);
-//            mSpacebarBackground = (spacebarBackground != null) ? spacebarBackground : mKeyBackground;
-//        }
 
         Drawable spacebarBackground = keyboardViewAttr.getDrawable(R.styleable.KeyboardView_spacebarBackground);
         mSpacebarBackground = (spacebarBackground != null) ? spacebarBackground : mKeyBackground;

@@ -6,9 +6,9 @@
             android:shape="rectangle">
             <corners android:radius="4dp" />
             <size android:width="200dp" android:height="150dp"/>
-
+            <stroke android:width="2px"></stroke>
             <solid
-                android:color="@color/key_shifted_letter_hint_inactivated_color_holo"/>
+                android:color="@color/defaultKeyColor"/>
         </shape>
     </item>
 </layer-list>

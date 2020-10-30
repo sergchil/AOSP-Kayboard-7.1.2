@@ -25,7 +25,7 @@
     <color name="typed_word_color_ics">#D833B5E5</color>
     <color name="suggested_word_color_ics">#B233B5E5</color>
     <color name="highlight_translucent_color_ics">#9933B5E5</color>
-    <color name="key_text_color_holo">@android:color/white</color>
+    <color name="key_text_color_holo">#B5B5B5</color>
     <color name="key_text_inactivated_color_holo">#66E0E4E5</color>
     <color name="key_hint_letter_color_holo">#80000000</color>
     <color name="key_hint_label_color_holo">#A0FFFFFF</color>
@@ -84,4 +84,9 @@
     <color name="setup_welcome_video_margin_color">#FFCCCCCC</color>
     <!-- Accent color for the notification. We need to match this to the OS build -->
     <color name="notification_accent_color">#FF607D8B</color>
+    <color name="defaultKeyColor">#424242</color>
+    <color name="defaultKeyColorPressed">#505050</color>
+    <color name="defaultBackgroundColor">#202022</color>
+    <color name="defaultTextColor">#DCDCDC</color>
+
 </resources>
