@@ -1,12 +1,20 @@
 apply plugin: 'com.android.application'
 
+def versionNumber = project.hasProperty('versionNumber') ? project.versionNumber : "dev"
+
+def getMyVersionCode = { ->
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 3
+    println "VersionCode is set to $code"
+    return code
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.android.inputmethod.latin"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 2
+        versionCode getMyVersionCode()
         versionName "2.0"
     }
 
@@ -35,12 +43,16 @@ android {
         debug {
             debuggable true
             minifyEnabled false
+            buildConfigField "String", 'VERS_NO', "\"${versionNumber}\""
+            buildConfigField "String", 'BUILD_VERS', "\"${System.currentTimeMillis()}\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
             minifyEnabled true
             debuggable false
+            buildConfigField "String", 'VERS_NO', "\"${versionNumber}\""
+            buildConfigField "String", 'BUILD_VERS', "\"${System.currentTimeMillis()}\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
