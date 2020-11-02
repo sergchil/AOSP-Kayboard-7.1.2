@@ -1174,7 +1174,6 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         final int code = key.getCode();
 
         if(isSwiping && code == Constants.CODE_SPACE){
-            Log.e("FELIX", "detectAndSendKey: SWIPPING");
             callListenerOnCodeInput(key, Constants.CODE_LANGUAGE_SWITCH, x, y, eventTime, false /* isKeyRepeat */);
         }else{
             callListenerOnCodeInput(key, code, x, y, eventTime, false /* isKeyRepeat */);
