@@ -1,13 +1,21 @@
 apply plugin: 'com.android.application'
 
+def versionNumber = project.hasProperty('versionNumber') ? project.versionNumber : "dev"
+
+def getMyVersionCode = { ->
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 2
+    println "VersionCode is set to $code"
+    return code
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.android.inputmethod.latin"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 2
-        versionName "2.0"
+        versionCode getMyVersionCode()
+        versionName "v1.0."
     }
 
     sourceSets {
