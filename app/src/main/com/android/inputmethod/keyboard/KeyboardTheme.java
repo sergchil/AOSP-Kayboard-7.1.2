@@ -36,17 +36,17 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
 
     // These should be aligned with Keyboard.themeId and Keyboard.Case.keyboardTheme
     // attributes' values in attrs.xml.
-    public static final int THEME_ID_ICS = 0;
+    public static final int THEME_ID_VYNE_DARK = 0;
     public static final int THEME_ID_KLP = 2;
     public static final int THEME_ID_LXX_LIGHT = 3;
     public static final int THEME_ID_LXX_DARK = 4;
-    public static final int DEFAULT_THEME_ID = THEME_ID_LXX_DARK;
+    public static final int DEFAULT_THEME_ID = THEME_ID_VYNE_DARK;
 
     private static KeyboardTheme[] AVAILABLE_KEYBOARD_THEMES;
 
     /* package private for testing */
     static final KeyboardTheme[] KEYBOARD_THEMES = {
-        new KeyboardTheme(THEME_ID_ICS, "ICS", R.style.KeyboardTheme_ICS,
+        new KeyboardTheme(THEME_ID_VYNE_DARK, "ICS", R.style.KeyboardTheme_ICS,
                 // This has never been selected because we support ICS or later.
                 VERSION_CODES.BASE),
         new KeyboardTheme(THEME_ID_KLP, "KLP", R.style.KeyboardTheme_KLP,
@@ -133,11 +133,11 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
             prefs.edit().remove(KLP_KEYBOARD_THEME_KEY).apply();
         }
         // TODO: This search algorithm isn't optimal if there are many themes.
-        for (final KeyboardTheme theme : availableThemeArray) {
-            if (sdkVersion >= theme.mMinApiVersion) {
-                return theme;
-            }
-        }
+//        for (final KeyboardTheme theme : availableThemeArray) {
+//            if (sdkVersion >= theme.mMinApiVersion) {
+//                return theme;
+//            }
+//        }
         return searchKeyboardThemeById(DEFAULT_THEME_ID, availableThemeArray);
     }
 

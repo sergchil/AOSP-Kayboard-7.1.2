@@ -35,7 +35,9 @@ import android.view.View;
 import com.android.inputmethod.R;
 import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
+import com.android.inputmethod.latin.LatinIME;
 import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.settings.Settings;
 import com.android.inputmethod.latin.utils.TypefaceUtils;
 
 import java.util.HashSet;
@@ -122,6 +124,7 @@ public class KeyboardView extends View {
     private final Paint mPaint = new Paint();
     private final Paint.FontMetrics mFontMetrics = new Paint.FontMetrics();
 
+
     public KeyboardView(final Context context, final AttributeSet attrs) {
         this(context, attrs, R.attr.keyboardViewStyle);
     }
@@ -135,11 +138,11 @@ public class KeyboardView extends View {
         mKeyBackground.getPadding(mKeyBackgroundPadding);
         final Drawable functionalKeyBackground = keyboardViewAttr.getDrawable(
                 R.styleable.KeyboardView_functionalKeyBackground);
-        mFunctionalKeyBackground = (functionalKeyBackground != null) ? functionalKeyBackground
-                : mKeyBackground;
-        final Drawable spacebarBackground = keyboardViewAttr.getDrawable(
-                R.styleable.KeyboardView_spacebarBackground);
+        mFunctionalKeyBackground = (functionalKeyBackground != null) ? functionalKeyBackground : mKeyBackground;
+
+        Drawable spacebarBackground = keyboardViewAttr.getDrawable(R.styleable.KeyboardView_spacebarBackground);
         mSpacebarBackground = (spacebarBackground != null) ? spacebarBackground : mKeyBackground;
+
         mSpacebarIconWidthRatio = keyboardViewAttr.getFloat(
                 R.styleable.KeyboardView_spacebarIconWidthRatio, 1.0f);
         mKeyHintLetterPadding = keyboardViewAttr.getDimension(
@@ -335,8 +338,7 @@ public class KeyboardView extends View {
         params.mAnimAlpha = Constants.Color.ALPHA_OPAQUE;
 
         if (!key.isSpacer()) {
-            final Drawable background = key.selectBackgroundDrawable(
-                    mKeyBackground, mFunctionalKeyBackground, mSpacebarBackground);
+            final Drawable background = key.selectBackgroundDrawable(mKeyBackground, mFunctionalKeyBackground, mSpacebarBackground);
             if (background != null) {
                 onDrawKeyBackground(key, canvas, background);
             }

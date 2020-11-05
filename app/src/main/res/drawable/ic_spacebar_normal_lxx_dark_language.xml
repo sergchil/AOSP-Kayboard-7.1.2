@@ -12,8 +12,8 @@
         </shape>
     </item>
 
-<!--    <item android:drawable="@drawable/ic_vyne_logo_spacebar"-->
-<!--        android:gravity="center"-->
-<!--        android:top="5dp"-->
-<!--        android:bottom="5dp" />-->
+    <item android:drawable="@drawable/ic_vyne_logo_spacebar"
+        android:gravity="center"
+        android:top="5dp"
+        android:bottom="5dp" />
 </layer-list>

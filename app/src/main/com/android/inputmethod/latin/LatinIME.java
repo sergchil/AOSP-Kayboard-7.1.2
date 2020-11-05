@@ -122,7 +122,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     private static final int PENDING_IMS_CALLBACK_DURATION_MILLIS = 800;
     static final long DELAY_WAIT_FOR_DICTIONARY_LOAD_MILLIS = TimeUnit.SECONDS.toMillis(2);
     static final long DELAY_DEALLOCATE_MEMORY_MILLIS = TimeUnit.SECONDS.toMillis(10);
-
+    private static boolean isSwiping = false;
     /**
      * The name of the scheme used by the Package Manager to warn of a new package installation,
      * replacement or removal.
@@ -265,9 +265,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
                         msg.arg2 /* remainingTries */, this /* handler */)) {
                     // If we were able to reset the caches, then we can reload the keyboard.
                     // Otherwise, we'll do it when we can.
-                    latinIme.mKeyboardSwitcher.loadKeyboard(latinIme.getCurrentInputEditorInfo(),
-                            settingsValues, latinIme.getCurrentAutoCapsState(),
-                            latinIme.getCurrentRecapitalizeState());
+                    latinIme.mKeyboardSwitcher.loadKeyboard(latinIme.getCurrentInputEditorInfo(), settingsValues, latinIme.getCurrentAutoCapsState(), latinIme.getCurrentRecapitalizeState());
                 }
                 break;
             case MSG_WAIT_FOR_DICTIONARY_LOAD:
@@ -290,6 +288,8 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         public void postReopenDictionaries() {
             sendMessage(obtainMessage(MSG_REOPEN_DICTIONARIES));
         }
+
+
 
         private void postResumeSuggestionsInternal(final boolean shouldDelay,
                 final boolean forStartInput) {
@@ -598,6 +598,10 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         StatsUtils.onCreate(mSettings.getCurrent(), mRichImm);
     }
 
+    public static boolean isSwiping(){
+        return isSwiping;
+    }
+
     // Has to be package-visible for unit tests
     @UsedForTesting
     void loadSettings() {
@@ -617,6 +621,8 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         refreshPersonalizationDictionarySession(currentSettingsValues);
         resetDictionaryFacilitatorIfNecessary();
         mStatsUtilsManager.onLoadSettings(this /* context */, currentSettingsValues);
+
+        isSwiping = mSettings.getCurrent().isLanguageSwitchKeyEnabled();
     }
 
     private void refreshPersonalizationDictionarySession(

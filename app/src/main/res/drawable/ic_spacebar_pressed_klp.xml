@@ -11,9 +11,4 @@
                 android:color="@color/highlight_translucent_color_klp"/>
         </shape>
     </item>
-
-    <item android:drawable="@drawable/ic_vyne_logo_spacebar"
-        android:gravity="center"
-        android:top="5dp"
-        android:bottom="5dp" />
 </layer-list>
