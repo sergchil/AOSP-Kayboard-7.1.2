@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.android.inputmethod.BuildConfig;
 import com.android.inputmethod.R;
 import com.android.inputmethod.latin.define.ProductionFlags;
 import com.android.inputmethod.latin.utils.ApplicationUtils;
@@ -49,12 +50,20 @@ public final class SettingsFragment extends InputMethodSettingsFragment {
         setSubtypeEnablerTitle(R.string.select_language);
         addPreferencesFromResource(R.xml.prefs);
         final PreferenceScreen preferenceScreen = getPreferenceScreen();
+        preferenceScreen.findPreference("screen_version").setSummary(setVersion());
         preferenceScreen.setTitle(
                 ApplicationUtils.getActivityTitleResId(getActivity(), SettingsActivity.class));
         if (!ProductionFlags.ENABLE_ACCOUNT_SIGN_IN) {
             final Preference accountsPreference = findPreference(Settings.SCREEN_ACCOUNTS);
             preferenceScreen.removePreference(accountsPreference);
         }
+    }
+
+    public String setVersion() {
+        // Set app version
+
+        String version = BuildConfig.BUILD_TYPE.substring(0, 1).toUpperCase() + BuildConfig.BUILD_TYPE.substring(1).toLowerCase();
+        return version + " " + BuildConfig.VERSION_NAME + BuildConfig.VERSION_CODE;
     }
 
     @Override

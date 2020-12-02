@@ -37,4 +37,10 @@
         android:fragment="com.android.inputmethod.latin.settings.AdvancedSettingsFragment"
         android:title="@string/settings_screen_advanced"
         android:key="screen_advanced" />
+    <Preference
+        android:title="Version"
+        android:summary="1.0"
+        android:key="screen_version"
+
+        />
 </PreferenceScreen>
