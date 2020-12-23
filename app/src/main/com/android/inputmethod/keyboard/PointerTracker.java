@@ -45,8 +45,6 @@ import com.android.inputmethod.latin.utils.ResourceUtils;
 import java.util.ArrayList;
 
 
-
-
 public final class PointerTracker implements PointerTrackerQueue.Element,
         BatchInputArbiterListener {
     private static final String TAG = PointerTracker.class.getSimpleName();
