@@ -1320,11 +1320,13 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         if (isShowingOptionDialog()) return false;
         switch (requestCode) {
         case Constants.CUSTOM_CODE_SHOW_INPUT_METHOD_PICKER:
-            if (mRichImm.hasMultipleEnabledIMEsOrSubtypes(true /* include aux subtypes */)) {
-                mRichImm.getInputMethodManager().showInputMethodPicker();
-                return true;
-            }
-            return false;
+//            if (mRichImm.hasMultipleEnabledIMEsOrSubtypes(true /* include aux subtypes */)) {
+//                mRichImm.getInputMethodManager().showInputMethodPicker();
+//                return true;
+//            }
+
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
         return false;
     }
