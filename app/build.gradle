@@ -26,6 +26,13 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file('k3yBoarDKey_vyne123')
+            storePassword "vyne123"
+            keyAlias "keyboard"
+            keyPassword "vyne123"
+        }
+
         release {
             storeFile file('k3yBoarDKey_vyne123')
             storePassword "vyne123"
