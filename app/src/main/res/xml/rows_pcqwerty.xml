@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /*
 **
 ** Copyright 2012, The Android Open Source Project
@@ -18,48 +17,33 @@
 */
 -->
 
-<merge
-    xmlns:latin="http://schemas.android.com/apk/res-auto"
->
-    <include
-        latin:keyboardLayout="@xml/key_styles_common" />
-    <Row
-        latin:keyWidth="7.692%p"
-    >
-        <include
-            latin:keyboardLayout="@xml/rowkeys_pcqwerty1" />
+<merge xmlns:latin="http://schemas.android.com/apk/res-auto">
+    <include latin:keyboardLayout="@xml/key_styles_common" />
+    <Row latin:keyWidth="7.692%p">
+        <include latin:keyboardLayout="@xml/rowkeys_pcqwerty1" />
     </Row>
-    <Row
-        latin:keyWidth="7.692%p"
-    >
-        <include
-            latin:keyboardLayout="@xml/rowkeys_pcqwerty2" />
+    <Row latin:keyWidth="7.692%p">
+        <include latin:keyboardLayout="@xml/rowkeys_pcqwerty2" />
     </Row>
-    <Row
-        latin:keyWidth="7.692%p"
-    >
+    <Row latin:keyWidth="7.692%p">
         <include
-            latin:keyboardLayout="@xml/rowkeys_pcqwerty3"
-            latin:keyXPos="3.846%p" />
+            latin:keyXPos="3.846%p"
+            latin:keyboardLayout="@xml/rowkeys_pcqwerty3" />
         <Key
             latin:keyStyle="deleteKeyStyle"
             latin:keyWidth="fillRight"
             latin:visualInsetsLeft="1%p" />
     </Row>
-    <Row
-        latin:keyWidth="7.692%p"
-    >
+    <Row latin:keyWidth="7.692%p">
         <Key
             latin:keyStyle="shiftKeyStyle"
             latin:keyWidth="11.538%p"
             latin:visualInsetsRight="1%p" />
-        <include
-            latin:keyboardLayout="@xml/rowkeys_pcqwerty4" />
+        <include latin:keyboardLayout="@xml/rowkeys_pcqwerty4" />
         <Key
             latin:keyStyle="shiftKeyStyle"
             latin:keyWidth="fillRight"
             latin:visualInsetsLeft="1%p" />
     </Row>
-    <include
-        latin:keyboardLayout="@xml/row_pcqwerty5" />
+    <include latin:keyboardLayout="@xml/row_pcqwerty5" />
 </merge>

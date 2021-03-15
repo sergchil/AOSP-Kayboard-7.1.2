@@ -82,6 +82,7 @@ public final class KeyboardId {
     public final String mCustomActionLabel;
     public final boolean mHasShortcutKey;
     public final boolean mIsSplitLayout;
+    public final boolean mNumRow;
 
     private final int mHashCode;
 
@@ -89,6 +90,7 @@ public final class KeyboardId {
         mSubtype = params.mSubtype;
         mWidth = params.mKeyboardWidth;
         mHeight = params.mKeyboardHeight;
+        mNumRow = params.mNumRow;
         mMode = params.mMode;
         mElementId = elementId;
         mEditorInfo = params.mEditorInfo;
@@ -118,7 +120,8 @@ public final class KeyboardId {
                 id.navigateNext(),
                 id.navigatePrevious(),
                 id.mSubtype,
-                id.mIsSplitLayout
+                id.mIsSplitLayout,
+                id.mNumRow
         });
     }
 
@@ -190,7 +193,7 @@ public final class KeyboardId {
 
     @Override
     public String toString() {
-        return String.format(Locale.ROOT, "[%s %s:%s %dx%d %s %s%s%s%s%s%s%s%s%s]",
+        return String.format(Locale.ROOT, "[%s %s:%s %dx%d %s %s%s%s%s%s%s%s%s%s%s]",
                 elementIdToName(mElementId),
                 mSubtype.getLocale(),
                 mSubtype.getExtraValueOf(KEYBOARD_LAYOUT_SET),
@@ -204,7 +207,8 @@ public final class KeyboardId {
                 (mHasShortcutKey ? " hasShortcutKey" : ""),
                 (mLanguageSwitchKeyEnabled ? " languageSwitchKeyEnabled" : ""),
                 (isMultiLine() ? " isMultiLine" : ""),
-                (mIsSplitLayout ? " isSplitLayout" : "")
+                (mIsSplitLayout ? " isSplitLayout" : ""),
+                (mNumRow ? " rowNumbers" : "")
         );
     }
 

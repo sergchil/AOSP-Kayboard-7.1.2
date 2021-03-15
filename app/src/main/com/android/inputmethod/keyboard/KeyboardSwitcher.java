@@ -117,7 +117,8 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
         builder.setKeyboardGeometry(keyboardWidth, keyboardHeight);
         builder.setSubtype(mRichImm.getCurrentSubtype());
         builder.setVoiceInputKeyEnabled(settingsValues.mShowsVoiceInputKey);
-        builder.setLanguageSwitchKeyEnabled(false); //TODO Turned off for Vyne
+        builder.setLanguageSwitchKeyEnabled(false);
+        builder.setNumberRows(settingsValues.mNumberRows); // VYNE NUBMER ROW
         builder.setSplitLayoutEnabledByUser(ProductionFlags.IS_SPLIT_KEYBOARD_SUPPORTED
                 && settingsValues.mIsSplitKeyboardEnabled);
         mKeyboardLayoutSet = builder.build();

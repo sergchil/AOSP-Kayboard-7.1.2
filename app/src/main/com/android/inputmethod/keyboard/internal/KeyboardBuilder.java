@@ -658,6 +658,8 @@ public class KeyboardBuilder<KP extends KeyboardParams> {
                     R.styleable.Keyboard_Case_navigateNext, id.navigateNext());
             final boolean navigatePreviousMatched = matchBoolean(caseAttr,
                     R.styleable.Keyboard_Case_navigatePrevious, id.navigatePrevious());
+            final boolean rowNumbers = matchBoolean(caseAttr,
+                    R.styleable.Keyboard_Case_rowNumbers, id.mNumRow);
             final boolean passwordInputMatched = matchBoolean(caseAttr,
                     R.styleable.Keyboard_Case_passwordInput, id.passwordInput());
             final boolean clobberSettingsKeyMatched = matchBoolean(caseAttr,
@@ -685,7 +687,7 @@ public class KeyboardBuilder<KP extends KeyboardParams> {
                     && hasShortcutKeyMatched  && languageSwitchKeyEnabledMatched
                     && isMultiLineMatched && imeActionMatched && isIconDefinedMatched
                     && localeCodeMatched && languageCodeMatched && countryCodeMatched
-                    && splitLayoutMatched;
+                    && splitLayoutMatched && rowNumbers;
 
 //            if (DEBUG) {
 //                startTag("<%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s>%s", TAG_CASE,
