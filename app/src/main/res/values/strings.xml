@@ -579,5 +579,7 @@ Tip: You can download and remove dictionaries by going to &lt;b>Languages&#160;&
     <string name="user_dict_fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
     <string name="zibil">zibil</string>
+    <string name="number_row">Number Row</string>
+    <string name="show_number">Always show number row on top of layout</string>
 
 </resources>

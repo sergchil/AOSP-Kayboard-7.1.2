@@ -37,8 +37,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 
-
-
 /**
  * When you call the constructor of this class, you may want to change the current system locale by
  * using {@link com.android.inputmethod.latin.utils.RunInLocale}.
@@ -62,6 +60,7 @@ public class SettingsValues {
     public final boolean mHasHardwareKeyboard;
     public final int mDisplayOrientation;
     // From preferences, in the same order as xml/prefs.xml:
+    public final boolean mNumberRows;
     public final boolean mAutoCap;
     public final boolean mVibrateOn;
     public final boolean mSoundOn;
@@ -117,10 +116,10 @@ public class SettingsValues {
     public final float mKeyPreviewDismissEndXScale;
     public final float mKeyPreviewDismissEndYScale;
 
-      public final String mAccount;
+    public final String mAccount;
 
     public SettingsValues(final Context context, final SharedPreferences prefs, final Resources res,
-              final InputAttributes inputAttributes) {
+                          final InputAttributes inputAttributes) {
         mLocale = res.getConfiguration().locale;
         // Get the resources
         mDelayInMillisecondsToUpdateOldSuggestions =
@@ -131,6 +130,8 @@ public class SettingsValues {
         mInputAttributes = inputAttributes;
 
         // Get the settings preferences
+        mNumberRows = Settings.readNumberRowEnabled(prefs, res);
+
         mAutoCap = prefs.getBoolean(Settings.PREF_AUTO_CAP, true);
         mVibrateOn = Settings.readVibrationEnabled(prefs, res);
         mSoundOn = Settings.readKeypressSoundEnabled(prefs, res);
@@ -317,13 +318,13 @@ public class SettingsValues {
     }
 
     private static boolean readBigramPredictionEnabled(final SharedPreferences prefs,
-            final Resources res) {
+                                                       final Resources res) {
         return prefs.getBoolean(Settings.PREF_BIGRAM_PREDICTIONS, res.getBoolean(
                 R.bool.config_default_next_word_prediction));
     }
 
     private static float readAutoCorrectionThreshold(final Resources res,
-            final String currentAutoCorrectionSetting) {
+                                                     final String currentAutoCorrectionSetting) {
         final String[] autoCorrectionThresholdValues = res.getStringArray(
                 R.array.auto_correction_threshold_values);
         // When autoCorrectionThreshold is greater than 1.0, it's like auto correction is off.
@@ -448,6 +449,8 @@ public class SettingsValues {
         sb.append("" + mKeyPreviewDismissEndXScale);
         sb.append("\n   mKeyPreviewDismissEndScaleY = ");
         sb.append("" + mKeyPreviewDismissEndYScale);
+        sb.append("\n   rowNumbers = ");
+        sb.append("" + mNumberRows);
         return sb.toString();
     }
 }
