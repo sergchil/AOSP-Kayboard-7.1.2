@@ -27,6 +27,8 @@ import com.android.inputmethod.R;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.SystemBroadcastReceiver;
 
+import java.util.Locale;
+
 /**
  * "Advanced" settings sub screen.
  *
@@ -54,7 +56,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
 
         final SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
 
-        if (!Settings.isInternal(prefs)) {
+        if (Settings.isInternal(prefs)) {
             removePreference(Settings.SCREEN_DEBUG);
         }
 
