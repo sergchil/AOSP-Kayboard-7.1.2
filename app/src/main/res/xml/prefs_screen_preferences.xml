@@ -14,8 +14,8 @@
      limitations under the License.
 -->
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:latin="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_screen_preferences">
     <CheckBoxPreference
         android:key="number_row"
@@ -50,9 +50,28 @@
         android:title="@string/popup_on_keypress"
         android:defaultValue="@bool/config_default_key_preview_popup"
         android:persistent="true" />
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/keyboard_heights"
+        android:entryValues="@array/keyboard_heights"
+        android:key="list_preference_1"
+        android:title="List preference" />
+    <CheckBoxPreference
+        android:key="pref_resize_keyboard"
+        android:title="@string/prefs_resize_keyboard"
+        android:defaultValue="true"
+        android:persistent="true" />
+    <com.android.inputmethod.latin.settings.SeekBarDialogPreference
+        android:dependency="pref_resize_keyboard"
+        android:key="pref_keyboard_height_scale"
+        android:title="@string/prefs_keyboard_height_scale"
+        latin:minValue="50"
+        latin:maxValue="120" /> <!-- percentage -->
     <!--<CheckBoxPreference-->
         <!--android:key="pref_voice_input_key"-->
         <!--android:title="@string/voice_input"-->
         <!--android:defaultValue="false"-->
         <!--android:persistent="true" />-->
 </PreferenceScreen>
+
+

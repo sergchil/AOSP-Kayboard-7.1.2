@@ -97,6 +97,7 @@ public final class SeekBarDialogPreference extends DialogPreference
 
     @Override
     protected void onBindDialogView(final View view) {
+        super.onBindDialogView(view);
         final int value = mValueProxy.readValue(getKey());
         mValueView.setText(mValueProxy.getValueText(value));
         mSeekBar.setProgress(getProgressFromValue(clipValue(value)));
