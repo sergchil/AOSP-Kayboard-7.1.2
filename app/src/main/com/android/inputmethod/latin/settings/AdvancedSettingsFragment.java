@@ -16,6 +16,7 @@
 
 package com.android.inputmethod.latin.settings;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -93,6 +94,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
         setupKeyLongpressTimeoutSettings();
         refreshEnablingsOfKeypressSoundAndVibrationSettings();
     }
+
 
     @Override
     public void onResume() {
