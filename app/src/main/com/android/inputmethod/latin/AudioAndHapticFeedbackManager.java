@@ -92,17 +92,8 @@ public final class AudioAndHapticFeedbackManager {
         }
         final int sound;
         switch (code) {
-        case Constants.CODE_DELETE:
-            sound = AudioManager.FX_KEYPRESS_DELETE;
-            break;
-        case Constants.CODE_ENTER:
-            sound = AudioManager.FX_KEYPRESS_RETURN;
-            break;
-        case Constants.CODE_SPACE:
-            sound = AudioManager.FX_KEYPRESS_SPACEBAR;
-            break;
-        default:
-            sound = AudioManager.FX_KEYPRESS_STANDARD;
+            default:
+            sound = AudioManager.FX_KEY_CLICK;
             break;
         }
         mAudioManager.playSoundEffect(sound, mSettingsValues.mKeypressSoundVolume);
