@@ -56,8 +56,7 @@ public class MoreKeysKeyboardView extends KeyboardView implements MoreKeysPanel 
         this(context, attrs, R.attr.moreKeysKeyboardViewStyle);
     }
 
-    public MoreKeysKeyboardView(final Context context, final AttributeSet attrs,
-            final int defStyle) {
+    public MoreKeysKeyboardView(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
         final TypedArray moreKeysKeyboardViewAttr = context.obtainStyledAttributes(attrs,
                 R.styleable.MoreKeysKeyboardView, defStyle, R.style.MoreKeysKeyboardView);

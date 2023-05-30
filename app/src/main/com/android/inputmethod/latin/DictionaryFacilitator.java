@@ -33,8 +33,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 /**
  * Interface that facilitates interaction with different kinds of dictionaries. Provides APIs to
@@ -79,7 +79,7 @@ public interface DictionaryFacilitator {
      *
      * @param account the account to test against.
      */
-    boolean isForAccount(@Nullable final String account);
+    boolean isForAccount(  final String account);
 
     interface DictionaryInitializationListener {
         void onUpdateMainDictionaryAvailability(boolean isMainDictionaryAvailable);
@@ -117,9 +117,9 @@ public interface DictionaryFacilitator {
             final boolean useContactsDict,
             final boolean usePersonalizedDicts,
             final boolean forceReloadMainDictionary,
-            @Nullable final String account,
+              final String account,
             final String dictNamePrefix,
-            @Nullable final DictionaryInitializationListener listener);
+              final DictionaryInitializationListener listener);
 
     @UsedForTesting
     void resetDictionariesForTesting(
@@ -128,7 +128,7 @@ public interface DictionaryFacilitator {
             final ArrayList<String> dictionaryTypes,
             final HashMap<String, File> dictionaryFiles,
             final Map<String, Map<String, String>> additionalDictAttributes,
-            @Nullable final String account);
+              final String account);
 
     void closeDictionaries();
 
@@ -149,16 +149,16 @@ public interface DictionaryFacilitator {
             throws InterruptedException;
 
     void addToUserHistory(final String suggestion, final boolean wasAutoCapitalized,
-                          @Nonnull final NgramContext ngramContext, final long timeStampInSeconds,
+                            final NgramContext ngramContext, final long timeStampInSeconds,
                           final boolean blockPotentiallyOffensive);
 
     void unlearnFromUserHistory(final String word,
-                                @Nonnull final NgramContext ngramContext, final long timeStampInSeconds,
+                                  final NgramContext ngramContext, final long timeStampInSeconds,
                                 final int eventType);
 
     // TODO: Revise the way to fusion suggestion results.
-    @Nonnull SuggestionResults getSuggestionResults(final ComposedData composedData,
-                                                    final NgramContext ngramContext, @Nonnull final Keyboard keyboard,
+      SuggestionResults getSuggestionResults(final ComposedData composedData,
+                                                    final NgramContext ngramContext,   final Keyboard keyboard,
                                                     final SettingsValuesForSuggestion settingsValuesForSuggestion, final int sessionId,
                                                     final int inputStyle);
 
@@ -172,5 +172,5 @@ public interface DictionaryFacilitator {
 
     void dumpDictionaryForDebug(final String dictName);
 
-    @Nonnull List<DictionaryStats> getDictionaryStats(final Context context);
+      List<DictionaryStats> getDictionaryStats(final Context context);
 }

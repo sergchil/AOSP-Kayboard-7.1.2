@@ -47,6 +47,9 @@
         <item name="keyBackground">@drawable/btn_keyboard_key_klp</item>
         <item name="functionalKeyBackground">@drawable/btn_keyboard_key_functional_klp</item>
         <item name="spacebarBackground">@drawable/btn_keyboard_spacebar_klp</item>
+        <item name="spacebarBackgroundSwipe">@drawable/btn_keyboard_spacebar_klp</item>
+
+
         <item name="keyTextColor">@color/key_text_color_holo</item>
         <item name="keyTextInactivatedColor">@color/key_text_inactivated_color_holo</item>
         <item name="functionalTextColor">@color/key_text_color_holo</item>
@@ -131,7 +134,6 @@
         <item name="centerSuggestionPercentile">@fraction/config_center_suggestion_percentile</item>
         <item name="maxMoreSuggestionsRow">@integer/config_max_more_suggestions_row</item>
         <item name="minMoreSuggestionsWidth">@fraction/config_min_more_suggestions_width</item>
-        <item name="android:background">@drawable/keyboard_suggest_strip_holo</item>
         <item name="android:src">@drawable/suggestions_strip_divider_holo</item>
         <item name="suggestionStripOptions">autoCorrectBold|validTypedWordBold</item>
         <item name="colorValidTypedWord">@color/typed_word_color_klp</item>

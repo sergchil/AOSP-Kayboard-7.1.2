@@ -20,8 +20,8 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Locale;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 public class DictionaryStats {
     public static final int NOT_AN_ENTRY_COUNT = -1;
@@ -34,10 +34,10 @@ public class DictionaryStats {
     public final int mWordCount;
 
     public DictionaryStats(
-            @Nonnull final Locale locale,
-            @Nonnull final String dictType,
-            @Nullable final String dictFileName,
-            @Nullable final File dictFile,
+              final Locale locale,
+              final String dictType,
+              final String dictFileName,
+              final File dictFile,
             final int contentVersion) {
         mLocale = locale;
         mDictType = dictType;
@@ -48,8 +48,8 @@ public class DictionaryStats {
     }
 
     public DictionaryStats(
-            @Nonnull final Locale locale,
-            @Nonnull final String dictType,
+              final Locale locale,
+              final String dictType,
             final int wordCount) {
         mLocale = locale;
         mDictType = dictType;

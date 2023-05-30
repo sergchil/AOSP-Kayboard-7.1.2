@@ -45,7 +45,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
-import javax.annotation.Nonnull;
+
 
 /**
  * Service for spell checking, using LatinIME's dictionaries and mechanisms.
@@ -170,7 +170,7 @@ public final class AndroidSpellCheckerService extends SpellCheckerService
 
     public SuggestionResults getSuggestionResults(final Locale locale,
             final ComposedData composedData, final NgramContext ngramContext,
-            @Nonnull final Keyboard keyboard) {
+              final Keyboard keyboard) {
         Integer sessionId = null;
         mSemaphore.acquireUninterruptibly();
         try {

@@ -56,6 +56,7 @@
              {@link android.graphics.drawable.StateListDrawable}, with the following possible
              states: normal, pressed. -->
         <attr name="spacebarBackground" format="reference" />
+        <attr name="spacebarBackgroundSwipe" format="reference" />
         <attr name="spacebarIconWidthRatio" format="float" />
         <!-- Right padding of hint letter to the edge of the key.-->
         <attr name="keyHintLetterPadding" format="dimension" />
@@ -496,6 +497,7 @@
         <attr name="navigateNext" format="boolean" />
         <attr name="navigatePrevious" format="boolean" />
         <attr name="passwordInput" format="boolean" />
+        <attr name="rowNumbers" format="boolean" />
         <attr name="clobberSettingsKey" format="boolean" />
         <attr name="hasShortcutKey" format="boolean" />
         <attr name="languageSwitchKeyEnabled" format="boolean" />

@@ -40,7 +40,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.annotation.Nonnull;
+
 
 public final class Settings implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = Settings.class.getSimpleName();
@@ -49,6 +49,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static final String SCREEN_THEME = "screen_theme";
     public static final String SCREEN_DEBUG = "screen_debug";
     // In the same order as xml/prefs.xml
+    public static final String PREF_NUMBER_ROW = "number_row";
     public static final String PREF_AUTO_CAP = "auto_cap";
     public static final String PREF_VIBRATE_ON = "vibrate_on";
     public static final String PREF_SOUND_ON = "sound_on";
@@ -170,7 +171,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     }
 
     public void loadSettings(final Context context, final Locale locale,
-            @Nonnull final InputAttributes inputAttributes) {
+              final InputAttributes inputAttributes) {
         mSettingsValuesLock.lock();
         mContext = context;
         try {
@@ -212,6 +213,11 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         final boolean hasVibrator = AudioAndHapticFeedbackManager.getInstance().hasVibrator();
         return hasVibrator && prefs.getBoolean(PREF_VIBRATE_ON,
                 res.getBoolean(R.bool.config_default_vibration_enabled));
+    }
+
+    // Vyne number rows pref
+    public static boolean readNumberRowEnabled(final SharedPreferences prefs, final Resources res) {
+        return prefs.getBoolean(PREF_NUMBER_ROW, false);
     }
 
     public static boolean readAutoCorrectEnabled(final SharedPreferences prefs,

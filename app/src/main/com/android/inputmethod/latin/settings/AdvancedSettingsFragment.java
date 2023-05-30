@@ -16,6 +16,7 @@
 
 package com.android.inputmethod.latin.settings;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -26,6 +27,8 @@ import android.preference.ListPreference;
 import AOSP.KEYBOARD.R;
 import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
 import com.android.inputmethod.latin.SystemBroadcastReceiver;
+
+import java.util.Locale;
 
 /**
  * "Advanced" settings sub screen.
@@ -42,7 +45,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
     @Override
     public void onCreate(final Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.prefs_screen_advanced);
+        addPreferencesFromResource(R.xml.prefs_screen_advanced); //TODO VYNE TEXT CORRECTION STUFF
 
         final Resources res = getResources();
         final Context context = getActivity();
@@ -54,7 +57,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
 
         final SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
 
-        if (!Settings.isInternal(prefs)) {
+        if (Settings.isInternal(prefs)) {
             removePreference(Settings.SCREEN_DEBUG);
         }
 
@@ -91,6 +94,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
         setupKeyLongpressTimeoutSettings();
         refreshEnablingsOfKeypressSoundAndVibrationSettings();
     }
+
 
     @Override
     public void onResume() {

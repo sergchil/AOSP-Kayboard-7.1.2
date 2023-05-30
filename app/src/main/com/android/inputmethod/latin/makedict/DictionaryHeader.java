@@ -19,23 +19,23 @@ package com.android.inputmethod.latin.makedict;
 import com.android.inputmethod.latin.makedict.FormatSpec.DictionaryOptions;
 import com.android.inputmethod.latin.makedict.FormatSpec.FormatOptions;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 /**
  * Class representing dictionary header.
  */
 public final class DictionaryHeader {
     public final int mBodyOffset;
-    @Nonnull
+
     public final DictionaryOptions mDictionaryOptions;
-    @Nonnull
+
     public final FormatOptions mFormatOptions;
-    @Nonnull
+
     public final String mLocaleString;
-    @Nonnull
+
     public final String mVersionString;
-    @Nonnull
+
     public final String mIdString;
 
     // Note that these are corresponding definitions in native code in latinime::HeaderPolicy
@@ -58,8 +58,8 @@ public final class DictionaryHeader {
     public static final String CODE_POINT_TABLE_KEY = "codePointTable";
 
     public DictionaryHeader(final int headerSize,
-            @Nonnull final DictionaryOptions dictionaryOptions,
-            @Nonnull final FormatOptions formatOptions) throws UnsupportedFormatException {
+              final DictionaryOptions dictionaryOptions,
+              final FormatOptions formatOptions) throws UnsupportedFormatException {
         mDictionaryOptions = dictionaryOptions;
         mFormatOptions = formatOptions;
         mBodyOffset = formatOptions.mVersion < FormatSpec.VERSION4 ? headerSize : 0;
@@ -82,7 +82,7 @@ public final class DictionaryHeader {
     }
 
     // Helper method to get the description
-    @Nullable
+
     public String getDescription() {
         // TODO: Right now each dictionary file comes with a description in its own language.
         // It will display as is no matter the device's locale. It should be internationalized.

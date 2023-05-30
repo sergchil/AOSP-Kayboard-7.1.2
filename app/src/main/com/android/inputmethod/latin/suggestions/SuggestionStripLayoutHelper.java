@@ -56,8 +56,8 @@ import com.android.inputmethod.latin.utils.ViewLayoutUtils;
 
 import java.util.ArrayList;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 final class SuggestionStripLayoutHelper {
     private static final int DEFAULT_SUGGESTIONS_COUNT_IN_STRIP = 3;
@@ -566,7 +566,7 @@ final class SuggestionStripLayoutHelper {
         }
     }
 
-    private static float getTextScaleX(@Nullable final CharSequence text, final int maxWidth,
+    private static float getTextScaleX(  final CharSequence text, final int maxWidth,
             final TextPaint paint) {
         paint.setTextScaleX(1.0f);
         final int width = getTextWidth(text, paint);
@@ -576,9 +576,9 @@ final class SuggestionStripLayoutHelper {
         return maxWidth / (float) width;
     }
 
-    @Nullable
+
     private static CharSequence getEllipsizedTextWithSettingScaleX(
-            @Nullable final CharSequence text, final int maxWidth, @Nonnull final TextPaint paint) {
+              final CharSequence text, final int maxWidth,   final TextPaint paint) {
         if (text == null) {
             return null;
         }
@@ -610,7 +610,7 @@ final class SuggestionStripLayoutHelper {
         return spannableText;
     }
 
-    private static boolean hasStyleSpan(@Nullable final CharSequence text,
+    private static boolean hasStyleSpan(  final CharSequence text,
             final CharacterStyle style) {
         if (text instanceof Spanned) {
             return ((Spanned)text).getSpanStart(style) >= 0;
@@ -618,12 +618,12 @@ final class SuggestionStripLayoutHelper {
         return false;
     }
 
-    private static void addStyleSpan(@Nonnull final Spannable text, final CharacterStyle style) {
+    private static void addStyleSpan(  final Spannable text, final CharacterStyle style) {
         text.removeSpan(style);
         text.setSpan(style, 0, text.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
-    private static int getTextWidth(@Nullable final CharSequence text, final TextPaint paint) {
+    private static int getTextWidth(  final CharSequence text, final TextPaint paint) {
         if (TextUtils.isEmpty(text)) {
             return 0;
         }
@@ -644,7 +644,7 @@ final class SuggestionStripLayoutHelper {
         return width;
     }
 
-    private static Typeface getTextTypeface(@Nullable final CharSequence text) {
+    private static Typeface getTextTypeface(  final CharSequence text) {
         return hasStyleSpan(text, BOLD_SPAN) ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT;
     }
 }

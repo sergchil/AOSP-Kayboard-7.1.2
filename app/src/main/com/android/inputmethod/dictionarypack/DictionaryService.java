@@ -35,7 +35,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnull;
 
 /**
  * Service that handles background tasks for the dictionary provider.
@@ -265,7 +264,7 @@ public final class DictionaryService extends Service {
      * Shows a toast informing the user that an automatic dictionary download is starting.
      */
     private static void showStartDownloadingToast(final Context context,
-            @Nonnull final Locale locale) {
+            final Locale locale) {
         final String toastText = String.format(
                 context.getString(R.string.toast_downloading_suggestions),
                 locale.getDisplayName());

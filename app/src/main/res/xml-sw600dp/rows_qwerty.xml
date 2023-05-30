@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /*
 **
 ** Copyright 2011, The Android Open Source Project
@@ -18,11 +17,8 @@
 */
 -->
 
-<merge
-    xmlns:latin="http://schemas.android.com/apk/res-auto"
->
-    <include
-        latin:keyboardLayout="@xml/key_styles_common" />
+<merge xmlns:latin="http://schemas.android.com/apk/res-auto">
+    <include latin:keyboardLayout="@xml/key_styles_common" />
     <!-- TODO: Consolidate the layout specification between protrait and landscape.
          Ideally just the keyWidth should be different and the spacer should adjust to fill
          the available space. -->
@@ -30,17 +26,14 @@
     <Row>
         <switch>
             <!-- Split keyboard layout for the first row -->
-            <case
-                latin:isSplitLayout="true"
-            >
+            <case latin:isSplitLayout="true">
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty1_left5"
-                    latin:keyWidth="8.0%p" />
-                <Spacer
-                    latin:keyWidth="10.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty1_left5" />
+                <Spacer latin:keyWidth="10.0%p" />
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty1_right5"
-                    latin:keyWidth="8.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty1_right5" />
                 <Key
                     latin:keyStyle="deleteKeyStyle"
                     latin:keyWidth="10.0%p" />
@@ -48,8 +41,8 @@
             <!-- Regular layout for the first row -->
             <default>
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty1"
-                    latin:keyWidth="9.0%p" />
+                    latin:keyWidth="9.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty1" />
                 <Key
                     latin:keyStyle="deleteKeyStyle"
                     latin:keyWidth="fillRight" />
@@ -60,18 +53,15 @@
     <Row>
         <switch>
             <!-- Split keyboard layout for the second row -->
-            <case
-                latin:isSplitLayout="true"
-            >
+            <case latin:isSplitLayout="true">
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty2_left5"
+                    latin:keyWidth="8.0%p"
                     latin:keyXPos="4.0%p"
-                    latin:keyWidth="8.0%p" />
-                <Spacer
-                    latin:keyWidth="14.0%p" />
+                    latin:keyboardLayout="@xml/rowkeys_qwerty2_left5" />
+                <Spacer latin:keyWidth="14.0%p" />
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty2_right4"
-                    latin:keyWidth="8.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty2_right4" />
                 <Key
                     latin:keyStyle="enterKeyStyle"
                     latin:keyWidth="10.0%p" />
@@ -79,9 +69,9 @@
             <!-- Regular layout for the second row -->
             <default>
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty2"
+                    latin:keyWidth="9.0%p"
                     latin:keyXPos="4.5%p"
-                    latin:keyWidth="9.0%p" />
+                    latin:keyboardLayout="@xml/rowkeys_qwerty2" />
                 <Key
                     latin:keyStyle="enterKeyStyle"
                     latin:keyWidth="fillRight" />
@@ -92,23 +82,20 @@
     <Row>
         <switch>
             <!-- Split keyboard layout for the third row -->
-            <case
-                latin:isSplitLayout="true"
-            >
+            <case latin:isSplitLayout="true">
                 <Key
                     latin:keyStyle="shiftKeyStyle"
                     latin:keyWidth="10.0%p" />
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty3_left4"
-                    latin:keyWidth="8.0%p" />
-                <Spacer
-                    latin:keyWidth="8.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty3_left4" />
+                <Spacer latin:keyWidth="8.0%p" />
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty3_right3"
-                    latin:keyWidth="8.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty3_right3" />
                 <include
-                    latin:keyboardLayout="@xml/keys_exclamation_question"
-                    latin:keyWidth="8.0%p" />
+                    latin:keyWidth="8.0%p"
+                    latin:keyboardLayout="@xml/keys_exclamation_question" />
                 <Key
                     latin:keyStyle="shiftKeyStyle"
                     latin:keyWidth="10.0%p" />
@@ -119,11 +106,11 @@
                     latin:keyStyle="shiftKeyStyle"
                     latin:keyWidth="10.0%p" />
                 <include
-                    latin:keyboardLayout="@xml/rowkeys_qwerty3"
-                    latin:keyWidth="9.0%p" />
+                    latin:keyWidth="9.0%p"
+                    latin:keyboardLayout="@xml/rowkeys_qwerty3" />
                 <include
-                    latin:keyboardLayout="@xml/keys_exclamation_question"
-                    latin:keyWidth="9.0%p" />
+                    latin:keyWidth="9.0%p"
+                    latin:keyboardLayout="@xml/keys_exclamation_question" />
                 <Key
                     latin:keyStyle="shiftKeyStyle"
                     latin:keyWidth="fillRight" />
@@ -131,6 +118,5 @@
         </switch>
     </Row>
     <!-- Fourth row -->
-    <include
-        latin:keyboardLayout="@xml/row_qwerty4" />
+    <include latin:keyboardLayout="@xml/row_qwerty4" />
 </merge>

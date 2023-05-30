@@ -59,8 +59,11 @@ public final class SettingsActivity extends PreferenceActivity
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (mShowHomeAsUp && item.getItemId() == android.R.id.home) {
             onBackPressed();
-            return true;
         }
+//        if (item.getItemId() != android.R.id.home) {
+//            finish();
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 

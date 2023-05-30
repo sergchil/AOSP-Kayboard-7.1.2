@@ -1,12 +1,20 @@
 apply plugin: 'com.android.application'
 
+def versionNumber = project.hasProperty('versionNumber') ? project.versionNumber : "dev"
+
+def getMyVersionCode = { ->
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 3
+    println "VersionCode is set to $code"
+    return code
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "AOSP.KEYBOARD"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 1
+        versionCode getMyVersionCode()
         versionName "1.0"
 // UNCOMMENT TO BUILD NATIVE
 //        externalNativeBuild {
@@ -24,11 +32,43 @@ android {
         aaptOptions.noCompress ".dict"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('k3yBoarDKey_vyne123')
+            storePassword "vyne123"
+            keyAlias "keyboard"
+            keyPassword "vyne123"
+        }
+
+        release {
+            storeFile file('k3yBoarDKey_vyne123')
+            storePassword "vyne123"
+            keyAlias "keyboard"
+            keyPassword "vyne123"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            buildConfigField "String", 'VERS_NO', "\"${versionNumber}\""
+            buildConfigField "String", 'BUILD_VERS', "\"${System.currentTimeMillis()}\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            debuggable false
+            buildConfigField "String", 'VERS_NO', "\"${versionNumber}\""
+            buildConfigField "String", 'BUILD_VERS', "\"${System.currentTimeMillis()}\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     buildToolsVersion = '28.0.3'
@@ -44,4 +84,5 @@ android {
 dependencies {
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.caverock:androidsvg-aar:1.4'
 }

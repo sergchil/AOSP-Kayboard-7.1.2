@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import AOSP.KEYBOARD.R;
 import com.android.inputmethod.keyboard.internal.BatchInputArbiter;
@@ -43,8 +44,6 @@ import com.android.inputmethod.latin.utils.ResourceUtils;
 
 import java.util.ArrayList;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public final class PointerTracker implements PointerTrackerQueue.Element,
         BatchInputArbiterListener {
@@ -52,6 +51,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
     private static final boolean DEBUG_EVENT = false;
     private static final boolean DEBUG_MOVE_EVENT = false;
     private static final boolean DEBUG_LISTENER = false;
+    private float x1, x2;
     private static boolean DEBUG_MODE = DebugFlags.DEBUG_ENABLED || DEBUG_EVENT;
 
     static final class PointerTrackerParams {
@@ -114,7 +114,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
 
     // The position and time at which first down event occurred.
     private long mDownTime;
-    @Nonnull
+
     private int[] mDownCoordinates = CoordinateUtils.newInstance();
     private long mUpTime;
 
@@ -368,7 +368,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mIsInDraggingFinger;
     }
 
-    @Nullable
+
     public Key getKey() {
         return mCurrentKey;
     }
@@ -382,7 +382,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mKeyDetector.detectHitKey(x, y);
     }
 
-    private void setReleasedKeyGraphics(@Nullable final Key key, final boolean withAnimation) {
+    private void setReleasedKeyGraphics(  final Key key, final boolean withAnimation) {
         if (key == null) {
             return;
         }
@@ -416,7 +416,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return sTypingTimeRecorder.needsToSuppressKeyPreviewPopup(eventTime);
     }
 
-    private void setPressedKeyGraphics(@Nullable final Key key, final long eventTime) {
+    private void setPressedKeyGraphics(  final Key key, final long eventTime) {
         if (key == null) {
             return;
         }
@@ -457,7 +457,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mGestureStrokeDrawingPoints;
     }
 
-    public void getLastCoordinates(@Nonnull final int[] outCoords) {
+    public void getLastCoordinates(  final int[] outCoords) {
         CoordinateUtils.set(outCoords, mLastX, mLastY);
     }
 
@@ -465,7 +465,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mDownTime;
     }
 
-    public void getDownCoordinates(@Nonnull final int[] outCoords) {
+    public void getDownCoordinates(  final int[] outCoords) {
         CoordinateUtils.copy(outCoords, mDownCoordinates);
     }
 
@@ -577,6 +577,10 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
     public void processMotionEvent(final MotionEvent me, final KeyDetector keyDetector) {
         final int action = me.getActionMasked();
         final long eventTime = me.getEventTime();
+
+        final int MIN_DISTANCE = 100;
+        boolean isSwiping = false;
+
         if (action == MotionEvent.ACTION_MOVE) {
             // When this pointer is the only active pointer and is showing a more keys panel,
             // we should ignore other pointers' motion event.
@@ -598,14 +602,27 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         final int index = me.getActionIndex();
         final int x = (int)me.getX(index);
         final int y = (int)me.getY(index);
+
         switch (action) {
         case MotionEvent.ACTION_DOWN:
         case MotionEvent.ACTION_POINTER_DOWN:
             onDownEvent(x, y, eventTime, keyDetector);
+            x1 = me.getX();
+
             break;
         case MotionEvent.ACTION_UP:
         case MotionEvent.ACTION_POINTER_UP:
-            onUpEvent(x, y, eventTime);
+            x2 = me.getX();
+            float deltaX = x2 - x1;
+
+            if (Math.abs(deltaX) > MIN_DISTANCE) {
+                isSwiping = true;
+            }else{
+                isSwiping = false;
+            }
+            onUpEvent(x, y, eventTime, isSwiping);
+            deltaX = 0;
+
             break;
         case MotionEvent.ACTION_CANCEL:
             onCancelEvent(x, y, eventTime);
@@ -799,7 +816,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
                     lastX, lastY, Constants.printableCode(oldKey.getCode()),
                     x, y, Constants.printableCode(key.getCode())));
         }
-        onUpEventInternal(x, y, eventTime);
+        onUpEventInternal(x, y, eventTime, false);
         onDownEventInternal(x, y, eventTime);
     }
 
@@ -818,7 +835,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
                     lastX, lastY, Constants.printableCode(oldKey.getCode()),
                     x, y, Constants.printableCode(key.getCode())));
         }
-        onUpEventInternal(x, y, eventTime);
+        onUpEventInternal(x, y, eventTime, false);
         onDownEventInternal(x, y, eventTime);
     }
 
@@ -864,7 +881,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
                 Log.w(TAG, String.format("[%d] onMoveEvent:"
                         + " detected sliding finger while multi touching", mPointerId));
             }
-            onUpEvent(x, y, eventTime);
+            onUpEvent(x, y, eventTime, false);
             cancelTrackingForAction();
             setReleasedKeyGraphics(oldKey, true /* withAnimation */);
         } else {
@@ -922,7 +939,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         }
     }
 
-    private void onUpEvent(final int x, final int y, final long eventTime) {
+    private void onUpEvent(final int x, final int y, final long eventTime, boolean isSwiping) {
         if (DEBUG_EVENT) {
             printTouchEvent("onUpEvent  :", x, y, eventTime);
         }
@@ -937,7 +954,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
                 sPointerTrackerQueue.releaseAllPointersOlderThan(this, eventTime);
             }
         }
-        onUpEventInternal(x, y, eventTime);
+        onUpEventInternal(x, y, eventTime, isSwiping);
         sPointerTrackerQueue.remove(this);
     }
 
@@ -949,11 +966,11 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         if (DEBUG_EVENT) {
             printTouchEvent("onPhntEvent:", mLastX, mLastY, eventTime);
         }
-        onUpEventInternal(mLastX, mLastY, eventTime);
+        onUpEventInternal(mLastX, mLastY, eventTime, false);
         cancelTrackingForAction();
     }
 
-    private void onUpEventInternal(final int x, final int y, final long eventTime) {
+    private void onUpEventInternal(final int x, final int y, final long eventTime, boolean isSwiping) {
         sTimerProxy.cancelKeyTimersOf(this);
         final boolean isInDraggingFinger = mIsInDraggingFinger;
         final boolean isInSlidingKeyInput = mIsInSlidingKeyInput;
@@ -995,7 +1012,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
                 && (currentKey.getCode() == currentRepeatingKeyCode) && !isInDraggingFinger) {
             return;
         }
-        detectAndSendKey(currentKey, mKeyX, mKeyY, eventTime);
+        detectAndSendKey(currentKey, mKeyX, mKeyY, eventTime, isSwiping);
         if (isInSlidingKeyInput) {
             callListenerOnFinishSlidingInput();
         }
@@ -1032,13 +1049,10 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
             return;
         }
         final int code = key.getCode();
+
         if (code == Constants.CODE_SPACE || code == Constants.CODE_LANGUAGE_SWITCH) {
             // Long pressing the space key invokes IME switcher dialog.
-            if (sListener.onCustomRequest(Constants.CUSTOM_CODE_SHOW_INPUT_METHOD_PICKER)) {
-                cancelKeyTracking();
-                sListener.onReleaseKey(code, false /* withSliding */);
-                return;
-            }
+            sListener.onCustomRequest(Constants.CUSTOM_CODE_SHOW_INPUT_METHOD_PICKER);
         }
 
         setReleasedKeyGraphics(key, false /* withAnimation */);
@@ -1146,15 +1160,20 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return longpressTimeout;
     }
 
-    private void detectAndSendKey(final Key key, final int x, final int y, final long eventTime) {
+    private void detectAndSendKey(final Key key, final int x, final int y, final long eventTime, boolean isSwiping) {
         if (key == null) {
             callListenerOnCancelInput();
             return;
         }
 
         final int code = key.getCode();
-        callListenerOnCodeInput(key, code, x, y, eventTime, false /* isKeyRepeat */);
-        callListenerOnRelease(key, code, false /* withSliding */);
+
+        if(isSwiping && code == Constants.CODE_SPACE){
+            callListenerOnCodeInput(key, Constants.CODE_LANGUAGE_SWITCH, x, y, eventTime, false /* isKeyRepeat */);
+        }else{
+            callListenerOnCodeInput(key, code, x, y, eventTime, false /* isKeyRepeat */);
+            callListenerOnRelease(key, code, false /* withSliding */);
+        }
     }
 
     private void startRepeatKey(final Key key) {

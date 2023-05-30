@@ -28,7 +28,7 @@
         name="KeyboardView.Holo"
         parent="KeyboardView"
     >
-        <item name="keyTypeface">bold</item>
+        <item name="keyTypeface">normal</item>
         <item name="keyLetterSize">@fraction/config_key_letter_ratio_holo</item>
         <item name="keyLabelSize">@fraction/config_key_label_ratio_holo</item>
         <item name="keyHintLetterRatio">@fraction/config_key_hint_letter_ratio_holo</item>

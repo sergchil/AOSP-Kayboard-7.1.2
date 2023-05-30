@@ -36,8 +36,6 @@ import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
 import java.util.Arrays;
 import java.util.Locale;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * When you call the constructor of this class, you may want to change the current system locale by
@@ -62,6 +60,7 @@ public class SettingsValues {
     public final boolean mHasHardwareKeyboard;
     public final int mDisplayOrientation;
     // From preferences, in the same order as xml/prefs.xml:
+    public final boolean mNumberRows;
     public final boolean mAutoCap;
     public final boolean mVibrateOn;
     public final boolean mSoundOn;
@@ -91,7 +90,7 @@ public class SettingsValues {
     public final int mScreenMetrics;
 
     // From the input box
-    @Nonnull
+
     public final InputAttributes mInputAttributes;
 
     // Deduced settings
@@ -117,10 +116,10 @@ public class SettingsValues {
     public final float mKeyPreviewDismissEndXScale;
     public final float mKeyPreviewDismissEndYScale;
 
-    @Nullable public final String mAccount;
+    public final String mAccount;
 
     public SettingsValues(final Context context, final SharedPreferences prefs, final Resources res,
-            @Nonnull final InputAttributes inputAttributes) {
+                          final InputAttributes inputAttributes) {
         mLocale = res.getConfiguration().locale;
         // Get the resources
         mDelayInMillisecondsToUpdateOldSuggestions =
@@ -131,15 +130,18 @@ public class SettingsValues {
         mInputAttributes = inputAttributes;
 
         // Get the settings preferences
+        mNumberRows = Settings.readNumberRowEnabled(prefs, res);
+
         mAutoCap = prefs.getBoolean(Settings.PREF_AUTO_CAP, true);
         mVibrateOn = Settings.readVibrationEnabled(prefs, res);
         mSoundOn = Settings.readKeypressSoundEnabled(prefs, res);
         mKeyPreviewPopupOn = Settings.readKeyPreviewPopupEnabled(prefs, res);
         mSlidingKeyInputPreviewEnabled = prefs.getBoolean(
                 DebugSettings.PREF_SLIDING_KEY_INPUT_PREVIEW, true);
-        mShowsVoiceInputKey = needsToShowVoiceInputKey(prefs, res)
-                && mInputAttributes.mShouldShowVoiceInputKey
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+//        mShowsVoiceInputKey = needsToShowVoiceInputKey(prefs, res)
+//                && mInputAttributes.mShouldShowVoiceInputKey
+//                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+        mShowsVoiceInputKey = false; //TODO Turn off so no voice input key will ever show up
         mIncludesOtherImesInLanguageSwitchList = Settings.ENABLE_SHOW_LANGUAGE_SWITCH_KEY_SETTINGS
                 ? prefs.getBoolean(Settings.PREF_INCLUDE_OTHER_IMES_IN_LANGUAGE_SWITCH_LIST, false)
                 : true /* forcibly */;
@@ -188,7 +190,7 @@ public class SettingsValues {
         mIsInternal = Settings.isInternal(prefs);
         mHasCustomKeyPreviewAnimationParams = prefs.getBoolean(
                 DebugSettings.PREF_HAS_CUSTOM_KEY_PREVIEW_ANIMATION_PARAMS, false);
-        mHasKeyboardResize = prefs.getBoolean(DebugSettings.PREF_RESIZE_KEYBOARD, false);
+        mHasKeyboardResize = prefs.getBoolean(DebugSettings.PREF_RESIZE_KEYBOARD, true);
         mKeyboardHeightScale = Settings.readKeyboardHeight(prefs, DEFAULT_SIZE_SCALE);
         mKeyPreviewShowUpDuration = Settings.readKeyPreviewAnimationDuration(
                 prefs, DebugSettings.PREF_KEY_PREVIEW_SHOW_UP_DURATION,
@@ -316,13 +318,13 @@ public class SettingsValues {
     }
 
     private static boolean readBigramPredictionEnabled(final SharedPreferences prefs,
-            final Resources res) {
+                                                       final Resources res) {
         return prefs.getBoolean(Settings.PREF_BIGRAM_PREDICTIONS, res.getBoolean(
                 R.bool.config_default_next_word_prediction));
     }
 
     private static float readAutoCorrectionThreshold(final Resources res,
-            final String currentAutoCorrectionSetting) {
+                                                     final String currentAutoCorrectionSetting) {
         final String[] autoCorrectionThresholdValues = res.getStringArray(
                 R.array.auto_correction_threshold_values);
         // When autoCorrectionThreshold is greater than 1.0, it's like auto correction is off.
@@ -352,23 +354,23 @@ public class SettingsValues {
         return autoCorrectionThreshold;
     }
 
-    private static boolean needsToShowVoiceInputKey(final SharedPreferences prefs,
-            final Resources res) {
-        // Migrate preference from {@link Settings#PREF_VOICE_MODE_OBSOLETE} to
-        // {@link Settings#PREF_VOICE_INPUT_KEY}.
-        if (prefs.contains(Settings.PREF_VOICE_MODE_OBSOLETE)) {
-            final String voiceModeMain = res.getString(R.string.voice_mode_main);
-            final String voiceMode = prefs.getString(
-                    Settings.PREF_VOICE_MODE_OBSOLETE, voiceModeMain);
-            final boolean shouldShowVoiceInputKey = voiceModeMain.equals(voiceMode);
-            prefs.edit()
-                    .putBoolean(Settings.PREF_VOICE_INPUT_KEY, shouldShowVoiceInputKey)
-                    // Remove the obsolete preference if exists.
-                    .remove(Settings.PREF_VOICE_MODE_OBSOLETE)
-                    .apply();
-        }
-        return prefs.getBoolean(Settings.PREF_VOICE_INPUT_KEY, true);
-    }
+//    private static boolean needsToShowVoiceInputKey(final SharedPreferences prefs,
+//            final Resources res) {
+//        // Migrate preference from {@link Settings#PREF_VOICE_MODE_OBSOLETE} to
+//        // {@link Settings#PREF_VOICE_INPUT_KEY}.
+//        if (prefs.contains(Settings.PREF_VOICE_MODE_OBSOLETE)) {
+//            final String voiceModeMain = res.getString(R.string.voice_mode_main);
+//            final String voiceMode = prefs.getString(
+//                    Settings.PREF_VOICE_MODE_OBSOLETE, voiceModeMain);
+//            final boolean shouldShowVoiceInputKey = voiceModeMain.equals(voiceMode);
+//            prefs.edit()
+//                    .putBoolean(Settings.PREF_VOICE_INPUT_KEY, shouldShowVoiceInputKey)
+//                    // Remove the obsolete preference if exists.
+//                    .remove(Settings.PREF_VOICE_MODE_OBSOLETE)
+//                    .apply();
+//        }
+//        return prefs.getBoolean(Settings.PREF_VOICE_INPUT_KEY, true);
+//    }
 
     public String dump() {
         final StringBuilder sb = new StringBuilder("Current settings :");
@@ -447,6 +449,8 @@ public class SettingsValues {
         sb.append("" + mKeyPreviewDismissEndXScale);
         sb.append("\n   mKeyPreviewDismissEndScaleY = ");
         sb.append("" + mKeyPreviewDismissEndYScale);
+        sb.append("\n   rowNumbers = ");
+        sb.append("" + mNumberRows);
         return sb.toString();
     }
 }

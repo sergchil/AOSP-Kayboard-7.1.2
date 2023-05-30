@@ -21,7 +21,7 @@ import com.android.inputmethod.annotations.UsedForTesting;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+
 
 /**
  * KeyboardLayout maintains the keyboard layout information.
@@ -106,7 +106,7 @@ public class KeyboardLayout {
     /**
      * Factory method to create {@link KeyboardLayout} objects.
      */
-    public static KeyboardLayout newKeyboardLayout(@Nonnull final List<Key> sortedKeys,
+    public static KeyboardLayout newKeyboardLayout(  final List<Key> sortedKeys,
             int mostCommonKeyWidth, int mostCommonKeyHeight,
             int occupiedWidth, int occupiedHeight) {
         final ArrayList<Key> layoutKeys = new ArrayList<Key>();

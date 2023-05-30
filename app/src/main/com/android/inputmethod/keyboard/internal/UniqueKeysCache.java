@@ -20,14 +20,14 @@ import com.android.inputmethod.keyboard.Key;
 
 import java.util.HashMap;
 
-import javax.annotation.Nonnull;
+
 
 public abstract class UniqueKeysCache {
     public abstract void setEnabled(boolean enabled);
     public abstract void clear();
-    public abstract @Nonnull Key getUniqueKey(@Nonnull Key key);
+    public abstract   Key getUniqueKey(  Key key);
 
-    @Nonnull
+
     public static final UniqueKeysCache NO_CACHE = new UniqueKeysCache() {
         @Override
         public void setEnabled(boolean enabled) {}
@@ -39,7 +39,7 @@ public abstract class UniqueKeysCache {
         public Key getUniqueKey(Key key) { return key; }
     };
 
-    @Nonnull
+
     public static UniqueKeysCache newInstance() {
         return new UniqueKeysCacheImpl();
     }

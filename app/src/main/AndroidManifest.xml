@@ -18,7 +18,7 @@
           coreApp="true"
           package="AOSP.KEYBOARD">
 
-
+<!--    TODO: remove-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -26,16 +26,20 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <!--    end: remove-->
     <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+    <!--    TODO: remove-->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!--    end: remove-->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--    TODO: remove-->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 
     <application android:label="@string/english_ime_name"
-                 android:icon="@drawable/ic_launcher_keyboard"
+                 android:icon="@mipmap/ic_launcher_keyboard"
                  android:supportsRtl="true"
                  android:allowBackup="true">
 
@@ -97,6 +101,7 @@
                   android:label="@string/english_ime_settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 

@@ -19,21 +19,24 @@
 -->
 
 <merge
-    xmlns:latin="http://schemas.android.com/apk/res-auto"
->
+    xmlns:latin="http://schemas.android.com/apk/res-auto">
     <Row
-        latin:keyWidth="10%p"
-    >
+        latin:keyWidth="8%p">
         <Key
             latin:keyStyle="toSymbolKeyStyle"
-            latin:keyWidth="15%p" />
+            latin:keyWidth="10%p" />
         <include
-            latin:keyboardLayout="@xml/key_comma" />
+            latin:keyboardLayout="@xml/key_emoji"
+            latin:keyWidth="10%p"/>
         <include
-            latin:keyXPos="25%p"
-            latin:keyboardLayout="@xml/key_space_5kw" />
+            latin:keyboardLayout="@xml/key_comma"
+            latin:keyWidth="10%p" />
         <include
-            latin:keyboardLayout="@xml/key_period" />
+            latin:keyboardLayout="@xml/key_space_5kw"
+            latin:keyWidth="45%p" />
+        <include
+            latin:keyboardLayout="@xml/key_period"
+            latin:keyWidth="10%p"/>
         <Key
             latin:keyStyle="enterKeyStyle"
             latin:keyWidth="fillRight" />
