@@ -67,9 +67,9 @@ public class CodePointUtils {
     }
 
     @UsedForTesting
-
+    @NonNull
     public static int[] generateCodePointSet(final int codePointSetSize,
-                                               final Random random) {
+                                             @NonNull final Random random) {
         final int[] codePointSet = new int[codePointSetSize];
         for (int i = codePointSet.length - 1; i >= 0; ) {
             final int r = Math.abs(random.nextInt());
@@ -94,9 +94,9 @@ public class CodePointUtils {
      * Generates a random word.
      */
     @UsedForTesting
-
-    public static String generateWord(  final Random random,
-                                        final int[] codePointSet) {
+    @NonNull
+    public static String generateWord(@NonNull final Random random,
+                                      @NonNull final int[] codePointSet) {
         final StringBuilder builder = new StringBuilder();
         // 8 * 4 = 32 chars max, but we do it the following way so as to bias the random toward
         // longer words. This should be closer to natural language, and more importantly, it will

@@ -29,8 +29,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 
-
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * The more key specification object. The more keys are an array of {@link MoreKeySpec}.
@@ -46,14 +46,14 @@ import java.util.Locale;
 // TODO: Should extend the key specification object.
 public final class MoreKeySpec {
     public final int mCode;
-
+    @Nullable
     public final String mLabel;
-
+    @Nullable
     public final String mOutputText;
     public final int mIconId;
 
-    public MoreKeySpec(  final String moreKeySpec, boolean needsToUpperCase,
-              final Locale locale) {
+    public MoreKeySpec(@Nonnull final String moreKeySpec, boolean needsToUpperCase,
+            @Nonnull final Locale locale) {
         if (moreKeySpec.isEmpty()) {
             throw new KeySpecParser.KeySpecParserError("Empty more key spec");
         }
@@ -76,9 +76,9 @@ public final class MoreKeySpec {
         mIconId = KeySpecParser.getIconId(moreKeySpec);
     }
 
-
+    @Nonnull
     public Key buildKey(final int x, final int y, final int labelFlags,
-              final KeyboardParams params) {
+            @Nonnull final KeyboardParams params) {
         return new Key(mLabel, mIconId, mCode, mOutputText, null /* hintLabel */, labelFlags,
                 Key.BACKGROUND_TYPE_NORMAL, x, y, params.mDefaultKeyWidth, params.mDefaultRowHeight,
                 params.mHorizontalGap, params.mVerticalGap);
@@ -127,7 +127,7 @@ public final class MoreKeySpec {
         private final SparseIntArray mCodes = new SparseIntArray();
         private final HashSet<String> mTexts = new HashSet<>();
 
-        public void addLetter(  final Key key) {
+        public void addLetter(@Nonnull final Key key) {
             final int code = key.getCode();
             if (CharacterCompat.isAlphabetic(code)) {
                 mCodes.put(code, 0);
@@ -136,7 +136,7 @@ public final class MoreKeySpec {
             }
         }
 
-        public boolean contains(  final MoreKeySpec moreKey) {
+        public boolean contains(@Nonnull final MoreKeySpec moreKey) {
             final int code = moreKey.mCode;
             if (CharacterCompat.isAlphabetic(code) && mCodes.indexOfKey(code) >= 0) {
                 return true;
@@ -147,9 +147,9 @@ public final class MoreKeySpec {
         }
     }
 
-
-    public static MoreKeySpec[] removeRedundantMoreKeys(  final MoreKeySpec[] moreKeys,
-              final LettersOnBaseLayout lettersOnBaseLayout) {
+    @Nullable
+    public static MoreKeySpec[] removeRedundantMoreKeys(@Nullable final MoreKeySpec[] moreKeys,
+            @Nonnull final LettersOnBaseLayout lettersOnBaseLayout) {
         if (moreKeys == null) {
             return null;
         }
@@ -186,8 +186,8 @@ public final class MoreKeySpec {
      * @return an array of key specification text. Null if the specified <code>text</code> is empty
      * or has no key specifications.
      */
-
-    public static String[] splitKeySpecs(  final String text) {
+    @Nullable
+    public static String[] splitKeySpecs(@Nullable final String text) {
         if (TextUtils.isEmpty(text)) {
             return null;
         }
@@ -229,11 +229,11 @@ public final class MoreKeySpec {
         return list.toArray(new String[list.size()]);
     }
 
-
+    @Nonnull
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
-
-    private static String[] filterOutEmptyString(  final String[] array) {
+    @Nonnull
+    private static String[] filterOutEmptyString(@Nullable final String[] array) {
         if (array == null) {
             return EMPTY_STRING_ARRAY;
         }
@@ -254,8 +254,8 @@ public final class MoreKeySpec {
         return out.toArray(new String[out.size()]);
     }
 
-    public static String[] insertAdditionalMoreKeys(  final String[] moreKeySpecs,
-              final String[] additionalMoreKeySpecs) {
+    public static String[] insertAdditionalMoreKeys(@Nullable final String[] moreKeySpecs,
+            @Nullable final String[] additionalMoreKeySpecs) {
         final String[] moreKeys = filterOutEmptyString(moreKeySpecs);
         final String[] additionalMoreKeys = filterOutEmptyString(additionalMoreKeySpecs);
         final int moreKeysCount = moreKeys.length;
@@ -310,7 +310,7 @@ public final class MoreKeySpec {
         }
     }
 
-    public static int getIntValue(  final String[] moreKeys, final String key,
+    public static int getIntValue(@Nullable final String[] moreKeys, final String key,
             final int defaultValue) {
         if (moreKeys == null) {
             return defaultValue;
@@ -337,7 +337,7 @@ public final class MoreKeySpec {
         return value;
     }
 
-    public static boolean getBooleanValue(  final String[] moreKeys, final String key) {
+    public static boolean getBooleanValue(@Nullable final String[] moreKeys, final String key) {
         if (moreKeys == null) {
             return false;
         }

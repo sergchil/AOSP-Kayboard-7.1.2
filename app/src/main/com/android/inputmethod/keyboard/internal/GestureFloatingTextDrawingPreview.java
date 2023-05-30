@@ -29,7 +29,7 @@ import com.android.inputmethod.keyboard.PointerTracker;
 import com.android.inputmethod.latin.SuggestedWords;
 import com.android.inputmethod.latin.common.CoordinateUtils;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * The class for single gesture preview text. The class for multiple gesture preview text will be
@@ -116,7 +116,7 @@ public class GestureFloatingTextDrawingPreview extends AbstractDrawingPreview {
         setSuggetedWords(SuggestedWords.getEmptyInstance());
     }
 
-    public void setSuggetedWords(  final SuggestedWords suggestedWords) {
+    public void setSuggetedWords(@Nonnull final SuggestedWords suggestedWords) {
         if (!isPreviewEnabled()) {
             return;
         }

@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+import javax.annotation.Nonnull;
 
 public class ProximityInfo {
     private static final String TAG = ProximityInfo.class.getSimpleName();
@@ -38,7 +38,7 @@ public class ProximityInfo {
     public static final int MAX_PROXIMITY_CHARS_SIZE = 16;
     /** Number of key widths from current touch point to search for nearest keys. */
     private static final float SEARCH_DISTANCE = 1.2f;
-
+    @Nonnull
     private static final List<Key> EMPTY_KEY_LIST = Collections.emptyList();
     private static final float DEFAULT_TOUCH_POSITION_CORRECTION_RADIUS = 0.15f;
 
@@ -52,16 +52,16 @@ public class ProximityInfo {
     private final int mKeyboardHeight;
     private final int mMostCommonKeyWidth;
     private final int mMostCommonKeyHeight;
-
+    @Nonnull
     private final List<Key> mSortedKeys;
-
+    @Nonnull
     private final List<Key>[] mGridNeighbors;
 
     @SuppressWarnings("unchecked")
     ProximityInfo(final int gridWidth, final int gridHeight, final int minWidth, final int height,
             final int mostCommonKeyWidth, final int mostCommonKeyHeight,
-              final List<Key> sortedKeys,
-              final TouchPositionCorrection touchPositionCorrection) {
+            @Nonnull final List<Key> sortedKeys,
+            @Nonnull final TouchPositionCorrection touchPositionCorrection) {
         mGridWidth = gridWidth;
         mGridHeight = gridHeight;
         mGridSize = mGridWidth * mGridHeight;
@@ -111,7 +111,7 @@ public class ProximityInfo {
     }
 
     private long createNativeProximityInfo(
-              final TouchPositionCorrection touchPositionCorrection) {
+            @Nonnull final TouchPositionCorrection touchPositionCorrection) {
         final List<Key>[] gridNeighborKeys = mGridNeighbors;
         final int[] proximityCharsArray = new int[mGridSize * MAX_PROXIMITY_CHARS_SIZE];
         Arrays.fill(proximityCharsArray, Constants.NOT_A_CODE);
@@ -393,7 +393,7 @@ y |---+---+---+---+-v-+-|-+---+---+---+---+---|          | thresholdBase and get
         }
     }
 
-
+    @Nonnull
     public List<Key> getNearestKeys(final int x, final int y) {
         if (x >= 0 && x < mKeyboardMinWidth && y >= 0 && y < mKeyboardHeight) {
             int index = (y / mCellHeight) * mGridWidth + (x / mCellWidth);

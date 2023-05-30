@@ -44,6 +44,8 @@ import com.android.inputmethod.latin.utils.ResourceUtils;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public final class PointerTracker implements PointerTrackerQueue.Element,
         BatchInputArbiterListener {
@@ -114,7 +116,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
 
     // The position and time at which first down event occurred.
     private long mDownTime;
-
+    @Nonnull
     private int[] mDownCoordinates = CoordinateUtils.newInstance();
     private long mUpTime;
 
@@ -368,7 +370,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mIsInDraggingFinger;
     }
 
-
+    @Nullable
     public Key getKey() {
         return mCurrentKey;
     }
@@ -382,7 +384,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mKeyDetector.detectHitKey(x, y);
     }
 
-    private void setReleasedKeyGraphics(  final Key key, final boolean withAnimation) {
+    private void setReleasedKeyGraphics(@Nullable final Key key, final boolean withAnimation) {
         if (key == null) {
             return;
         }
@@ -416,7 +418,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return sTypingTimeRecorder.needsToSuppressKeyPreviewPopup(eventTime);
     }
 
-    private void setPressedKeyGraphics(  final Key key, final long eventTime) {
+    private void setPressedKeyGraphics(@Nullable final Key key, final long eventTime) {
         if (key == null) {
             return;
         }
@@ -457,7 +459,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mGestureStrokeDrawingPoints;
     }
 
-    public void getLastCoordinates(  final int[] outCoords) {
+    public void getLastCoordinates(@Nonnull final int[] outCoords) {
         CoordinateUtils.set(outCoords, mLastX, mLastY);
     }
 
@@ -465,7 +467,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
         return mDownTime;
     }
 
-    public void getDownCoordinates(  final int[] outCoords) {
+    public void getDownCoordinates(@Nonnull final int[] outCoords) {
         CoordinateUtils.copy(outCoords, mDownCoordinates);
     }
 

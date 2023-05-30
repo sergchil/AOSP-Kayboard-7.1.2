@@ -18,7 +18,7 @@ package com.android.inputmethod.event;
 
 import java.util.ArrayList;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * A generic interface for combiners. Combiners are objects that transform chains of input events
@@ -35,7 +35,7 @@ public interface Combiner {
      * @param event the event to combine with the existing state.
      * @return the resulting event.
      */
-
+    @Nonnull
     Event processEvent(ArrayList<Event> previousEvents, Event event);
 
     /**

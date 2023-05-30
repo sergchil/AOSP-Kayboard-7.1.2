@@ -25,16 +25,17 @@ import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.annotation.Nonnull;
 
 /**
  * Class to represent information of previous words. This class is used to add n-gram entries
  * into binary dictionaries, to get predictions, and to get suggestions.
  */
 public class NgramContext {
-     
+    @Nonnull
     public static final NgramContext EMPTY_PREV_WORDS_INFO =
             new NgramContext(WordInfo.EMPTY_WORD_INFO);
-     
+    @Nonnull
     public static final NgramContext BEGINNING_OF_SENTENCE =
             new NgramContext(WordInfo.BEGINNING_OF_SENTENCE_WORD_INFO);
 
@@ -50,9 +51,9 @@ public class NgramContext {
      * Word information used to represent previous words information.
      */
     public static class WordInfo {
-         
+        @Nonnull
         public static final WordInfo EMPTY_WORD_INFO = new WordInfo(null);
-         
+        @Nonnull
         public static final WordInfo BEGINNING_OF_SENTENCE_WORD_INFO = new WordInfo();
 
         // This is an empty char sequence when mIsBeginningOfSentence is true.
@@ -121,7 +122,7 @@ public class NgramContext {
     /**
      * Create next prevWordsInfo using current prevWordsInfo.
      */
-     
+    @Nonnull
     public NgramContext getNextNgramContext(final WordInfo wordInfo) {
         final int nextPrevWordCount = Math.min(mMaxPrevWordCount, mPrevWordsCount + 1);
         final WordInfo[] prevWordsInfo = new WordInfo[nextPrevWordCount];

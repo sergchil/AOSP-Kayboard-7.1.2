@@ -64,7 +64,7 @@ import java.util.Locale;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * This class manages the input logic.
@@ -435,7 +435,7 @@ public final class InputLogic {
      * @return the complete transaction object
      */
     public InputTransaction onCodeInput(final SettingsValues settingsValues,
-              final Event event, final int keyboardShiftMode,
+            @Nonnull final Event event, final int keyboardShiftMode,
             final int currentKeyboardScriptId, final LatinIME.UIHandler handler) {
         mWordBeingCorrectedByCursor = null;
         final Event processedEvent = mWordComposer.processEvent(event);
@@ -1421,7 +1421,7 @@ public final class InputLogic {
     }
 
     private void performAdditionToUserHistoryDictionary(final SettingsValues settingsValues,
-            final String suggestion,   final NgramContext ngramContext) {
+            final String suggestion, @Nonnull final NgramContext ngramContext) {
         // If correction is not enabled, we don't add words to the user history dictionary.
         // That's to avoid unintended additions in some sensitive fields, or fields that
         // expect to receive non-words.
@@ -1928,7 +1928,7 @@ public final class InputLogic {
      * @return the {@link Locale} of the {@link #mDictionaryFacilitator} if available. Otherwise
      * {@link Locale#ROOT}.
      */
-
+    @Nonnull
     private Locale getDictionaryFacilitatorLocale() {
         return mDictionaryFacilitator != null ? mDictionaryFacilitator.getLocale() : Locale.ROOT;
     }

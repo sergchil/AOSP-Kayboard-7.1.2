@@ -101,6 +101,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Nonnull;
 
 import static com.android.inputmethod.latin.common.Constants.ImeOption.FORCE_ASCII;
 import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_MICROPHONE;
@@ -121,7 +122,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     private static final int PENDING_IMS_CALLBACK_DURATION_MILLIS = 800;
     static final long DELAY_WAIT_FOR_DICTIONARY_LOAD_MILLIS = TimeUnit.SECONDS.toMillis(2);
     static final long DELAY_DEALLOCATE_MEMORY_MILLIS = TimeUnit.SECONDS.toMillis(10);
-    private static boolean isSwiping = false;
+
     /**
      * The name of the scheme used by the Package Manager to warn of a new package installation,
      * replacement or removal.
@@ -193,7 +194,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         private int mDelayInMillisecondsToUpdateSuggestions;
         private int mDelayInMillisecondsToUpdateShiftState;
 
-        public UIHandler(final LatinIME ownerInstance) {
+        public UIHandler(@Nonnull final LatinIME ownerInstance) {
             super(ownerInstance);
         }
 
@@ -288,7 +289,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         public void postReopenDictionaries() {
             sendMessage(obtainMessage(MSG_REOPEN_DICTIONARIES));
         }
-
 
         private void postResumeSuggestionsInternal(final boolean shouldDelay,
                                                    final boolean forStartInput) {
@@ -597,10 +597,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         StatsUtils.onCreate(mSettings.getCurrent(), mRichImm);
     }
 
-    public static boolean isSwiping() {
-        return isSwiping;
-    }
-
     // Has to be package-visible for unit tests
     @UsedForTesting
     void loadSettings() {
@@ -620,8 +616,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         refreshPersonalizationDictionarySession(currentSettingsValues);
         resetDictionaryFacilitatorIfNecessary();
         mStatsUtilsManager.onLoadSettings(this /* context */, currentSettingsValues);
-
-        isSwiping = mSettings.getCurrent().isLanguageSwitchKeyEnabled();
     }
 
     private void refreshPersonalizationDictionarySession(
@@ -763,10 +757,9 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         mInputView = view;
         mInsetsUpdater = ViewOutlineProviderCompatUtils.setInsetsOutlineProvider(view);
         updateSoftInputWindowLayoutParameters();
-        mSuggestionStripView = (SuggestionStripView) view.findViewById(R.id.suggestion_strip_view);
-        mSuggestionStripView.setVisibility(View.GONE);
+        mSuggestionStripView = (SuggestionStripView)view.findViewById(R.id.suggestion_strip_view);
         if (hasSuggestionStripView()) {
-//            mSuggestionStripView.setListener(this, view);
+            mSuggestionStripView.setListener(this, view);
         }
     }
 
@@ -1323,6 +1316,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
                 mRichImm.getInputMethodManager().showInputMethodPicker();
                 return true;
             }
+            return false;
 
 /**
  * Turns on system settings for languiages
@@ -1386,7 +1380,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
 
     // This method is public for testability of LatinIME, but also in the future it should
     // completely replace #onCodeInput.
-    public void onEvent(final Event event) {
+    public void onEvent(@Nonnull final Event event) {
         if (Constants.CODE_SHORTCUT == event.mKeyCode) {
             mRichImm.switchToShortcutIme(this);
         }
@@ -1401,7 +1395,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     // A helper method to split the code point and the key code. Ultimately, they should not be
     // squashed into the same variable, and this method should be removed.
     // public for testing, as we don't want to copy the same logic into test code
-
+    @Nonnull
     public static Event createSoftwareKeypressEvent(final int keyCodeOrCodePoint, final int keyX,
                                                     final int keyY, final boolean isKeyRepeat) {
         final int keyCode;
@@ -1462,14 +1456,14 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
      * @param suggestedWords suggested words by the IME for the full gesture.
      */
     public void onTailBatchInputResultShown(final SuggestedWords suggestedWords) {
-//        mGestureConsumer.onImeSuggestionsProcessed(suggestedWords,
-//                mInputLogic.getComposingStart(), mInputLogic.getComposingLength(),
-//                mDictionaryFacilitator);
+        mGestureConsumer.onImeSuggestionsProcessed(suggestedWords,
+                mInputLogic.getComposingStart(), mInputLogic.getComposingLength(),
+                mDictionaryFacilitator);
     }
 
     // This method must run on the UI Thread.
-    void showGesturePreviewAndSuggestionStrip(final SuggestedWords suggestedWords,
-                                              final boolean dismissGestureFloatingPreviewText) {
+    void showGesturePreviewAndSuggestionStrip(@Nonnull final SuggestedWords suggestedWords,
+            final boolean dismissGestureFloatingPreviewText) {
         showSuggestionStrip(suggestedWords);
         final MainKeyboardView mainKeyboardView = mKeyboardSwitcher.getMainKeyboardView();
         mainKeyboardView.showGestureFloatingPreviewText(suggestedWords,

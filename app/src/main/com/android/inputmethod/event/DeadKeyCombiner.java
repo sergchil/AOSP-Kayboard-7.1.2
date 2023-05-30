@@ -24,7 +24,7 @@ import com.android.inputmethod.latin.common.Constants;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * A combiner that handles dead keys.
@@ -215,9 +215,9 @@ public class DeadKeyCombiner implements Combiner {
     // TODO: make this a list of events instead
     final StringBuilder mDeadSequence = new StringBuilder();
 
-
-    private static Event createEventChainFromSequence(final   CharSequence text,
-              final Event originalEvent) {
+    @Nonnull
+    private static Event createEventChainFromSequence(final @Nonnull CharSequence text,
+            @Nonnull final Event originalEvent) {
         int index = text.length();
         if (index <= 0) {
             return originalEvent;
@@ -233,7 +233,7 @@ public class DeadKeyCombiner implements Combiner {
     }
 
     @Override
-
+    @Nonnull
     public Event processEvent(final ArrayList<Event> previousEvents, final Event event) {
         if (TextUtils.isEmpty(mDeadSequence)) {
             // No dead char is currently being tracked: this is the most common case.

@@ -45,8 +45,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import AOSP.KEYBOARD.R;
 
@@ -73,16 +73,16 @@ public class DictionaryInfoUtils {
         private static final String FILESIZE_COLUMN = "filesize";
         private static final String VERSION_COLUMN = "version";
 
-          public final String mId;
-          public final Locale mLocale;
-          public final String mDescription;
-          public final String mFilename;
+        @Nonnull public final String mId;
+        @Nonnull public final Locale mLocale;
+        @Nullable public final String mDescription;
+        @Nullable public final String mFilename;
         public final long mFilesize;
         public final long mModifiedTimeMillis;
         public final int mVersion;
 
-        public DictionaryInfo(  String id,   Locale locale,
-                  String description,   String filename,
+        public DictionaryInfo(@Nonnull String id, @Nonnull Locale locale,
+                @Nullable String description, @Nullable String filename,
                 long filesize, long modifiedTimeMillis, int version) {
             mId = id;
             mLocale = locale;
@@ -178,8 +178,8 @@ public class DictionaryInfoUtils {
     /**
      * Reverse escaping done by {@link #replaceFileNameDangerousCharacters(String)}.
      */
-
-    public static String getWordListIdFromFileName(  final String fname) {
+    @Nonnull
+    public static String getWordListIdFromFileName(@Nonnull final String fname) {
         final StringBuilder sb = new StringBuilder();
         final int fnameLength = fname.length();
         for (int i = 0; i < fnameLength; i = fname.offsetByCodePoints(i, 1)) {
@@ -208,7 +208,7 @@ public class DictionaryInfoUtils {
         return new File(DictionaryInfoUtils.getWordListStagingDirectory(context)).listFiles();
     }
 
-
+    @Nullable
     public static File[] getUnusedDictionaryList(final Context context) {
         return context.getFilesDir().listFiles(new FilenameFilter() {
             @Override
@@ -226,8 +226,8 @@ public class DictionaryInfoUtils {
      * {@link #getMainDictId(Locale)} and {@link #isMainWordListId(String)}.
      * @return The category as a string or null if it can't be found in the file name.
      */
-
-    public static String getCategoryFromFileName(  final String fileName) {
+    @Nullable
+    public static String getCategoryFromFileName(@Nonnull final String fileName) {
         final String id = getWordListIdFromFileName(fileName);
         final String[] idArray = id.split(BinaryDictionaryGetter.ID_CATEGORY_SEPARATOR);
         // An id is supposed to be in format category:locale, so splitting on the separator
@@ -396,7 +396,7 @@ public class DictionaryInfoUtils {
      * unique ID to them. This ID is just the name of the language (locale-wise) they
      * are for, and this method returns this ID.
      */
-    public static String getMainDictId(  final Locale locale) {
+    public static String getMainDictId(@Nonnull final Locale locale) {
         // This works because we don't include by default different dictionaries for
         // different countries. This actually needs to return the id that we would
         // like to use for word lists included in resources, and the following is okay.
@@ -425,7 +425,7 @@ public class DictionaryInfoUtils {
      * @return information of the specified dictionary.
      */
     private static DictionaryInfo createDictionaryInfoFromFileAddress(
-              final AssetFileAddress fileAddress, final Locale locale) {
+            @Nonnull final AssetFileAddress fileAddress, final Locale locale) {
         final String id = getMainDictId(locale);
         final int version = DictionaryHeaderUtils.getContentVersion(fileAddress);
         final String description = SubtypeLocaleUtils
@@ -443,9 +443,9 @@ public class DictionaryInfoUtils {
      * If the file is corrupted or a pre-fava file, then the file gets deleted and the null
      * value is returned.
      */
-
+    @Nullable
     private static DictionaryInfo createDictionaryInfoForUnCachedFile(
-              final AssetFileAddress fileAddress, final Locale locale) {
+            @Nonnull final AssetFileAddress fileAddress, final Locale locale) {
         final String id = getMainDictId(locale);
         final int version = DictionaryHeaderUtils.getContentVersion(fileAddress);
 

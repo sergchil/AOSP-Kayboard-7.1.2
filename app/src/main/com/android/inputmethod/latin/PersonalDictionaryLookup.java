@@ -44,8 +44,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * This class provides the ability to look into the system-wide "Personal dictionary". It loads the
@@ -106,11 +106,11 @@ public class PersonalDictionaryLookup implements Closeable {
 
     private final Set<PersonalDictionaryListener> mListeners = new HashSet<>();
 
-    public void addListener(  final PersonalDictionaryListener listener) {
+    public void addListener(@Nonnull final PersonalDictionaryListener listener) {
         mListeners.add(listener);
     }
 
-    public void removeListener(  final PersonalDictionaryListener listener) {
+    public void removeListener(@Nonnull final PersonalDictionaryListener listener) {
         mListeners.remove(listener);
     }
 
@@ -219,8 +219,8 @@ public class PersonalDictionaryLookup implements Closeable {
      * @param context the context from which to obtain content resolver
      */
     public PersonalDictionaryLookup(
-              final Context context,
-              final String serviceName) {
+            @Nonnull final Context context,
+            @Nonnull final String serviceName) {
         mTag = serviceName + ".Personal";
 
         Log.i(mTag, "create()");
@@ -315,7 +315,7 @@ public class PersonalDictionaryLookup implements Closeable {
      * @param inputLocale the locale to restrict for
      * @return set of words that apply to the given locale.
      */
-    public Set<String> getWordsForLocale(  final Locale inputLocale) {
+    public Set<String> getWordsForLocale(@Nonnull final Locale inputLocale) {
         final HashMap<String, HashMap<Locale, String>> dictWords = mDictWords;
         if (CollectionUtils.isNullOrEmpty(dictWords)) {
             return Collections.emptySet();
@@ -349,7 +349,7 @@ public class PersonalDictionaryLookup implements Closeable {
      * @param inputLocale the locale to restrict for
      * @return set of shortcuts that apply to the given locale.
      */
-    public Set<String> getShortcutsForLocale(  final Locale inputLocale) {
+    public Set<String> getShortcutsForLocale(@Nonnull final Locale inputLocale) {
         final Map<Locale, HashMap<String, String>> shortcutsPerLocale = mShortcutsPerLocale;
         if (CollectionUtils.isNullOrEmpty(shortcutsPerLocale)) {
             return Collections.emptySet();
@@ -391,7 +391,7 @@ public class PersonalDictionaryLookup implements Closeable {
      * @param inputLocale the locale in which to match the word
      * @return true iff the word has been matched for this locale in the dictionary.
      */
-    public boolean isValidWord(  final String word,   final Locale inputLocale) {
+    public boolean isValidWord(@Nonnull final String word, @Nonnull final Locale inputLocale) {
         if (!isLoaded()) {
             // This is a corner case in the event the initial load of the dictionary has not
             // completed. In that case, we assume the word is not a valid word in the dictionary.
@@ -454,8 +454,8 @@ public class PersonalDictionaryLookup implements Closeable {
      * @param inputLocale the locale in which to expand the shortcut
      * @return expanded shortcut iff the word is a shortcut in the dictionary.
      */
-      public String expandShortcut(
-              final String shortcut,   final Locale inputLocale) {
+    @Nullable public String expandShortcut(
+            @Nonnull final String shortcut, @Nonnull final Locale inputLocale) {
         if (DebugFlags.DEBUG_ENABLED) {
             Log.d(mTag, "expandShortcut() : Shortcut [" + shortcut + "] for [" + inputLocale + "]");
         }
@@ -505,10 +505,10 @@ public class PersonalDictionaryLookup implements Closeable {
         return expansionForGlobal;
     }
 
-      private String expandShortcut(
-              final HashMap<Locale, HashMap<String, String>> shortcutsPerLocale,
-              final String shortcut,
-              final Locale locale) {
+    @Nullable private String expandShortcut(
+            @Nullable final HashMap<Locale, HashMap<String, String>> shortcutsPerLocale,
+            @Nonnull final String shortcut,
+            @Nonnull final Locale locale) {
         if (CollectionUtils.isNullOrEmpty(shortcutsPerLocale)) {
             return null;
         }

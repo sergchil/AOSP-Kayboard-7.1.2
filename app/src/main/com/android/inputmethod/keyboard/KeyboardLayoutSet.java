@@ -48,8 +48,8 @@ import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
-
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static com.android.inputmethod.latin.common.Constants.ImeOption.FORCE_ASCII;
 import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_SETTINGS_KEY;
@@ -72,7 +72,7 @@ public final class KeyboardLayoutSet {
     private static final String KEYBOARD_LAYOUT_SET_RESOURCE_PREFIX = "keyboard_layout_set_";
 
     private final Context mContext;
-
+    @Nonnull
     private final Params mParams;
 
     // How many layouts we forcibly keep in cache. This only includes ALPHABET (default) and
@@ -85,7 +85,7 @@ public final class KeyboardLayoutSet {
     private static final Keyboard[] sForcibleKeyboardCache = new Keyboard[FORCIBLE_CACHE_SIZE];
     private static final HashMap<KeyboardId, SoftReference<Keyboard>> sKeyboardCache =
             new HashMap<>();
-
+    @Nonnull
     private static final UniqueKeysCache sUniqueKeysCache = UniqueKeysCache.newInstance();
     private final static HashMap<InputMethodSubtype, Integer> sScriptIdsForSubtypes =
             new HashMap<>();
@@ -149,7 +149,7 @@ public final class KeyboardLayoutSet {
     }
 
     public static int getScriptId(final Resources resources,
-              final InputMethodSubtype subtype) {
+            @Nonnull final InputMethodSubtype subtype) {
         final Integer value = sScriptIdsForSubtypes.get(subtype);
         if (null == value) {
             final int scriptId = Builder.readScriptId(resources, subtype);
@@ -159,12 +159,12 @@ public final class KeyboardLayoutSet {
         return value;
     }
 
-    KeyboardLayoutSet(final Context context,   final Params params) {
+    KeyboardLayoutSet(final Context context, @Nonnull final Params params) {
         mContext = context;
         mParams = params;
     }
 
-
+    @Nonnull
     public Keyboard getKeyboard(final int baseKeyboardLayoutSetElementId) {
         final int keyboardLayoutSetElementId;
         switch (mParams.mMode) {
@@ -208,7 +208,7 @@ public final class KeyboardLayoutSet {
         }
     }
 
-
+    @Nonnull
     private Keyboard getKeyboard(final ElementParams elementParams, final KeyboardId id) {
         final SoftReference<Keyboard> ref = sKeyboardCache.get(id);
         final Keyboard cachedKeyboard = (ref == null) ? null : ref.get();
@@ -263,7 +263,7 @@ public final class KeyboardLayoutSet {
 
         private static final EditorInfo EMPTY_EDITOR_INFO = new EditorInfo();
 
-        public Builder(final Context context,   final EditorInfo ei) {
+        public Builder(final Context context, @Nullable final EditorInfo ei) {
             mContext = context;
             mPackageName = context.getPackageName();
             mResources = context.getResources();
@@ -294,7 +294,7 @@ public final class KeyboardLayoutSet {
             return this;
         }
 
-        public Builder setSubtype(  final RichInputMethodSubtype subtype) {
+        public Builder setSubtype(@Nonnull final RichInputMethodSubtype subtype) {
             final boolean asciiCapable = InputMethodSubtypeCompatUtils.isAsciiCapable(subtype);
             // TODO: Consolidate with {@link InputAttributes}.
             @SuppressWarnings("deprecation")

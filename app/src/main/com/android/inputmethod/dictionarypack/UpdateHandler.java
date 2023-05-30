@@ -58,6 +58,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.annotation.Nullable;
+
 /**
  * Handler for the update process.
  *
@@ -740,8 +742,8 @@ public final class UpdateHandler {
      * @return an ordered list of runnables to be called to upgrade.
      */
     private static ActionBatch compareMetadataForUpgrade(final Context context,
-            final String clientId, final List<WordListMetadata> from,
-            final List<WordListMetadata> to) {
+            final String clientId, @Nullable final List<WordListMetadata> from,
+            @Nullable final List<WordListMetadata> to) {
         final ActionBatch actions = new ActionBatch();
         // Upgrade existing word lists
         DebugLogUtils.l("Comparing dictionaries");

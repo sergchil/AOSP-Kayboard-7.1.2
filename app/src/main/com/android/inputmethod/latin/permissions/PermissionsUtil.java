@@ -64,7 +64,7 @@ public class PermissionsUtil {
     /**
      * Checks if all the permissions are granted.
      */
-    public static boolean allGranted(  int[] grantResults) {
+    public static boolean allGranted(@NonNull int[] grantResults) {
         for (int result : grantResults) {
             if (result != PackageManager.PERMISSION_GRANTED) {
                 return false;

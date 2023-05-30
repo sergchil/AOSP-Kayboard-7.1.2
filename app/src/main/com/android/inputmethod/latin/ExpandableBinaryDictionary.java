@@ -45,6 +45,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Abstract base class for an expandable dictionary that can be created and updated dynamically
@@ -178,7 +180,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
         });
     }
 
-     
+    @Nullable
     BinaryDictionary getBinaryDictionary() {
         return mBinaryDictionary;
     }
@@ -274,7 +276,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
         }
     }
 
-    private void updateDictionaryWithWriteLock(  final Runnable updateTask) {
+    private void updateDictionaryWithWriteLock(@Nonnull final Runnable updateTask) {
         reloadDictionaryIfRequired();
         final Runnable task = new Runnable() {
             @Override
@@ -335,7 +337,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
     /**
      * Adds n-gram information of a word to the dictionary. May overwrite an existing entry.
      */
-    public void addNgramEntry(  final NgramContext ngramContext, final String word,
+    public void addNgramEntry(@Nonnull final NgramContext ngramContext, final String word,
             final int frequency, final int timestamp) {
         reloadDictionaryIfRequired();
         asyncExecuteTaskWithWriteLock(new Runnable() {
@@ -350,7 +352,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
         });
     }
 
-    protected void addNgramEntryLocked(  final NgramContext ngramContext, final String word,
+    protected void addNgramEntryLocked(@Nonnull final NgramContext ngramContext, final String word,
             final int frequency, final int timestamp) {
         if (!mBinaryDictionary.addNgramEntry(ngramContext, word, frequency, timestamp)) {
             if (DEBUG) {
@@ -363,7 +365,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
     /**
      * Update dictionary for the word with the ngramContext.
      */
-    public void updateEntriesForWord(  final NgramContext ngramContext,
+    public void updateEntriesForWord(@Nonnull final NgramContext ngramContext,
             final String word, final boolean isValidWord, final int count, final int timestamp) {
         updateDictionaryWithWriteLock(new Runnable() {
             @Override
@@ -400,7 +402,7 @@ abstract public class ExpandableBinaryDictionary extends Dictionary {
      */
     @UsedForTesting
     public void updateEntriesForInputEvents(
-              final ArrayList<WordInputEventForPersonalization> inputEvents,
+            @Nonnull final ArrayList<WordInputEventForPersonalization> inputEvents,
             final UpdateEntriesForInputEventsCallback callback) {
         reloadDictionaryIfRequired();
         asyncExecuteTaskWithWriteLock(new Runnable() {

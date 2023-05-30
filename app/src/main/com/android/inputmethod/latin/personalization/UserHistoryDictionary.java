@@ -31,6 +31,8 @@ import java.io.File;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Locally gathers statistics about the words user types and various other signals like
@@ -42,7 +44,7 @@ public class UserHistoryDictionary extends ExpandableBinaryDictionary {
 
     // TODO: Make this constructor private
     UserHistoryDictionary(final Context context, final Locale locale,
-              final String account) {
+            @Nullable final String account) {
         super(context, getUserHistoryDictName(NAME, locale, null /* dictFile */, account), locale, Dictionary.TYPE_USER_HISTORY, null);
         if (mLocale != null && mLocale.toString().length() > 1) {
             reloadDictionaryIfRequired();
@@ -54,7 +56,7 @@ public class UserHistoryDictionary extends ExpandableBinaryDictionary {
      */
     @UsedForTesting
     static String getUserHistoryDictName(final String name, final Locale locale,
-              final File dictFile,   final String account) {
+            @Nullable final File dictFile, @Nullable final String account) {
         if (!ProductionFlags.ENABLE_PER_ACCOUNT_USER_HISTORY_DICTIONARY) {
             return getDictName(name, locale, dictFile);
         }
@@ -65,7 +67,7 @@ public class UserHistoryDictionary extends ExpandableBinaryDictionary {
      * Uses the currently signed in account to determine the dictionary name.
      */
     private static String getUserHistoryDictNamePerAccount(final String name, final Locale locale,
-              final File dictFile,   final String account) {
+            @Nullable final File dictFile, @Nullable final String account) {
         if (dictFile != null) {
             return dictFile.getName();
         }
@@ -80,7 +82,7 @@ public class UserHistoryDictionary extends ExpandableBinaryDictionary {
     @SuppressWarnings("unused")
     @ExternallyReferenced
     public static UserHistoryDictionary getDictionary(final Context context, final Locale locale,
-            final File dictFile, final String dictNamePrefix,   final String account) {
+            final File dictFile, final String dictNamePrefix, @Nullable final String account) {
         return PersonalizationHelper.getUserHistoryDictionary(context, locale, account);
     }
 
@@ -94,7 +96,7 @@ public class UserHistoryDictionary extends ExpandableBinaryDictionary {
      * @param timestamp the timestamp when the word has been inputted
      */
     public static void addToDictionary(final ExpandableBinaryDictionary userHistoryDictionary,
-              final NgramContext ngramContext, final String word, final boolean isValid,
+            @Nonnull final NgramContext ngramContext, final String word, final boolean isValid,
             final int timestamp) {
         if (word.length() > BinaryDictionary.DICTIONARY_MAX_WORD_LENGTH) {
             return;

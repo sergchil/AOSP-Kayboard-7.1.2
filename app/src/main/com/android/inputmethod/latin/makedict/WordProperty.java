@@ -27,7 +27,7 @@ import com.android.inputmethod.latin.utils.CombinedFormatUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
+import javax.annotation.Nullable;
 
 /**
  * Utility class for a word with a probability.
@@ -49,7 +49,7 @@ public final class WordProperty implements Comparable<WordProperty> {
     // TODO: Support n-gram.
     @UsedForTesting
     public WordProperty(final String word, final ProbabilityInfo probabilityInfo,
-              final ArrayList<WeightedString> bigrams,
+            @Nullable final ArrayList<WeightedString> bigrams,
             final boolean isNotAWord, final boolean isPossiblyOffensive) {
         mWord = word;
         mProbabilityInfo = probabilityInfo;

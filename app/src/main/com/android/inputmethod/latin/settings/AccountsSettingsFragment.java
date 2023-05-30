@@ -43,7 +43,7 @@ import com.android.inputmethod.latin.utils.ManagedProfileUtils;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
+import javax.annotation.Nullable;
 
 import static com.android.inputmethod.latin.settings.LocalSettingsConstants.PREF_ACCOUNT_NAME;
 import static com.android.inputmethod.latin.settings.LocalSettingsConstants.PREF_ENABLE_CLOUD_SYNC;
@@ -325,7 +325,7 @@ public final class AccountsSettingsFragment extends SubScreenFragment {
         }
     }
 
-
+    @Nullable
     String getSignedInAccountName() {
         return getSharedPreferences().getString(LocalSettingsConstants.PREF_ACCOUNT_NAME, null);
     }

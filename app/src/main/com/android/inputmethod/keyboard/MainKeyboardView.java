@@ -65,6 +65,8 @@ import com.android.inputmethod.latin.utils.TypefaceUtils;
 
 import java.util.WeakHashMap;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
@@ -392,6 +394,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
      * @param keyboard the keyboard to display in this view
      * @see Keyboard
      * @see #getKeyboard()
+     * @param keyboard the keyboard to display in this view
      */
     @Override
     public void setKeyboard(final Keyboard keyboard) {
@@ -422,7 +425,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
      * version of the depressed key. By default the preview is enabled.
      *
      * @param previewEnabled whether or not to enable the key feedback preview
-     * @param delay          the delay after which the preview is dismissed
+     * @param delay the delay after which the preview is dismissed
      */
     public void setKeyPreviewPopupEnabled(final boolean previewEnabled, final int delay) {
         mKeyPreviewDrawParams.setPopupEnabled(previewEnabled, delay);
@@ -432,14 +435,14 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
      * Enables or disables the key preview popup animations and set animations' parameters.
      *
      * @param hasCustomAnimationParams false to use the default key preview popup animations
-     *                                 specified by keyPreviewShowUpAnimator and keyPreviewDismissAnimator attributes.
-     *                                 true to override the default animations with the specified parameters.
-     * @param showUpStartXScale        from this x-scale the show up animation will start.
-     * @param showUpStartYScale        from this y-scale the show up animation will start.
-     * @param showUpDuration           the duration of the show up animation in milliseconds.
-     * @param dismissEndXScale         to this x-scale the dismiss animation will end.
-     * @param dismissEndYScale         to this y-scale the dismiss animation will end.
-     * @param dismissDuration          the duration of the dismiss animation in milliseconds.
+     *   specified by keyPreviewShowUpAnimator and keyPreviewDismissAnimator attributes.
+     *   true to override the default animations with the specified parameters.
+     * @param showUpStartXScale from this x-scale the show up animation will start.
+     * @param showUpStartYScale from this y-scale the show up animation will start.
+     * @param showUpDuration the duration of the show up animation in milliseconds.
+     * @param dismissEndXScale to this x-scale the dismiss animation will end.
+     * @param dismissEndYScale to this y-scale the dismiss animation will end.
+     * @param dismissDuration the duration of the dismiss animation in milliseconds.
      */
     public void setKeyPreviewAnimationParams(final boolean hasCustomAnimationParams,
                                              final float showUpStartXScale, final float showUpStartYScale, final int showUpDuration,
@@ -471,7 +474,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
 
     // Implements {@link DrawingProxy#onKeyPressed(Key,boolean)}.
     @Override
-    public void onKeyPressed(final Key key, final boolean withPreview) {
+    public void onKeyPressed(@Nonnull final Key key, final boolean withPreview) {
         key.onPressed();
         invalidateKey(key);
         if (withPreview && !key.noKeyPreview()) {
@@ -479,7 +482,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
         }
     }
 
-    private void showKeyPreview(final Key key) {
+    private void showKeyPreview(@Nonnull final Key key) {
         final Keyboard keyboard = getKeyboard();
         if (keyboard == null) {
             return;
@@ -496,14 +499,14 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
                 getWidth(), mOriginCoords, mDrawingPreviewPlacerView, isHardwareAccelerated());
     }
 
-    private void dismissKeyPreviewWithoutDelay(final Key key) {
+    private void dismissKeyPreviewWithoutDelay(@Nonnull final Key key) {
         mKeyPreviewChoreographer.dismissKeyPreview(key, false /* withAnimation */);
         invalidateKey(key);
     }
 
     // Implements {@link DrawingProxy#onKeyReleased(Key,boolean)}.
     @Override
-    public void onKeyReleased(final Key key, final boolean withAnimation) {
+    public void onKeyReleased(@Nonnull final Key key, final boolean withAnimation) {
         key.onReleased();
         invalidateKey(key);
         if (!key.noKeyPreview()) {
@@ -515,7 +518,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
         }
     }
 
-    private void dismissKeyPreview(final Key key) {
+    private void dismissKeyPreview(@Nonnull final Key key) {
         if (isHardwareAccelerated()) {
             mKeyPreviewChoreographer.dismissKeyPreview(key, true /* withAnimation */);
             return;
@@ -529,7 +532,7 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
     }
 
     @Override
-    public void showSlidingKeyInputPreview(final PointerTracker tracker) {
+    public void showSlidingKeyInputPreview(@Nullable final PointerTracker tracker) {
         locatePreviewPlacerView();
         if (tracker != null) {
             mSlidingKeyInputDrawingPreview.setPreviewPosition(tracker);
@@ -544,8 +547,8 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
         mGestureTrailsDrawingPreview.setPreviewEnabled(isGestureTrailEnabled);
     }
 
-    public void showGestureFloatingPreviewText(final SuggestedWords suggestedWords,
-                                               final boolean dismissDelayed) {
+    public void showGestureFloatingPreviewText(@Nonnull final SuggestedWords suggestedWords,
+            final boolean dismissDelayed) {
         locatePreviewPlacerView();
         final GestureFloatingTextDrawingPreview gestureFloatingTextDrawingPreview =
                 mGestureFloatingTextDrawingPreview;
@@ -563,8 +566,8 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
     }
 
     @Override
-    public void showGestureTrail(final PointerTracker tracker,
-                                 final boolean showsFloatingPreviewText) {
+    public void showGestureTrail(@Nonnull final PointerTracker tracker,
+            final boolean showsFloatingPreviewText) {
         locatePreviewPlacerView();
         if (showsFloatingPreviewText) {
             mGestureFloatingTextDrawingPreview.setPreviewPosition(tracker);
@@ -600,9 +603,9 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
 
     // Implements {@link DrawingProxy@showMoreKeysKeyboard(Key,PointerTracker)}.
     @Override
-
-    public MoreKeysPanel showMoreKeysKeyboard(final Key key,
-                                              final PointerTracker tracker) {
+    @Nullable
+    public MoreKeysPanel showMoreKeysKeyboard(@Nonnull final Key key,
+            @Nonnull final PointerTracker tracker) {
         final MoreKeySpec[] moreKeys = key.getMoreKeys();
         if (moreKeys == null) {
             return null;

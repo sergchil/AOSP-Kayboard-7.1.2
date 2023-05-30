@@ -27,8 +27,8 @@ import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class KeyboardParams {
     public KeyboardId mId;
@@ -49,7 +49,7 @@ public class KeyboardParams {
     public int mLeftPadding;
     public int mRightPadding;
 
-
+    @Nullable
     public KeyVisualAttributes mKeyVisualAttributes;
 
     public int mDefaultRowHeight;
@@ -64,20 +64,20 @@ public class KeyboardParams {
     public int GRID_HEIGHT;
 
     // Keys are sorted from top-left to bottom-right order.
-
+    @Nonnull
     public final SortedSet<Key> mSortedKeys = new TreeSet<>(ROW_COLUMN_COMPARATOR);
-
+    @Nonnull
     public final ArrayList<Key> mShiftKeys = new ArrayList<>();
-
+    @Nonnull
     public final ArrayList<Key> mAltCodeKeysWhileTyping = new ArrayList<>();
-
+    @Nonnull
     public final KeyboardIconsSet mIconsSet = new KeyboardIconsSet();
-
+    @Nonnull
     public final KeyboardTextsSet mTextsSet = new KeyboardTextsSet();
-
+    @Nonnull
     public final KeyStylesSet mKeyStyles = new KeyStylesSet(mTextsSet);
 
-
+    @Nonnull
     private final UniqueKeysCache mUniqueKeysCache;
     public boolean mAllowRedundantMoreKeys;
 
@@ -86,7 +86,7 @@ public class KeyboardParams {
 
     public boolean mProximityCharsCorrectionEnabled;
 
-
+    @Nonnull
     public final TouchPositionCorrection mTouchPositionCorrection =
             new TouchPositionCorrection();
 
@@ -106,7 +106,7 @@ public class KeyboardParams {
         this(UniqueKeysCache.NO_CACHE);
     }
 
-    public KeyboardParams(  final UniqueKeysCache keysCache) {
+    public KeyboardParams(@Nonnull final UniqueKeysCache keysCache) {
         mUniqueKeysCache = keysCache;
     }
 
@@ -116,7 +116,7 @@ public class KeyboardParams {
         clearHistogram();
     }
 
-    public void onAddKey(  final Key newKey) {
+    public void onAddKey(@Nonnull final Key newKey) {
         final Key key = mUniqueKeysCache.getUniqueKey(newKey);
         final boolean isSpacer = key.isSpacer();
         if (isSpacer && key.getWidth() == 0) {

@@ -24,7 +24,7 @@ import android.view.inputmethod.InputMethodSubtype;
 import com.android.inputmethod.latin.RichInputMethodManager;
 import com.android.inputmethod.latin.RichInputMethodSubtype;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * Utility class for managing additional features settings.
@@ -47,10 +47,10 @@ public class AdditionalFeaturesSettingUtils {
         // do nothing.
     }
 
-
+    @Nonnull
     public static RichInputMethodSubtype createRichInputMethodSubtype(
-              final RichInputMethodManager imm,
-              final InputMethodSubtype subtype,
+            @Nonnull final RichInputMethodManager imm,
+            @Nonnull final InputMethodSubtype subtype,
             final Context context) {
         return new RichInputMethodSubtype(subtype);
     }

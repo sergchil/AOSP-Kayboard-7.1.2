@@ -19,14 +19,14 @@ package com.android.inputmethod.keyboard.internal;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.PointerTracker;
 
-
+import javax.annotation.Nonnull;
 
 public interface TimerProxy {
     /**
      * Start a timer to detect if a user is typing keys.
      * @param typedKey the key that is typed.
      */
-    public void startTypingStateTimer(  Key typedKey);
+    public void startTypingStateTimer(@Nonnull Key typedKey);
 
     /**
      * Check if a user is key typing.
@@ -40,7 +40,7 @@ public interface TimerProxy {
      * @param repeatCount the number of times that the key is repeating. Starting from 1.
      * @param delay the interval delay to the next key repeat, in millisecond.
      */
-    public void startKeyRepeatTimerOf(  PointerTracker tracker, int repeatCount, int delay);
+    public void startKeyRepeatTimerOf(@Nonnull PointerTracker tracker, int repeatCount, int delay);
 
     /**
      * Start a timer to detect a long pressed key.
@@ -49,13 +49,13 @@ public interface TimerProxy {
      * @param tracker the {@link PointerTracker} that starts long pressing.
      * @param delay the delay to fire the long press timer, in millisecond.
      */
-    public void startLongPressTimerOf(  PointerTracker tracker, int delay);
+    public void startLongPressTimerOf(@Nonnull PointerTracker tracker, int delay);
 
     /**
      * Cancel timers for detecting a long pressed key and a long press shift key.
      * @param tracker cancel long press timers of this {@link PointerTracker}.
      */
-    public void cancelLongPressTimersOf(  PointerTracker tracker);
+    public void cancelLongPressTimersOf(@Nonnull PointerTracker tracker);
 
     /**
      * Cancel a timer for detecting a long pressed shift key.
@@ -66,7 +66,7 @@ public interface TimerProxy {
      * Cancel timers for detecting repeated key press, long pressed key, and long pressed shift key.
      * @param tracker the {@link PointerTracker} that starts timers to be canceled.
      */
-    public void cancelKeyTimersOf(  PointerTracker tracker);
+    public void cancelKeyTimersOf(@Nonnull PointerTracker tracker);
 
     /**
      * Start a timer to detect double tapped shift key.
@@ -88,13 +88,13 @@ public interface TimerProxy {
      * Start a timer to fire updating batch input while <code>tracker</code> is on hold.
      * @param tracker the {@link PointerTracker} that stops moving.
      */
-    public void startUpdateBatchInputTimer(  PointerTracker tracker);
+    public void startUpdateBatchInputTimer(@Nonnull PointerTracker tracker);
 
     /**
      * Cancel a timer of firing updating batch input.
      * @param tracker the {@link PointerTracker} that resumes moving or ends gesture input.
      */
-    public void cancelUpdateBatchInputTimer(  PointerTracker tracker);
+    public void cancelUpdateBatchInputTimer(@Nonnull PointerTracker tracker);
 
     /**
      * Cancel all timers of firing updating batch input.
@@ -103,20 +103,20 @@ public interface TimerProxy {
 
     public static class Adapter implements TimerProxy {
         @Override
-        public void startTypingStateTimer(  Key typedKey) {}
+        public void startTypingStateTimer(@Nonnull Key typedKey) {}
         @Override
         public boolean isTypingState() { return false; }
         @Override
-        public void startKeyRepeatTimerOf(  PointerTracker tracker, int repeatCount,
+        public void startKeyRepeatTimerOf(@Nonnull PointerTracker tracker, int repeatCount,
                 int delay) {}
         @Override
-        public void startLongPressTimerOf(  PointerTracker tracker, int delay) {}
+        public void startLongPressTimerOf(@Nonnull PointerTracker tracker, int delay) {}
         @Override
-        public void cancelLongPressTimersOf(  PointerTracker tracker) {}
+        public void cancelLongPressTimersOf(@Nonnull PointerTracker tracker) {}
         @Override
         public void cancelLongPressShiftKeyTimer() {}
         @Override
-        public void cancelKeyTimersOf(  PointerTracker tracker) {}
+        public void cancelKeyTimersOf(@Nonnull PointerTracker tracker) {}
         @Override
         public void startDoubleTapShiftKeyTimer() {}
         @Override
@@ -124,9 +124,9 @@ public interface TimerProxy {
         @Override
         public boolean isInDoubleTapShiftKeyTimeout() { return false; }
         @Override
-        public void startUpdateBatchInputTimer(  PointerTracker tracker) {}
+        public void startUpdateBatchInputTimer(@Nonnull PointerTracker tracker) {}
         @Override
-        public void cancelUpdateBatchInputTimer(  PointerTracker tracker) {}
+        public void cancelUpdateBatchInputTimer(@Nonnull PointerTracker tracker) {}
         @Override
         public void cancelAllUpdateBatchInputTimers() {}
     }
