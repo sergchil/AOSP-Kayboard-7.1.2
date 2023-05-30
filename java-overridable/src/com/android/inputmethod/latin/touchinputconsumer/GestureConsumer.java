@@ -62,8 +62,8 @@ public class GestureConsumer {
     public void onGestureCompleted(final InputPointers inputPointers) {
     }
 
-//    public void onImeSuggestionsProcessed(final SuggestedWords suggestedWords,
-//            final int composingStart, final int composingLength,
-//            final DictionaryFacilitator dictionaryFacilitator) {
-//    }
+    public void onImeSuggestionsProcessed(final SuggestedWords suggestedWords,
+            final int composingStart, final int composingLength,
+            final DictionaryFacilitator dictionaryFacilitator) {
+    }
 }
