@@ -49,8 +49,6 @@ public final class InputView extends FrameLayout {
                 mMainKeyboardView, suggestionStripView);
         mMoreSuggestionsViewCanceler = new MoreSuggestionsViewCanceler(
                 mMainKeyboardView, suggestionStripView);
-
-        suggestionStripView.setVisibility(View.GONE);
     }
 
     public void setKeyboardTopPadding(final int keyboardTopPadding) {
