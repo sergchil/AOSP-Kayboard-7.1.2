@@ -25,11 +25,11 @@ public final class JniUtils {
 
     static {
         try {
-//            System.loadLibrary(JniLibName.JNI_LIB_NAME2);
+            System.loadLibrary(JniLibName.JNI_LIB_NAME2);
         } catch (Exception ue) {
             Log.e(TAG, "Could not load native library " + JniLibName.JNI_LIB_NAME2, ue);
             try {
-//                System.loadLibrary(JniLibName.JNI_LIB_NAME);
+                System.loadLibrary(JniLibName.JNI_LIB_NAME);
             } catch (Exception ule) {
                 Log.e(TAG, "Could not load native library " + JniLibName.JNI_LIB_NAME, ule);
             }

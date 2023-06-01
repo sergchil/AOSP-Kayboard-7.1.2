@@ -29,7 +29,7 @@ android {
         main {
             java.srcDirs = ['src/main', '../java-overridable/src']
         }
-//        aaptOptions.noCompress ".dict"
+        aaptOptions.noCompress ".dict"
     }
 
     signingConfigs {
