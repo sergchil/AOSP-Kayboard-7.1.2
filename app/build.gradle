@@ -12,7 +12,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "AOSP.KEYBOARD"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode getMyVersionCode()
         versionName "1.0"
@@ -29,7 +29,7 @@ android {
         main {
             java.srcDirs = ['src/main', '../java-overridable/src']
         }
-        aaptOptions.noCompress ".dict"
+//        aaptOptions.noCompress ".dict"
     }
 
     signingConfigs {

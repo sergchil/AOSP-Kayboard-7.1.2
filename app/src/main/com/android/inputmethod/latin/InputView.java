@@ -42,9 +42,10 @@ public final class InputView extends FrameLayout {
 
     @Override
     protected void onFinishInflate() {
+        super.onFinishInflate();
         final SuggestionStripView suggestionStripView =
-                (SuggestionStripView)findViewById(R.id.suggestion_strip_view);
-        mMainKeyboardView = (MainKeyboardView)findViewById(R.id.keyboard_view);
+                (SuggestionStripView) findViewById(R.id.suggestion_strip_view);
+        mMainKeyboardView = (MainKeyboardView) findViewById(R.id.keyboard_view);
         mKeyboardTopPaddingForwarder = new KeyboardTopPaddingForwarder(
                 mMainKeyboardView, suggestionStripView);
         mMoreSuggestionsViewCanceler = new MoreSuggestionsViewCanceler(
